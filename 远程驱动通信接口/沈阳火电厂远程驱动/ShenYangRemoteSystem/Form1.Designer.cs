@@ -29,18 +29,17 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.TimeLabel = new System.Windows.Forms.Label();
             this.Page2Btn = new System.Windows.Forms.Button();
             this.lbUser = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.MinimizeBtn = new System.Windows.Forms.Button();
             this.ExitBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.Page5Btn = new System.Windows.Forms.Button();
-            this.Page4Btn = new System.Windows.Forms.Button();
             this.Page3Btn = new System.Windows.Forms.Button();
             this.Page1Btn = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.TimeLabel = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.PagePanel = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
@@ -51,24 +50,47 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(80)))), ((int)(((byte)(255)))));
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.TimeLabel);
             this.panel1.Controls.Add(this.Page2Btn);
             this.panel1.Controls.Add(this.lbUser);
-            this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.MinimizeBtn);
             this.panel1.Controls.Add(this.ExitBtn);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.Page5Btn);
-            this.panel1.Controls.Add(this.Page4Btn);
             this.panel1.Controls.Add(this.Page3Btn);
             this.panel1.Controls.Add(this.Page1Btn);
             this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Controls.Add(this.TimeLabel);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1920, 51);
             this.panel1.TabIndex = 0;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("微软雅黑", 15F);
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(1674, 12);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(77, 27);
+            this.label2.TabIndex = 12;
+            this.label2.Text = "登录为:";
+            // 
+            // TimeLabel
+            // 
+            this.TimeLabel.AutoSize = true;
+            this.TimeLabel.Font = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.TimeLabel.ForeColor = System.Drawing.Color.White;
+            this.TimeLabel.Location = new System.Drawing.Point(1366, 12);
+            this.TimeLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.TimeLabel.Name = "TimeLabel";
+            this.TimeLabel.Size = new System.Drawing.Size(308, 27);
+            this.TimeLabel.TabIndex = 11;
+            this.TimeLabel.Text = "####/##/##/  ##:##:##  星期#";
             // 
             // Page2Btn
             // 
@@ -78,12 +100,12 @@
             this.Page2Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Page2Btn.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold);
             this.Page2Btn.ForeColor = System.Drawing.Color.White;
-            this.Page2Btn.Location = new System.Drawing.Point(1352, 0);
+            this.Page2Btn.Location = new System.Drawing.Point(510, 0);
             this.Page2Btn.Margin = new System.Windows.Forms.Padding(2);
             this.Page2Btn.Name = "Page2Btn";
-            this.Page2Btn.Size = new System.Drawing.Size(84, 51);
+            this.Page2Btn.Size = new System.Drawing.Size(86, 51);
             this.Page2Btn.TabIndex = 10;
-            this.Page2Btn.Text = "运行状态";
+            this.Page2Btn.Text = "状态参数";
             this.Page2Btn.UseVisualStyleBackColor = false;
             this.Page2Btn.Click += new System.EventHandler(this.Page2Btn_Click);
             // 
@@ -92,24 +114,12 @@
             this.lbUser.AutoSize = true;
             this.lbUser.Font = new System.Drawing.Font("微软雅黑", 15F);
             this.lbUser.ForeColor = System.Drawing.Color.White;
-            this.lbUser.Location = new System.Drawing.Point(542, 12);
+            this.lbUser.Location = new System.Drawing.Point(1749, 12);
             this.lbUser.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbUser.Name = "lbUser";
             this.lbUser.Size = new System.Drawing.Size(64, 27);
             this.lbUser.TabIndex = 9;
             this.lbUser.Text = "####";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("微软雅黑", 15F);
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(469, 11);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(77, 27);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "登录为:";
             // 
             // MinimizeBtn
             // 
@@ -146,11 +156,11 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("宋体", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label1.ForeColor = System.Drawing.Color.Cyan;
-            this.label1.Location = new System.Drawing.Point(674, 8);
+            this.label1.Location = new System.Drawing.Point(604, 8);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(560, 33);
+            this.label1.Size = new System.Drawing.Size(659, 33);
             this.label1.TabIndex = 1;
-            this.label1.Text = "沈阳电厂料机控制系统-远程驱动系统";
+            this.label1.Text = "华润沈阳电厂斗轮机控制系统-远程驱动系统";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Page5Btn
@@ -161,31 +171,14 @@
             this.Page5Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Page5Btn.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold);
             this.Page5Btn.ForeColor = System.Drawing.Color.White;
-            this.Page5Btn.Location = new System.Drawing.Point(1643, 0);
+            this.Page5Btn.Location = new System.Drawing.Point(298, 0);
             this.Page5Btn.Margin = new System.Windows.Forms.Padding(2);
             this.Page5Btn.Name = "Page5Btn";
-            this.Page5Btn.Size = new System.Drawing.Size(84, 51);
+            this.Page5Btn.Size = new System.Drawing.Size(86, 51);
             this.Page5Btn.TabIndex = 5;
             this.Page5Btn.Text = "系统设置";
             this.Page5Btn.UseVisualStyleBackColor = false;
             this.Page5Btn.Click += new System.EventHandler(this.Page5Btn_Click);
-            // 
-            // Page4Btn
-            // 
-            this.Page4Btn.AutoSize = true;
-            this.Page4Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(63)))), ((int)(((byte)(98)))));
-            this.Page4Btn.FlatAppearance.BorderSize = 0;
-            this.Page4Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Page4Btn.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold);
-            this.Page4Btn.ForeColor = System.Drawing.Color.White;
-            this.Page4Btn.Location = new System.Drawing.Point(1546, 0);
-            this.Page4Btn.Margin = new System.Windows.Forms.Padding(2);
-            this.Page4Btn.Name = "Page4Btn";
-            this.Page4Btn.Size = new System.Drawing.Size(84, 51);
-            this.Page4Btn.TabIndex = 4;
-            this.Page4Btn.Text = "工作日志";
-            this.Page4Btn.UseVisualStyleBackColor = false;
-            this.Page4Btn.Click += new System.EventHandler(this.Page4Btn_Click);
             // 
             // Page3Btn
             // 
@@ -195,10 +188,10 @@
             this.Page3Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Page3Btn.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold);
             this.Page3Btn.ForeColor = System.Drawing.Color.White;
-            this.Page3Btn.Location = new System.Drawing.Point(1449, 0);
+            this.Page3Btn.Location = new System.Drawing.Point(404, 0);
             this.Page3Btn.Margin = new System.Windows.Forms.Padding(2);
             this.Page3Btn.Name = "Page3Btn";
-            this.Page3Btn.Size = new System.Drawing.Size(84, 51);
+            this.Page3Btn.Size = new System.Drawing.Size(86, 51);
             this.Page3Btn.TabIndex = 3;
             this.Page3Btn.Text = "历史数据";
             this.Page3Btn.UseVisualStyleBackColor = false;
@@ -213,10 +206,10 @@
             this.Page1Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Page1Btn.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Page1Btn.ForeColor = System.Drawing.Color.White;
-            this.Page1Btn.Location = new System.Drawing.Point(1254, 0);
+            this.Page1Btn.Location = new System.Drawing.Point(1270, 0);
             this.Page1Btn.Margin = new System.Windows.Forms.Padding(2);
             this.Page1Btn.Name = "Page1Btn";
-            this.Page1Btn.Size = new System.Drawing.Size(84, 51);
+            this.Page1Btn.Size = new System.Drawing.Size(86, 51);
             this.Page1Btn.TabIndex = 2;
             this.Page1Btn.Text = "系统总览";
             this.Page1Btn.UseVisualStyleBackColor = false;
@@ -232,18 +225,6 @@
             this.pictureBox1.Size = new System.Drawing.Size(113, 104);
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
-            // 
-            // TimeLabel
-            // 
-            this.TimeLabel.AutoSize = true;
-            this.TimeLabel.Font = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.TimeLabel.ForeColor = System.Drawing.Color.White;
-            this.TimeLabel.Location = new System.Drawing.Point(139, 11);
-            this.TimeLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.TimeLabel.Name = "TimeLabel";
-            this.TimeLabel.Size = new System.Drawing.Size(308, 27);
-            this.TimeLabel.TabIndex = 1;
-            this.TimeLabel.Text = "####/##/##/  ##:##:##  星期#";
             // 
             // panel4
             // 
@@ -289,20 +270,19 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label TimeLabel;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button Page5Btn;
-        private System.Windows.Forms.Button Page4Btn;
-        private System.Windows.Forms.Button Page3Btn;
-        private System.Windows.Forms.Button Page1Btn;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel PagePanel;
         private System.Windows.Forms.Button ExitBtn;
         private System.Windows.Forms.Button MinimizeBtn;
         private System.Windows.Forms.Label lbUser;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button Page2Btn;
+        private System.Windows.Forms.Button Page5Btn;
+        private System.Windows.Forms.Button Page3Btn;
+        private System.Windows.Forms.Button Page1Btn;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label TimeLabel;
     }
 }
 

@@ -18,6 +18,7 @@ using MySql.Data.MySqlClient;
 using System.Runtime.InteropServices;
 using System.Configuration;
 using S7.Net;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
 
 namespace ShenYangRemoteSystem
 {
@@ -63,7 +64,7 @@ namespace ShenYangRemoteSystem
 
             #region UI处理业务
             // 将所有按钮添加到列表中
-            buttons = new List<Button> { Page1Btn, Page2Btn, Page3Btn, Page4Btn, Page5Btn };
+            buttons = new List<Button> { Page1Btn, Page2Btn, Page3Btn, Page5Btn };
 
             // 为每个按钮添加单击事件处理程序
             foreach (Button button in buttons)
@@ -101,9 +102,18 @@ namespace ShenYangRemoteSystem
 
         //各用户控件对象
         public static UserControl_Page1 uc1 = new UserControl_Page1();
+
         public static UserControl_Page2 uc2 = new UserControl_Page2();
+        public static UserControl_Page2_1 uc2_1 = new UserControl_Page2_1();
+        public static UserControl_Page2_2 uc2_2 = new UserControl_Page2_2();
+        public static UserControl_Page2_3 uc2_3 = new UserControl_Page2_3();
+        public static UserControl_Page2_4 uc2_4 = new UserControl_Page2_4();
+
         public static UserControl_Page3 uc3 = new UserControl_Page3();
-        public static UserControl_Page4 uc4 = new UserControl_Page4();
+        public static UserControl_Page3_1 uc3_1 = new UserControl_Page3_1();
+        public static UserControl_Page3_2 uc3_2 = new UserControl_Page3_2();
+        public static UserControl_Page3_3 uc3_3 = new UserControl_Page3_3();
+
         public static UserControl_Page5 uc5 = new UserControl_Page5();
 
 
@@ -124,7 +134,6 @@ namespace ShenYangRemoteSystem
         // 字典定义
         Dictionary<string, string> plc1addresses = new Dictionary<string, string>(); //PLC1变量地址
         Dictionary<string, string> plc2addresses = new Dictionary<string, string>(); //PLC2变量地址
-        Dictionary<string, Control> loadedControls = new Dictionary<string, Control>(); //用户控件
 
         private List<Button> buttons;
 
@@ -152,7 +161,42 @@ namespace ShenYangRemoteSystem
         {
             // 获取当前时间并在 Label 控件上显示
             DateTime currentTime = DateTime.Now;
-            TimeLabel.Text = currentTime.ToString("F");
+
+            // 获取今天是星期几
+            DayOfWeek dayOfWeek = currentTime.DayOfWeek;
+
+            // 将 DayOfWeek 转换为对应的字符串
+            string dayOfWeekString;
+
+            switch (dayOfWeek)
+            {
+                case DayOfWeek.Sunday:
+                    dayOfWeekString = "日";
+                    break;
+                case DayOfWeek.Monday:
+                    dayOfWeekString = "一";
+                    break;
+                case DayOfWeek.Tuesday:
+                    dayOfWeekString = "二";
+                    break;
+                case DayOfWeek.Wednesday:
+                    dayOfWeekString = "三";
+                    break;
+                case DayOfWeek.Thursday:
+                    dayOfWeekString = "四";
+                    break;
+                case DayOfWeek.Friday:
+                    dayOfWeekString = "五";
+                    break;
+                case DayOfWeek.Saturday:
+                    dayOfWeekString = "六";
+                    break;
+                default:
+                    dayOfWeekString = " ";
+                    break;
+            }
+
+            TimeLabel.Text = currentTime.ToString("F")+" 星期"+ dayOfWeekString;
         }
 
         // 设置序列化选项
@@ -193,11 +237,10 @@ namespace ShenYangRemoteSystem
                         mySqlConnection.Open(); // 连接数据库
 
                         uc3.mySqlConnection = mySqlConnection;
-                        uc4.mySqlConnection = mySqlConnection;
 
 
                         UpdateText(uc3.MySqlConnectionLabel, "已连接");
-                        UpdateText(uc4.MySqlConnectionLabel, "已连接");
+
                         UpdateText(uc5.MySqlConnectionLabel, "已连接");
 
                     }
@@ -206,7 +249,7 @@ namespace ShenYangRemoteSystem
                         MessageBox.Show(ex.Message, "提示", MessageBoxButtons.OK); // 显示错误信息
 
                         UpdateText(uc3.MySqlConnectionLabel, "已断开");
-                        UpdateText(uc4.MySqlConnectionLabel, "已断开");
+
                         UpdateText(uc5.MySqlConnectionLabel, "已断开");
                     }
                 }
@@ -425,6 +468,10 @@ namespace ShenYangRemoteSystem
                     }
                 }
 
+
+                //OperationLogs(systemVariables.MaterialFeederRotationSpeed.ToString());
+
+
                 #endregion
 
                 Thread.Sleep(500);
@@ -432,14 +479,13 @@ namespace ShenYangRemoteSystem
                 //复制变量
                 //CopyProperties2(plc2Variables, systemVariables);
 
-                test = JsonConvert.SerializeObject(systemVariables, settings);
 
-                MessageBox.Show(test);
+
+                //string test = JsonConvert.SerializeObject(systemVariables, settings);
+                //MessageBox.Show(test);
             }
         }
         #endregion
-
-        string test;
 
         #region PLC数据获取线程 （施耐德）
         /// <summary>
@@ -807,13 +853,13 @@ namespace ShenYangRemoteSystem
         public static void OperationLogs(string operationinfo)
         {
             //记录操作日志，将数据存入数据库
-            string insertSql = String.Format("insert into debug0328 (time, info) values('{0}','{1}')", DateTime.Now, operationinfo);
+            string insertSql = String.Format("insert into criticalparameter (time, M_ScraperMo) values('{0}','{1}')", DateTime.Now, operationinfo);//debug0328 (time, info)
 
             ExecuteSql(insertSql);
 
 
             //删除debug0328表三个月前的数据
-            string deleteSql = String.Format("delete from debug0328 where time < '{0}' ;", DateTime.Now.AddMonths(-3));
+            string deleteSql = String.Format("delete from criticalparameter where time < '{0}' ;", DateTime.Now.AddMonths(-3));//debug0328
             ExecuteSql(deleteSql);
         }
 
@@ -962,11 +1008,11 @@ namespace ShenYangRemoteSystem
         private void Page3Btn_Click(object sender, EventArgs e)
         {
             AddControlsToPanel(uc3);
-        }
 
-        private void Page4Btn_Click(object sender, EventArgs e)
-        {
-            AddControlsToPanel(uc4);
+            uc3_1.dateTimePickerEnd.Invoke(new MethodInvoker(() =>
+            {
+                uc3_1.dateTimePickerEnd.Value = DateTime.Now;
+            }));
         }
 
         private void Page5Btn_Click(object sender, EventArgs e)

@@ -1,0 +1,67 @@
+C:\Users\David Tao\Desktop\学校\23Q3\实习\堆取料机远程控制系统项目\demo\Win_Test\bin\Debug\Win_Test.exe.config
+C:\Users\David Tao\Desktop\学校\23Q3\实习\堆取料机远程控制系统项目\demo\Win_Test\bin\Debug\Win_Test.exe
+C:\Users\David Tao\Desktop\学校\23Q3\实习\堆取料机远程控制系统项目\demo\Win_Test\bin\Debug\Win_Test.pdb
+C:\Users\David Tao\Desktop\学校\23Q3\实习\堆取料机远程控制系统项目\demo\Win_Test\bin\Debug\Newtonsoft.Json.dll
+C:\Users\David Tao\Desktop\学校\23Q3\实习\堆取料机远程控制系统项目\demo\Win_Test\bin\Debug\Newtonsoft.Json.xml
+C:\Users\David Tao\Desktop\学校\23Q3\实习\堆取料机远程控制系统项目\demo\Win_Test\obj\Debug\Win_Test.csproj.AssemblyReference.cache
+C:\Users\David Tao\Desktop\学校\23Q3\实习\堆取料机远程控制系统项目\demo\Win_Test\obj\Debug\Win_Test.Form1.resources
+C:\Users\David Tao\Desktop\学校\23Q3\实习\堆取料机远程控制系统项目\demo\Win_Test\obj\Debug\Win_Test.Properties.Resources.resources
+C:\Users\David Tao\Desktop\学校\23Q3\实习\堆取料机远程控制系统项目\demo\Win_Test\obj\Debug\Win_Test.csproj.GenerateResource.cache
+C:\Users\David Tao\Desktop\学校\23Q3\实习\堆取料机远程控制系统项目\demo\Win_Test\obj\Debug\Win_Test.csproj.CoreCompileInputs.cache
+C:\Users\David Tao\Desktop\学校\23Q3\实习\堆取料机远程控制系统项目\demo\Win_Test\obj\Debug\Win_Test.csproj.CopyComplete
+C:\Users\David Tao\Desktop\学校\23Q3\实习\堆取料机远程控制系统项目\demo\Win_Test\obj\Debug\Win_Test.exe
+C:\Users\David Tao\Desktop\学校\23Q3\实习\堆取料机远程控制系统项目\demo\Win_Test\obj\Debug\Win_Test.pdb
+C:\Users\David Tao\Desktop\学校\23Q3\2023学校实习\堆取料机远程控制系统项目\demo\Win_Test\bin\Debug\Win_Test.exe.config
+C:\Users\David Tao\Desktop\学校\23Q3\2023学校实习\堆取料机远程控制系统项目\demo\Win_Test\bin\Debug\Win_Test.exe
+C:\Users\David Tao\Desktop\学校\23Q3\2023学校实习\堆取料机远程控制系统项目\demo\Win_Test\bin\Debug\Win_Test.pdb
+C:\Users\David Tao\Desktop\学校\23Q3\2023学校实习\堆取料机远程控制系统项目\demo\Win_Test\bin\Debug\Newtonsoft.Json.dll
+C:\Users\David Tao\Desktop\学校\23Q3\2023学校实习\堆取料机远程控制系统项目\demo\Win_Test\bin\Debug\Newtonsoft.Json.xml
+C:\Users\David Tao\Desktop\学校\23Q3\2023学校实习\堆取料机远程控制系统项目\demo\Win_Test\obj\Debug\Win_Test.csproj.AssemblyReference.cache
+C:\Users\David Tao\Desktop\学校\23Q3\2023学校实习\堆取料机远程控制系统项目\demo\Win_Test\obj\Debug\Win_Test.Form1.resources
+C:\Users\David Tao\Desktop\学校\23Q3\2023学校实习\堆取料机远程控制系统项目\demo\Win_Test\obj\Debug\Win_Test.Properties.Resources.resources
+C:\Users\David Tao\Desktop\学校\23Q3\2023学校实习\堆取料机远程控制系统项目\demo\Win_Test\obj\Debug\Win_Test.csproj.GenerateResource.cache
+C:\Users\David Tao\Desktop\学校\23Q3\2023学校实习\堆取料机远程控制系统项目\demo\Win_Test\obj\Debug\Win_Test.csproj.CoreCompileInputs.cache
+C:\Users\David Tao\Desktop\学校\23Q3\2023学校实习\堆取料机远程控制系统项目\demo\Win_Test\obj\Debug\Win_Test.csproj.CopyComplete
+C:\Users\David Tao\Desktop\学校\23Q3\2023学校实习\堆取料机远程控制系统项目\demo\Win_Test\obj\Debug\Win_Test.exe
+C:\Users\David Tao\Desktop\学校\23Q3\2023学校实习\堆取料机远程控制系统项目\demo\Win_Test\obj\Debug\Win_Test.pdb
+C:\Users\David Tao\Desktop\工作\24Q1\堆取料机无人值守系统项目\圆形堆取料机远程驱动项目\demo\Win_Test\bin\Debug\Win_Test.exe.config
+C:\Users\David Tao\Desktop\工作\24Q1\堆取料机无人值守系统项目\圆形堆取料机远程驱动项目\demo\Win_Test\bin\Debug\Win_Test.exe
+C:\Users\David Tao\Desktop\工作\24Q1\堆取料机无人值守系统项目\圆形堆取料机远程驱动项目\demo\Win_Test\bin\Debug\Win_Test.pdb
+C:\Users\David Tao\Desktop\工作\24Q1\堆取料机无人值守系统项目\圆形堆取料机远程驱动项目\demo\Win_Test\bin\Debug\Newtonsoft.Json.dll
+C:\Users\David Tao\Desktop\工作\24Q1\堆取料机无人值守系统项目\圆形堆取料机远程驱动项目\demo\Win_Test\bin\Debug\Newtonsoft.Json.xml
+C:\Users\David Tao\Desktop\工作\24Q1\堆取料机无人值守系统项目\圆形堆取料机远程驱动项目\demo\Win_Test\obj\Debug\Win_Test.csproj.AssemblyReference.cache
+C:\Users\David Tao\Desktop\工作\24Q1\堆取料机无人值守系统项目\圆形堆取料机远程驱动项目\demo\Win_Test\obj\Debug\Win_Test.Form1.resources
+C:\Users\David Tao\Desktop\工作\24Q1\堆取料机无人值守系统项目\圆形堆取料机远程驱动项目\demo\Win_Test\obj\Debug\Win_Test.Properties.Resources.resources
+C:\Users\David Tao\Desktop\工作\24Q1\堆取料机无人值守系统项目\圆形堆取料机远程驱动项目\demo\Win_Test\obj\Debug\Win_Test.csproj.GenerateResource.cache
+C:\Users\David Tao\Desktop\工作\24Q1\堆取料机无人值守系统项目\圆形堆取料机远程驱动项目\demo\Win_Test\obj\Debug\Win_Test.csproj.CoreCompileInputs.cache
+C:\Users\David Tao\Desktop\工作\24Q1\堆取料机无人值守系统项目\圆形堆取料机远程驱动项目\demo\Win_Test\obj\Debug\Win_Test.csproj.CopyComplete
+C:\Users\David Tao\Desktop\工作\24Q1\堆取料机无人值守系统项目\圆形堆取料机远程驱动项目\demo\Win_Test\obj\Debug\Win_Test.exe
+C:\Users\David Tao\Desktop\工作\24Q1\堆取料机无人值守系统项目\圆形堆取料机远程驱动项目\demo\Win_Test\obj\Debug\Win_Test.pdb
+C:\Users\David Tao\Desktop\工作\24Q1\黄台电厂堆取料机无人值守系统项目\堆取料机远程驱动系统项目\HuangTai远程驱动\Win_Test\bin\Debug\Win_Test.exe.config
+C:\Users\David Tao\Desktop\工作\24Q1\黄台电厂堆取料机无人值守系统项目\堆取料机远程驱动系统项目\HuangTai远程驱动\Win_Test\bin\Debug\Win_Test.exe
+C:\Users\David Tao\Desktop\工作\24Q1\黄台电厂堆取料机无人值守系统项目\堆取料机远程驱动系统项目\HuangTai远程驱动\Win_Test\bin\Debug\Win_Test.pdb
+C:\Users\David Tao\Desktop\工作\24Q1\黄台电厂堆取料机无人值守系统项目\堆取料机远程驱动系统项目\HuangTai远程驱动\Win_Test\bin\Debug\Newtonsoft.Json.dll
+C:\Users\David Tao\Desktop\工作\24Q1\黄台电厂堆取料机无人值守系统项目\堆取料机远程驱动系统项目\HuangTai远程驱动\Win_Test\bin\Debug\Newtonsoft.Json.xml
+C:\Users\David Tao\Desktop\工作\24Q1\黄台电厂堆取料机无人值守系统项目\堆取料机远程驱动系统项目\HuangTai远程驱动\Win_Test\obj\Debug\Win_Test.csproj.AssemblyReference.cache
+C:\Users\David Tao\Desktop\工作\24Q1\黄台电厂堆取料机无人值守系统项目\堆取料机远程驱动系统项目\HuangTai远程驱动\Win_Test\obj\Debug\Win_Test.Form1.resources
+C:\Users\David Tao\Desktop\工作\24Q1\黄台电厂堆取料机无人值守系统项目\堆取料机远程驱动系统项目\HuangTai远程驱动\Win_Test\obj\Debug\Win_Test.Properties.Resources.resources
+C:\Users\David Tao\Desktop\工作\24Q1\黄台电厂堆取料机无人值守系统项目\堆取料机远程驱动系统项目\HuangTai远程驱动\Win_Test\obj\Debug\Win_Test.csproj.GenerateResource.cache
+C:\Users\David Tao\Desktop\工作\24Q1\黄台电厂堆取料机无人值守系统项目\堆取料机远程驱动系统项目\HuangTai远程驱动\Win_Test\obj\Debug\Win_Test.csproj.CoreCompileInputs.cache
+C:\Users\David Tao\Desktop\工作\24Q1\黄台电厂堆取料机无人值守系统项目\堆取料机远程驱动系统项目\HuangTai远程驱动\Win_Test\obj\Debug\Win_Test.csproj.CopyComplete
+C:\Users\David Tao\Desktop\工作\24Q1\黄台电厂堆取料机无人值守系统项目\堆取料机远程驱动系统项目\HuangTai远程驱动\Win_Test\obj\Debug\Win_Test.exe
+C:\Users\David Tao\Desktop\工作\24Q1\黄台电厂堆取料机无人值守系统项目\堆取料机远程驱动系统项目\HuangTai远程驱动\Win_Test\obj\Debug\Win_Test.pdb
+F:\工作\24Q1\西安方形煤场料机无人值守系统项目\远程驱动系统\铜川方形煤场远程驱动\WebSocket测试\Win_Test\obj\Debug\Win_Test.csproj.AssemblyReference.cache
+F:\工作\24Q1\西安方形煤场料机无人值守系统项目\远程驱动系统\铜川方形煤场远程驱动\WebSocket测试\Win_Test\obj\Debug\Win_Test.Form1.resources
+F:\工作\24Q1\西安方形煤场料机无人值守系统项目\远程驱动系统\铜川方形煤场远程驱动\WebSocket测试\Win_Test\obj\Debug\Win_Test.Properties.Resources.resources
+F:\工作\24Q1\西安方形煤场料机无人值守系统项目\远程驱动系统\铜川方形煤场远程驱动\WebSocket测试\Win_Test\obj\Debug\Win_Test.csproj.GenerateResource.cache
+F:\工作\24Q1\西安方形煤场料机无人值守系统项目\远程驱动系统\铜川方形煤场远程驱动\WebSocket测试\Win_Test\obj\Debug\Win_Test.csproj.CoreCompileInputs.cache
+F:\工作\24Q1\西安方形煤场料机无人值守系统项目\远程驱动系统\铜川方形煤场远程驱动\WebSocket测试\Win_Test\obj\Debug\Win_Test.exe
+F:\工作\24Q1\西安方形煤场料机无人值守系统项目\远程驱动系统\铜川方形煤场远程驱动\WebSocket测试\Win_Test\obj\Debug\Win_Test.pdb
+F:\工作\24Q1\西安方形煤场料机无人值守系统项目\远程驱动系统\铜川方形煤场远程驱动\WebSocket测试\Win_Test\bin\Debug\Win_Test.exe.config
+F:\工作\24Q1\西安方形煤场料机无人值守系统项目\远程驱动系统\铜川方形煤场远程驱动\WebSocket测试\Win_Test\bin\Debug\Win_Test.exe
+F:\工作\24Q1\西安方形煤场料机无人值守系统项目\远程驱动系统\铜川方形煤场远程驱动\WebSocket测试\Win_Test\bin\Debug\Win_Test.pdb
+F:\工作\24Q1\西安方形煤场料机无人值守系统项目\远程驱动系统\铜川方形煤场远程驱动\WebSocket测试\Win_Test\bin\Debug\Fleck.dll
+F:\工作\24Q1\西安方形煤场料机无人值守系统项目\远程驱动系统\铜川方形煤场远程驱动\WebSocket测试\Win_Test\bin\Debug\Newtonsoft.Json.dll
+F:\工作\24Q1\西安方形煤场料机无人值守系统项目\远程驱动系统\铜川方形煤场远程驱动\WebSocket测试\Win_Test\bin\Debug\websocket-sharp-core.dll
+F:\工作\24Q1\西安方形煤场料机无人值守系统项目\远程驱动系统\铜川方形煤场远程驱动\WebSocket测试\Win_Test\bin\Debug\Newtonsoft.Json.xml
+F:\工作\24Q1\西安方形煤场料机无人值守系统项目\远程驱动系统\铜川方形煤场远程驱动\WebSocket测试\Win_Test\obj\Debug\Win_Test.csproj.Up2Date

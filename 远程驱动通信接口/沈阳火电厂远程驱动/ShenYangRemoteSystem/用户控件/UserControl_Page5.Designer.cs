@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             this.label7 = new System.Windows.Forms.Label();
             this.txtValue2 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -56,7 +57,9 @@
             this.MySqlConnectionLabel = new System.Windows.Forms.Label();
             this.PlcConnectionLabel = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
             // label7
@@ -134,7 +137,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(65, 19);
             this.label6.TabIndex = 35;
-            this.label6.Text = "调试报告";
+            this.label6.Text = "调试日志";
             // 
             // label5
             // 
@@ -378,11 +381,27 @@
             this.label12.TabIndex = 385;
             this.label12.Text = "PLC连接状态：";
             // 
+            // chart1
+            // 
+            this.chart1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(78)))), ((int)(((byte)(139)))));
+            this.chart1.BorderlineColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(78)))), ((int)(((byte)(139)))));
+            this.chart1.BorderSkin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(78)))), ((int)(((byte)(139)))));
+            this.chart1.BorderSkin.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(78)))), ((int)(((byte)(139)))));
+            this.chart1.BorderSkin.PageColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(78)))), ((int)(((byte)(139)))));
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
+            this.chart1.Location = new System.Drawing.Point(1142, 604);
+            this.chart1.Name = "chart1";
+            this.chart1.Size = new System.Drawing.Size(271, 195);
+            this.chart1.TabIndex = 406;
+            this.chart1.Text = "chart1";
+            // 
             // UserControl_Page5
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(78)))), ((int)(((byte)(139)))));
+            this.Controls.Add(this.chart1);
             this.Controls.Add(this.PlcConnectionLabel);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.MySqlConnectionLabel);
@@ -396,6 +415,7 @@
             this.Load += new System.EventHandler(this.UserControl_Page5_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -431,5 +451,6 @@
         public System.Windows.Forms.Label MySqlConnectionLabel;
         public System.Windows.Forms.Label PlcConnectionLabel;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
     }
 }

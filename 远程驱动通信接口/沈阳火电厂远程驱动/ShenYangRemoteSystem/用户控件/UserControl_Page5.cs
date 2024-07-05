@@ -364,13 +364,13 @@ namespace ShenYangRemoteSystem.用户控件
         private void CloseBtn_Click(object sender, EventArgs e)
         {
             UserControl_Page3 uc3 = Form1.uc3;
-            UserControl_Page4 uc4 = Form1.uc4;
+
             UserControl_Page5 uc5 = Form1.uc5;
 
             Form1.mySqlConnection.Close();
 
             UpdateText(uc3.MySqlConnectionLabel, "已断开");
-            UpdateText(uc4.MySqlConnectionLabel, "已断开");
+
             UpdateText(uc5.MySqlConnectionLabel, "已断开");
         }
 
