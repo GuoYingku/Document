@@ -62,7 +62,7 @@
     </Reference>
     <Reference Include="S7.Net, Version=0.20.0.0, Culture=neutral, PublicKeyToken=d5812d469e84c693, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\S7netplus.0.20.0\lib\netstandard2.0\S7.Net.dll</HintPath>
+      <HintPath>..\packages\S7netplus.0.20.0\lib\netstandard2.0\S7.Net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -121,7 +121,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Subclass\ModbusHelper.cs" />
+    <Compile Include="Subclass\ControlHelper.cs" />
+    <Compile Include="Subclass\ModbusTcpHelper.cs" />
     <Compile Include="Subclass\MySqlHelper.cs" />
     <Compile Include="Subclass\PLC1Variables.cs" />
     <Compile Include="Subclass\PLC2Variables.cs" />
@@ -142,17 +143,53 @@
     <Compile Include="用户控件\UserControl_Page2.Designer.cs">
       <DependentUpon>UserControl_Page2.cs</DependentUpon>
     </Compile>
+    <Compile Include="用户控件\UserControl_Page2_1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="用户控件\UserControl_Page2_1.Designer.cs">
+      <DependentUpon>UserControl_Page2_1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="用户控件\UserControl_Page2_2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="用户控件\UserControl_Page2_2.Designer.cs">
+      <DependentUpon>UserControl_Page2_2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="用户控件\UserControl_Page2_3.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="用户控件\UserControl_Page2_3.Designer.cs">
+      <DependentUpon>UserControl_Page2_3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="用户控件\UserControl_Page2_4.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="用户控件\UserControl_Page2_4.Designer.cs">
+      <DependentUpon>UserControl_Page2_4.cs</DependentUpon>
+    </Compile>
     <Compile Include="用户控件\UserControl_Page3.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="用户控件\UserControl_Page3.Designer.cs">
       <DependentUpon>UserControl_Page3.cs</DependentUpon>
     </Compile>
-    <Compile Include="用户控件\UserControl_Page4.cs">
+    <Compile Include="用户控件\UserControl_Page3_1.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="用户控件\UserControl_Page4.Designer.cs">
-      <DependentUpon>UserControl_Page4.cs</DependentUpon>
+    <Compile Include="用户控件\UserControl_Page3_1.Designer.cs">
+      <DependentUpon>UserControl_Page3_1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="用户控件\UserControl_Page3_2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="用户控件\UserControl_Page3_2.Designer.cs">
+      <DependentUpon>UserControl_Page3_2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="用户控件\UserControl_Page3_3.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="用户控件\UserControl_Page3_3.Designer.cs">
+      <DependentUpon>UserControl_Page3_3.cs</DependentUpon>
     </Compile>
     <Compile Include="用户控件\UserControl_Page5.cs">
       <SubType>UserControl</SubType>
@@ -179,11 +216,29 @@
     <EmbeddedResource Include="用户控件\UserControl_Page2.resx">
       <DependentUpon>UserControl_Page2.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="用户控件\UserControl_Page2_1.resx">
+      <DependentUpon>UserControl_Page2_1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="用户控件\UserControl_Page2_2.resx">
+      <DependentUpon>UserControl_Page2_2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="用户控件\UserControl_Page2_3.resx">
+      <DependentUpon>UserControl_Page2_3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="用户控件\UserControl_Page2_4.resx">
+      <DependentUpon>UserControl_Page2_4.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="用户控件\UserControl_Page3.resx">
       <DependentUpon>UserControl_Page3.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="用户控件\UserControl_Page4.resx">
-      <DependentUpon>UserControl_Page4.cs</DependentUpon>
+    <EmbeddedResource Include="用户控件\UserControl_Page3_1.resx">
+      <DependentUpon>UserControl_Page3_1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="用户控件\UserControl_Page3_2.resx">
+      <DependentUpon>UserControl_Page3_2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="用户控件\UserControl_Page3_3.resx">
+      <DependentUpon>UserControl_Page3_3.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="用户控件\UserControl_Page5.resx">
       <DependentUpon>UserControl_Page5.cs</DependentUpon>

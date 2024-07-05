@@ -24,12 +24,9 @@ namespace ShenYangRemoteSystem.用户控件
 
         private void UserControl_Page5_Load(object sender, EventArgs e)
         {
-            siemens1 = siemensHelper;
-            siemens2 = siemensHelper;
+            Thread thread1 = new Thread(new ThreadStart(Uc5LifeProcess));
 
-            Thread thread1 = new Thread(new ThreadStart(Process));
-
-            thread1.Start();
+            //thread1.Start();
 
             connectedThreads.Add(thread1); // 将新连接的线程添加到列表中
 
@@ -46,8 +43,16 @@ namespace ShenYangRemoteSystem.用户控件
             }
 
             //施耐德
-            //modbusHelper = Form1.modbusHelper;
-            //modbusHelper2 = Form1.modbusHelper2;
+            //modbusHelper_D1PLC1 = Form1.modbusHelper_D1PLC1;
+            //modbusHelper_D1PLC2 = Form1.modbusHelper_D1PLC2;
+            //modbusHelper_D2PLC1 = Form1.modbusHelper_D2PLC1;
+            //modbusHelper_D2PLC2 = Form1.modbusHelper_D2PLC2;
+
+
+            modbusHelper_D1PLC1 = new ModbusHelper(this);
+            modbusHelper_D1PLC2 = new ModbusHelper(this);
+            modbusHelper_D2PLC1 = new ModbusHelper(this);
+            modbusHelper_D2PLC2 = new ModbusHelper(this);
 
 
             //modbusHelper.DisplayRichTextboxContentAndScrollEvent += ModbusHelper_DisplayRichTextboxContentAndScrollEvent;
@@ -55,240 +60,224 @@ namespace ShenYangRemoteSystem.用户控件
         }
 
 
-        public SiemensHelper siemens1;
-        public SiemensHelper siemens2;
         List<Thread> connectedThreads = new List<Thread>(); // 用于存储已连接的线程
 
-        //public ModbusHelper modbusHelper;
-        //public ModbusHelper modbusHelper2;
 
-        #region PLC对象映射线程 （西门子）
-        private void Process()
+        public ModbusHelper modbusHelper_D1PLC1;//施耐德D1PLC1对象
+        public ModbusHelper modbusHelper_D1PLC2;//施耐德D1PLC2对象
+        public ModbusHelper modbusHelper_D2PLC1;//施耐德D2PLC1对象
+        public ModbusHelper modbusHelper_D2PLC2;//施耐德D2PLC2对象
+
+
+        #region PLC对象映射线程 （施耐德）
+        private void Uc5LifeProcess()
         {
             while (true)
             {
-                //PLC1
+                //D1PLC1
                 try
                 {
-                    if (siemensHelper.plc != null)
+                    if (Form1.modbusHelper_D1PLC1.socket != null)
                     {
-                        siemens1 = siemensHelper;
+                        modbusHelper_D1PLC1 = Form1.modbusHelper_D1PLC1;
 
-                        if (siemens1.plc.IsConnected != true)
+                        if (modbusHelper_D1PLC1.isConnectPLC != true)
                         {
-                            //siemens1.plc.Open();
+                            //modbusHelper_D1PLC1.ConnectPLC();
                         }
                     }
                 }
                 catch { }
+                Thread.Sleep(500);
 
-                //PLC2
+                //D1PLC2
                 try
                 {
-                    if (siemensHelper2.plc != null)
+                    if (Form1.modbusHelper_D1PLC2.socket != null)
                     {
-                        siemens2 = siemensHelper2;
+                        modbusHelper_D1PLC2 = Form1.modbusHelper_D1PLC2;
 
-                        if (siemens2.plc.IsConnected != true)
+                        if (modbusHelper_D1PLC2.isConnectPLC != true)
                         {
-                            //siemens2.plc.Open();
+                            //modbusHelper_D1PLC2.ConnectPLC();
                         }
                     }
                 }
                 catch { }
+                Thread.Sleep(500);
 
-                Thread.Sleep(5000);
+                //D2PLC1
+                try
+                {
+                    if (Form1.modbusHelper_D2PLC1.socket != null)
+                    {
+                        modbusHelper_D2PLC1 = Form1.modbusHelper_D2PLC1;
+
+                        if (modbusHelper_D2PLC1.isConnectPLC != true)
+                        {
+                            //modbusHelper_D2PLC1.ConnectPLC();
+                        }
+                    }
+                }
+                catch { }
+                Thread.Sleep(500);
+
+                //D2PLC2
+                try
+                {
+                    if (Form1.modbusHelper_D2PLC2.socket != null)
+                    {
+                        modbusHelper_D2PLC2 = Form1.modbusHelper_D2PLC2;
+
+                        if (modbusHelper_D2PLC2.isConnectPLC != true)
+                        {
+                            //modbusHelper_D2PLC2.ConnectPLC();
+                        }
+                    }
+                }
+                catch { }
+                Thread.Sleep(500);
             }
         }
         #endregion
 
-        #region 手动连接按钮 （西门子）
+        #region 手动连接按钮 （施耐德）
         private void btnConnect_Click(object sender, EventArgs e)
         {
-            //string TypeName = txtPLCType.Text;//PLC型号名称
-            string TypeName = "1500";//PLC型号名称
-            string Ip = txtIP.Text;//plcIp地址
+            btnConnect.Enabled = false;
 
-            if (label1.Text != "PLC1已连接！")
+            string ip = txtIP.Text;
+            int port = int.Parse(txtPort.Text);
+
+            if (modbusHelper_D1PLC1.ConnectPLC(ip, port))
             {
-                try
-                {
-                    if (siemensHelper.plc == null)
-                    {
-                        switch (TypeName)
-                        {
-                            case "200":
-                            case "200s":
-                                /*S7.Net.dll类库中没有S7-200Smart类型，想跟S7-200Smart通讯选择S71200即可*/
-                                siemensHelper.plc = new Plc(CpuType.S7200Smart, Ip, 0, 1);//创建plc实例
-                                break;
-                            case "300":
-                                siemensHelper.plc = new Plc(CpuType.S7300, Ip, 0, 1);//创建plc实例
-                                break;
-                            case "400":
-                                siemensHelper.plc = new Plc(CpuType.S7400, Ip, 0, 1);//创建plc实例
-                                break;
-                            case "1500":
-                                siemensHelper.plc = new Plc(CpuType.S71500, Ip, 0, 1);//创建plc实例
-                                break;
-                        }
+                DisplayRichTextboxContentAndScroll("连接Modbus_TCP成功");
+            }
+            else
+            {
+                DisplayRichTextboxContentAndScroll("连接Modbus_TCP失败,请检查网络以及IP设置");
 
-                        siemensHelper.plc = new Plc(CpuType.S71500, "192.168.1.66", 0, 1);
-                        siemensHelper.plc.Open();
-
-                        //检查plc是否连接上
-                        if (siemensHelper.plc.IsConnected)
-                        {
-                            try
-                            {
-                                if (uc5.PlcConnectionLabel != null)
-                                {
-                                    UpdateText(uc5.PlcConnectionLabel, "PLC1已连接！");
-                                }
-                            }
-
-                            catch (Exception ex)
-                            {
-                                DisplayRichTextboxContentAndScroll("错误： " + ex.Message);
-                            }
-                        }
-                        else
-                        {
-                            DisplayRichTextboxContentAndScroll("PLC1连接失败！");
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    DisplayRichTextboxContentAndScroll("错误： " + ex.Message);
-                }
+                btnConnect.Enabled = true;
             }
         }
         #endregion
 
-        #region 手动单个读取 （西门子）
+        #region 手动单个读取 （施耐德）
         private void btnRead_Click(object sender, EventArgs e)
         {
             //try
             //{
-            string address = txtStartAddress.Text;//寄存地址
-
-            //检查plc的可用性，检查此属性时,回向plc发送ping命令，如果plc响应ping则返回true，否则返回false.
-            if (siemensHelper.plc.IsConnected)
+            int startAddress = int.Parse(txtStartAddress.Text);
+            string curType = cboDataType.Text;
+            //try
+            //{
+            switch (curType)
             {
-                object bytes = siemensHelper.plc.Read(address);
-                //入参：读取数据地址
+                case "Byte(Byte)":
+                    byte b;
+                    modbusHelper_D1PLC1.ReadSingleHoldingRegisterValue<byte>(startAddress, out b);
+                    txtValue.Text = b.ToString();
+                    break;
+                case "Int16(Int)":
+                    short s;
+                    modbusHelper_D1PLC1.ReadSingleHoldingRegisterValue<short>(startAddress, out s);
+                    txtValue.Text = s.ToString();
+                    break;
+                case "UInt16(Word)":
+                    ushort us;
+                    modbusHelper_D1PLC1.ReadSingleHoldingRegisterValue<ushort>(startAddress, out us);
+                    txtValue.Text = us.ToString();
+                    break;
+                case "Int32(DInt)":
+                    int i;
+                    modbusHelper_D1PLC1.ReadSingleHoldingRegisterValue<int>(startAddress, out i);
+                    txtValue.Text = i.ToString();
+                    break;
+                case "UInt32(DWord)":
+                    uint ui;
+                    modbusHelper_D1PLC1.ReadSingleHoldingRegisterValue<uint>(startAddress, out ui);
+                    txtValue.Text = ui.ToString();
+                    break;
+                case "Float(Real)":
+                    float f;
+                    modbusHelper_D1PLC1.ReadSingleHoldingRegisterValue<float>(startAddress, out f);
+                    txtValue.Text = f.ToString();
+                    break;
+                case "Int64":
+                    long l;
+                    modbusHelper_D1PLC1.ReadSingleHoldingRegisterValue<long>(startAddress, out l);
+                    txtValue.Text = l.ToString();
+                    break;
+                case "UInt64":
+                    ulong ul;
+                    modbusHelper_D1PLC1.ReadSingleHoldingRegisterValue<ulong>(startAddress, out ul);
+                    txtValue.Text = ul.ToString();
+                    break;
+                case "Double":
+                    double d;
+                    modbusHelper_D1PLC1.ReadSingleHoldingRegisterValue<double>(startAddress, out d);
+                    txtValue.Text = d.ToString();
+                    break;
 
-                Type dataType = bytes.GetType();
-
-                switch (dataType.ToString())
-                {
-                    case "System.Bool":
-                        txtValue.Text = Convert.ToBoolean(bytes).ToString();
-                        break;
-                    case "System.UInt32":
-                        //取浮点数（电流）
-                        txtValue.Text = ((uint)bytes).ConvertToFloat().ToString();
-                        break;
-                    default:
-                        //未涉及到的数据类型
-                        MessageBox.Show(dataType.ToString());
-
-                        txtValue.Text = bytes.ToString();
-                        break;
-                }
+                default:
+                    DisplayRichTextboxContentAndScroll("未选择数据类型\n");
+                    break;
             }
-            else
-            {
-                DisplayRichTextboxContentAndScroll("PLC1手动单个读取失败！");
-            }
+            //}
+            //    catch (Exception ex)
+            //    {
+            //        DisplayRichTextboxContentAndScroll("写寄存器出现错误，请检查：\n" + ex.Message);
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    DisplayRichTextboxContentAndScroll(ex.Message);
+            //}
         }
         #endregion
 
-        #region 手动单个写入 （西门子）
+        #region 手动单个写入 （施耐德）
         private void btnWrite_Click(object sender, EventArgs e)
         {
             try
             {
-                string address = txtStartAddress2.Text;//寄存地址
-                string writeData = txtValue2.Text;//写入数据
+                int startAddress = int.Parse(txtStartAddress2.Text);
+                string curType = cboDataType2.Text;
                 try
                 {
-                    switch (cboDataType2.SelectedIndex)
+                    switch (curType)
                     {
-                        //Bit
-                        case 0:
-                            siemens1.plc.Write(address, Convert.ToBoolean(writeData));
+                        case "Byte(Byte)":
+                            modbusHelper_D1PLC1.WriteSingleHoldingRegisterValue<byte>(startAddress, byte.Parse(txtValue2.Text));
                             break;
-                        //Byte
-                        case 1:
-                            siemens1.plc.Write(address, Convert.ToByte(writeData));
-
+                        case "Int16(Int)":
+                            modbusHelper_D1PLC1.WriteSingleHoldingRegisterValue<short>(startAddress, short.Parse(txtValue2.Text));
                             break;
-                        //Word
-                        case 2:
-                            siemens1.plc.Write(address, Convert.ToUInt16(writeData));
-
-                            //OutValue = ((ushort)Value).ConvertToShort().ToString();
+                        case "UInt16(Word)":
+                            modbusHelper_D1PLC1.WriteSingleHoldingRegisterValue<ushort>(startAddress, ushort.Parse(txtValue2.Text));
                             break;
-                        //DWord
-                        case 3:
-                            siemens1.plc.Write(address, Convert.ToUInt32(writeData));
-
-                            //OutValue = ((uint)Value).ConvertToInt().ToString();
+                        case "Int32(DInt)":
+                            modbusHelper_D1PLC1.WriteSingleHoldingRegisterValue<int>(startAddress, int.Parse(txtValue2.Text));
                             break;
-                        //Int
-                        case 4:
-                            siemens1.plc.Write(address, Convert.ToUInt16(writeData));
-
-                            //OutValue = ((ushort)Value).ConvertToShort().ToString();
+                        case "UInt32(DWord)":
+                            modbusHelper_D1PLC1.WriteSingleHoldingRegisterValue<uint>(startAddress, uint.Parse(txtValue2.Text));
                             break;
-                        //DInt
-                        case 5:
-                            siemens1.plc.Write(address, Convert.ToUInt32(writeData));
-
-                            //OutValue = ((uint)Value).ConvertToInt().ToString();
+                        case "Float(Real)":
+                            modbusHelper_D1PLC1.WriteSingleHoldingRegisterValue<float>(startAddress, float.Parse(txtValue2.Text));
                             break;
-                        //Real
-                        case 6:
-                            //写小数
-                            siemens1.plc.Write(address, Convert.ToSingle(writeData));
-
-                            //OutValue = ((uint)Value).ConvertToDouble().ToString();
+                        case "Int64":
+                            modbusHelper_D1PLC1.WriteSingleHoldingRegisterValue<long>(startAddress, long.Parse(txtValue2.Text));
+                            break;
+                        case "UInt64":
+                            modbusHelper_D1PLC1.WriteSingleHoldingRegisterValue<ulong>(startAddress, ulong.Parse(txtValue2.Text));
+                            break;
+                        case "Double":
+                            modbusHelper_D1PLC1.WriteSingleHoldingRegisterValue<double>(startAddress, double.Parse(txtValue2.Text));
                             break;
 
                         default:
                             DisplayRichTextboxContentAndScroll("未选择数据类型\n");
                             break;
-
-
-                            //case "Byte(Byte)":
-                            //    modbusHelper2.WriteValue<byte>(startAddress, byte.Parse(txtValue2.Text));
-                            //    break;
-                            //case "Int16(Int)":
-                            //    modbusHelper2.WriteValue<short>(startAddress, short.Parse(txtValue2.Text));
-                            //    break;
-                            //case "UInt16(Word)":
-                            //    modbusHelper2.WriteValue<ushort>(startAddress, ushort.Parse(txtValue2.Text));
-                            //    break;
-                            //case "Int32(DInt)":
-                            //    modbusHelper2.WriteValue<int>(startAddress, int.Parse(txtValue2.Text));
-                            //    break;
-                            //case "UInt32(DWord)":
-                            //    modbusHelper2.WriteValue<uint>(startAddress, uint.Parse(txtValue2.Text));
-                            //    break;
-                            //case "Float(Real)":
-                            //    modbusHelper2.WriteValue<float>(startAddress, float.Parse(txtValue2.Text));
-                            //    break;
-                            //case "Int64":
-                            //    modbusHelper2.WriteValue<long>(startAddress, long.Parse(txtValue2.Text));
-                            //    break;
-                            //case "UInt64":
-                            //    modbusHelper2.WriteValue<ulong>(startAddress, ulong.Parse(txtValue2.Text));
-                            //    break;
-                            //case "Double":
-                            //    modbusHelper2.WriteValue<double>(startAddress, double.Parse(txtValue2.Text));
-                            //    break;
                     }
                 }
                 catch (Exception ex)
@@ -364,13 +353,13 @@ namespace ShenYangRemoteSystem.用户控件
         private void CloseBtn_Click(object sender, EventArgs e)
         {
             UserControl_Page3 uc3 = Form1.uc3;
-            UserControl_Page4 uc4 = Form1.uc4;
+
             UserControl_Page5 uc5 = Form1.uc5;
 
             Form1.mySqlConnection.Close();
 
             UpdateText(uc3.MySqlConnectionLabel, "已断开");
-            UpdateText(uc4.MySqlConnectionLabel, "已断开");
+
             UpdateText(uc5.MySqlConnectionLabel, "已断开");
         }
 

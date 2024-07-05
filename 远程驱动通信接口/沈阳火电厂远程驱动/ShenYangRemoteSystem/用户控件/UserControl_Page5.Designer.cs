@@ -134,7 +134,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(65, 19);
             this.label6.TabIndex = 35;
-            this.label6.Text = "调试报告";
+            this.label6.Text = "调试日志";
             // 
             // label5
             // 

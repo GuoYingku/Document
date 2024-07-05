@@ -125,11 +125,11 @@ namespace ShenYangRemoteSystem.Subclass
                             {
                                 case "SUPPLYPOWER_ON": // 命令名为 "SUPPLYPOWER_ON"
 
-                                //    UC_page12.PLC2Write("DB414.DBX651.4", 0, "True");
-                                //    Thread.Sleep(700);
-                                //    UC_page12.PLC2Write("DB414.DBX651.4", 0, "False");
+                                    form1.PLCWrite(Form1.modbusHelper_D1PLC1, 0001, 0, "1");
+                                    Thread.Sleep(700);
+                                    form1.PLCWrite(Form1.modbusHelper_D1PLC1, 0001, 0, "0");
 
-                                //    break;
+                                    break;
 
 
                                 default:
