@@ -414,6 +414,8 @@ namespace ShenYangRemoteSystem
             }
             else if (typeof(T) == typeof(ushort))
             {
+                int test = startAddress;
+
                 ushort us = BitConverter.ToUInt16(new byte[] { receiveBuffer[10], receiveBuffer[9] }, 0);
                 value = (T)(object)us;
             }
@@ -447,6 +449,65 @@ namespace ShenYangRemoteSystem
                 double d = BitConverter.ToDouble(new byte[] { receiveBuffer[16], receiveBuffer[15], receiveBuffer[14], receiveBuffer[13], receiveBuffer[12], receiveBuffer[11], receiveBuffer[10], receiveBuffer[9] }, 0);
                 value = (T)(object)d;
             }
+            return true;
+        }
+        #endregion
+
+        #region 读取单个保持寄存器值（布尔值）
+        /// <summary>
+        /// 读取单个保持寄存器值（布尔值）
+        /// </summary>
+        /// <typeparam name="T">基本的数据类型，如short，int，double等</typeparam>
+        /// <param name="startAddress">起始地址</param>
+        /// <param name="value">返回的具体指</param>
+        /// <returns>true：读取成功 false：读取失败</returns>
+        public bool ReadSingleHoldingRegisterBoolValue(int startAddress, int index, out bool value)
+        {
+            value = default;
+            if (socket == null || !socket.Connected)
+            {
+                DisplayRichTextboxContentAndScroll("socket为空或者尚未建立与PLC_Modbus的连接...");
+                return false;
+            }
+            if (startAddress < 0 || startAddress > 65535)
+            {
+                DisplayRichTextboxContentAndScroll("Modbus的起始地址必须在0~65535之间");
+                return false;
+            }
+            byte[] addrArray = BitConverter.GetBytes((ushort)startAddress);
+            byte wordLength = 1;//读取的地址个数【多少个字Word】
+
+
+            byte[] sendBuffer = new byte[12] { 0x02, 0x01, 0x00, 0x00, 0x00, 0x06, 0x01, 0x03, addrArray[1], addrArray[0], 0x00, wordLength };
+            socket.Send(sendBuffer);
+             
+            DisplayBuffer(sendBuffer, sendBuffer.Length, true);
+            Thread.Sleep(50);//等待50ms
+
+            byte[] receiveBuffer = new byte[1024];
+            try
+            {
+                //协议错误时 Receive函数将发生异常
+                int receiveCount = socket.Receive(receiveBuffer);
+                DisplayBuffer(receiveBuffer, receiveCount, false);
+                //receiveBuffer[8] : 真实数据的字节流总个数
+            }
+            catch (Exception ex)
+            {
+                DisplayRichTextboxContentAndScroll("接收Modbus的响应数据异常，请查看发送的报文格式是否有误：" + ex.Message);
+                return false;
+            }
+
+            ushort us = BitConverter.ToUInt16(new byte[] { receiveBuffer[10], receiveBuffer[9] }, 0);
+
+            int n = index; // 要读取的位
+            // 创建位掩码并进行按位与运算
+            bool isBitSet = (us & (1 << n)) != 0;
+
+            value = isBitSet;
+
+
+            
             return true;
         }
         #endregion

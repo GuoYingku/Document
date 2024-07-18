@@ -11,13 +11,13 @@ namespace ShenYangRemoteSystem.Subclass
         public DateTime TimeStamp { get; set; }
 
         // ID1
-        public int LargeCarElectricCurrent { get; set; }// 1
-        public int RotaryElectricCurrent { get; set; }
-        public int SuspensionBeltElectricCurrent { get; set; }
-        public int BucketWheelElectricCurrent { get; set; }
-        public int LargeCarTravelDistance { get; set; }
-        public int RotaryAngle { get; set; }
-        public int VariableAmplitudeAngle { get; set; }
+        public ushort LargeCarElectricCurrent { get; set; }// 1
+        public ushort RotaryElectricCurrent { get; set; }
+        public ushort SuspensionBeltElectricCurrent { get; set; }
+        public ushort BucketWheelElectricCurrent { get; set; }
+        public ushort LargeCarTravelDistance { get; set; }
+        public ushort RotaryAngle { get; set; }
+        public ushort VariableAmplitudeAngle { get; set; }
         public bool VacuumCircuitBreakerClosed { get; set; }
         public bool LowVoltageControlPowerClosed { get; set; }
         public bool LowVoltagePowerClosed { get; set; }
@@ -123,7 +123,7 @@ namespace ShenYangRemoteSystem.Subclass
         public bool RotarySpeedGivenSelection { get; set; }
         public bool RotaryFanRunning { get; set; }
         public bool VariableAmplitudeLowerElectromagneticValveOpen { get; set; }
-        public int RiseCount { get; set; }
+        public ushort RiseCount { get; set; }
         public bool SingleAction { get; set; }
         public bool LinkAction { get; set; }
         public bool Automatic { get; set; }
@@ -163,7 +163,7 @@ namespace ShenYangRemoteSystem.Subclass
         public bool SuspensionBeltUnloadingButton { get; set; }
         public bool BucketWheelStartupButton { get; set; }
         public bool BucketWheelStopButton { get; set; }
-        public int RotaryCount { get; set; }
+        public ushort RotaryCount { get; set; }
         public bool LeftAnchorNotLifted { get; set; }
         public bool RightAnchorNotLifted { get; set; }
         public bool ClampNotRelaxed { get; set; }
@@ -355,7 +355,7 @@ namespace ShenYangRemoteSystem.Subclass
         public bool BucketWheelSlotLift { get; set; }
         public bool BucketWheelSlotLower { get; set; }
         public bool RemoteEmergencyStop { get; set; }
-        public int DiversionPlateAngle { get; set; }
+        public ushort DiversionPlateAngle { get; set; }
         public bool DryFogDustSuppressionStackingRunning { get; set; }
         public bool DryFogDustSuppressionReclaimingRunning { get; set; }
         public bool DryFogDustSuppressionDiversionRunning { get; set; }
@@ -387,8 +387,8 @@ namespace ShenYangRemoteSystem.Subclass
         public bool DriverRoomBalancePumpMotorNotRunning { get; set; }
         public bool DriverRoomBalancePumpMotorAuxiliaryContactFault { get; set; }
         public bool Remote { get; set; }
-        public int TwoMachineDistance { get; set; }
-        public int DriverRoomAngle { get; set; }
+        public ushort TwoMachineDistance { get; set; }
+        public ushort DriverRoomAngle { get; set; }
         public bool DriverRoomRiseButton { get; set; }
         public bool DriverRoomDescentButton { get; set; }
     }

@@ -19,6 +19,9 @@ using System.Runtime.InteropServices;
 using System.Configuration;
 using S7.Net;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
+using System.Diagnostics;
+using System.Collections.Concurrent;
+//using Google.Protobuf.WellKnownTypes;
 
 namespace ShenYangRemoteSystem
 {
@@ -43,12 +46,15 @@ namespace ShenYangRemoteSystem
             Thread thread3 = new Thread(new ThreadStart(Process_D1PLC_DataGet));
             Thread thread4 = new Thread(new ThreadStart(Process_D2PLC_DataGet));
             Thread thread5 = new Thread(new ThreadStart(Process_SocketListening));
+            Thread thread6 = new Thread(new ThreadStart(Process6));
 
-            thread1.Start();
-            thread2.Start();
+
+            //thread1.Start();
+            //thread2.Start();
             //thread3.Start();
             thread4.Start();
             thread5.Start();
+            //thread6.Start();
 
 
             UpdateClock(null, null); //初始化时间
@@ -80,401 +86,407 @@ namespace ShenYangRemoteSystem
 
             #region 键值对d1PLC1
             //1
-            d1PLC1addresses.Add("LargeCarElectricCurrent", 40444);
-            d1PLC1addresses.Add("RotaryElectricCurrent", 40454);
-            d1PLC1addresses.Add("SuspensionBeltElectricCurrent", 40464);
-            d1PLC1addresses.Add("BucketWheelElectricCurrent", 40474);
-            d1PLC1addresses.Add("LargeCarTravelDistance", 40400);
-            d1PLC1addresses.Add("RotaryAngle", 40418);
-            d1PLC1addresses.Add("VariableAmplitudeAngle", 40428);
+            d1PLC1addresses.Add("LargeCarElectricCurrent", 40444);// Word
+            d1PLC1addresses.Add("RotaryElectricCurrent", 40454);// Word
+            d1PLC1addresses.Add("SuspensionBeltElectricCurrent", 40464);// Word
+            d1PLC1addresses.Add("BucketWheelElectricCurrent", 40474);// Word
+            d1PLC1addresses.Add("LargeCarTravelDistance", 40400);// Word
+            d1PLC1addresses.Add("RotaryAngle", 40418);// Word
+            d1PLC1addresses.Add("VariableAmplitudeAngle", 40428);// Word
+            d1PLC1addresses.Add("RiseCount", 40500);// Word
+            d1PLC1addresses.Add("RotaryCount", 40504);// Word
+            d1PLC1addresses.Add("DiversionPlateAngle", 40406);// Word
+            d1PLC1addresses.Add("TwoMachineDistance", 40484);// Word
+            d1PLC1addresses.Add("DriverRoomAngle", 40498);// Word
 
-            d1PLC1addresses.Add("VacuumCircuitBreakerClosed", 10100);
-            d1PLC1addresses.Add("LowVoltageControlPowerClosed", 10102);
-            d1PLC1addresses.Add("LowVoltagePowerClosed", 10103);
-            d1PLC1addresses.Add("LargeCarCentralizedLubricationLowOilLevel", 10105);
-            d1PLC1addresses.Add("LargeCarCentralizedLubricationOilBlockage", 10106);
-            d1PLC1addresses.Add("AllowBucketWheelMaterialLoading", 10112);
-            d1PLC1addresses.Add("AllowBucketWheelMaterialUnloading", 10113);
-            d1PLC1addresses.Add("LargeCarMainCircuitBreaker", 10121);
-            d1PLC1addresses.Add("LargeCarMotorCircuitBreaker", 10122);
-            d1PLC1addresses.Add("LargeCarBrakeCircuitBreaker", 10123);
-            d1PLC1addresses.Add("LargeCarFrequencyConverterContact", 10125);
-            d1PLC1addresses.Add("LargeCarBrakeContact", 10126);
-            d1PLC1addresses.Add("LargeCarFrequencyConverterFault", 10128);
-            d1PLC1addresses.Add("LargeCarBrakeResistorOverheatSwitch", 10129);
-            d1PLC1addresses.Add("LargeCarForwardLimit", 10130);
-            d1PLC1addresses.Add("LargeCarReverseLimit", 10131);
-            d1PLC1addresses.Add("LargeCarForwardExtremeLimit", 10132);
-            d1PLC1addresses.Add("LargeCarReverseExtremeLimit", 10133);
-            d1PLC1addresses.Add("CableReelMainCircuitBreaker", 10140);
-            d1PLC1addresses.Add("CableReelMotorOverload", 10141);
-            d1PLC1addresses.Add("PowerReelContact", 10142);
-            d1PLC1addresses.Add("ReelOverTensionLimit1", 10200);
-            d1PLC1addresses.Add("ReelOverLooseLimit1", 10201);
-            d1PLC1addresses.Add("VibrationMotorMainCircuitBreaker", 10186);
-            d1PLC1addresses.Add("RotaryBrakeOverload", 10163);
-            d1PLC1addresses.Add("RotaryMainCircuitBreaker", 10162);
-            d1PLC1addresses.Add("ClampMotorOverload", 10149);
-            d1PLC1addresses.Add("LeftAnchorLiftLimit", 10150);
-            d1PLC1addresses.Add("RightAnchorLiftLimit", 10151);
-            d1PLC1addresses.Add("LeftClampRelaxLimit", 10152);
-            d1PLC1addresses.Add("RightClampRelaxLimit", 10153);
-            d1PLC1addresses.Add("BucketWheelMotorMainCircuitBreaker", 10171);
-            d1PLC1addresses.Add("RotaryFanContact", 10167);
-            d1PLC1addresses.Add("RotaryBrakeContact", 10166);
-            d1PLC1addresses.Add("RotaryFrequencyConverterContact", 10165);
-            d1PLC1addresses.Add("SystemInterlockSwitch", 10270);
-            d1PLC1addresses.Add("VariableAmplitudeMainCircuitBreaker", 10180);
-            d1PLC1addresses.Add("VariableAmplitudeMotorOverload", 10181);
-            d1PLC1addresses.Add("VariableAmplitudeMotorContact", 10182);
-            d1PLC1addresses.Add("VariableAmplitudeHeaterContact", 10183);
-            d1PLC1addresses.Add("VariableAmplitudeFanContact", 10184);
-            d1PLC1addresses.Add("SuspensionBeltMainCircuitBreaker", 10188);
-            d1PLC1addresses.Add("SuspensionBeltMotorOverload", 10189);
 
-            //51
-            d1PLC1addresses.Add("SuspensionBeltMaterialLoadingRunningContact", 10190);
-            d1PLC1addresses.Add("SuspensionBeltMaterialUnloadingRunningContact", 10191);
-            d1PLC1addresses.Add("SuspensionBeltBrakeContact", 10192);
-            d1PLC1addresses.Add("CentralMaterialDustDetectionSwitch", 10175);
-            d1PLC1addresses.Add("DiversionBaffleMainCircuitBreaker", 10220);
-            d1PLC1addresses.Add("VibrationMotorOverload", 10187);
-            d1PLC1addresses.Add("ClampMainCircuitBreaker", 10148);
-            d1PLC1addresses.Add("BucketWheelMotorOverload", 10172);
-            d1PLC1addresses.Add("BucketWheelLubricationPumpContact", 10174);
-            d1PLC1addresses.Add("RotaryLeftTurnLimit", 10304);
-            d1PLC1addresses.Add("RotaryRightTurnLimit", 10305);
-            d1PLC1addresses.Add("RotaryLeftTurnExtremeLimit", 10306);
-            d1PLC1addresses.Add("RotaryRightTurnExtremeLimit", 10307);
-            d1PLC1addresses.Add("RotaryLeftTurnForbiddenZoneLimit", 10308);
-            d1PLC1addresses.Add("RotaryRightTurnForbiddenZoneLimit", 10309);
-            d1PLC1addresses.Add("RotaryZeroPositionLimit", 10312);
-            d1PLC1addresses.Add("BucketWheelOverTorqueSwitch", 10355);
-            d1PLC1addresses.Add("BucketWheelForcedLubricationFlowSwitch", 10354);
-            d1PLC1addresses.Add("VariableAmplitudeUpperLimit", 10360);
-            d1PLC1addresses.Add("VariableAmplitudeLowerLimit", 10361);
-            d1PLC1addresses.Add("VariableAmplitudeUpperExtremeLimit", 10362);
-            d1PLC1addresses.Add("VariableAmplitudeLowerExtremeLimit", 10363);
-            d1PLC1addresses.Add("VariableAmplitudeLowerForbiddenZoneLimit", 10364);
-            d1PLC1addresses.Add("CabinFrontBalanceLimit", 10365);
-            d1PLC1addresses.Add("VariableAmplitudeOilHeaterStartup", 10326);
-            d1PLC1addresses.Add("VariableAmplitudeOilHeaterStop", 10327);
-            d1PLC1addresses.Add("VariableAmplitudeFanStop", 10329);
-            d1PLC1addresses.Add("VariableAmplitudeFanStartup", 10328);
-            d1PLC1addresses.Add("VariableAmplitudeOilLevelLowSignal", 10332);
-            d1PLC1addresses.Add("VariableAmplitudePumpStationOverheatAlarm", 10330);
-            d1PLC1addresses.Add("VariableAmplitudeOilLevelVeryLowSignal", 10331);
-            d1PLC1addresses.Add("RotaryCentralizedLubricationLowOilLevelFault", 10349);
-            d1PLC1addresses.Add("LargeCarFrequencyConverterPowerOn", 10409);
-            d1PLC1addresses.Add("LargeCarBrakeOpen", 10410);
-            d1PLC1addresses.Add("LargeCarFrequencyConverterFaultReset", 10414);
-            d1PLC1addresses.Add("LargeCarReverseCommand", 10413);
-            d1PLC1addresses.Add("LargeCarHighLowSpeedSelection", 10415);
-            d1PLC1addresses.Add("BucketWheelMaterialLoadingRunning", 10403);
-            d1PLC1addresses.Add("BucketWheelFault", 10406);
-            d1PLC1addresses.Add("SuspensionBeltFirstLevelDeviationSwitch", 10340);
-            d1PLC1addresses.Add("SuspensionBeltSecondLevelDeviationSwitch", 10341);
-            d1PLC1addresses.Add("SuspensionBeltEmergencyStopSwitch", 10342);
-            d1PLC1addresses.Add("SuspensionBeltSpeedDetectionSwitch", 10343);
-            d1PLC1addresses.Add("SuspensionBeltMaterialFlowDetectionSwitch", 10344);
-            d1PLC1addresses.Add("SuspensionBeltLongitudinalTearSwitch", 10345);
-            d1PLC1addresses.Add("RotaryCentralizedLubricationOilBlockageFault", 10350);
-            d1PLC1addresses.Add("LargeCarForwardCommand", 10412);
-            d1PLC1addresses.Add("VariableAmplitudeOilPumpMotorRunning", 10440);
-            d1PLC1addresses.Add("VariableAmplitudeOilHeaterRunning", 10441);
-            d1PLC1addresses.Add("VariableAmplitudeFanRunning", 10442);
+            d1PLC1addresses.Add("VacuumCircuitBreakerClosed", 00100);
+            d1PLC1addresses.Add("LowVoltageControlPowerClosed", 00102);
+            d1PLC1addresses.Add("LowVoltagePowerClosed", 00103);
+            d1PLC1addresses.Add("LargeCarCentralizedLubricationLowOilLevel", 00105);
+            d1PLC1addresses.Add("LargeCarCentralizedLubricationOilBlockage", 00106);
+            d1PLC1addresses.Add("AllowBucketWheelMaterialLoading", 00112);
+            d1PLC1addresses.Add("AllowBucketWheelMaterialUnloading", 00113);
+            d1PLC1addresses.Add("LargeCarMainCircuitBreaker", 00121);
+            d1PLC1addresses.Add("LargeCarMotorCircuitBreaker", 00122);
+            d1PLC1addresses.Add("LargeCarBrakeCircuitBreaker", 00123);
+            d1PLC1addresses.Add("LargeCarFrequencyConverterContact", 00125);
+            d1PLC1addresses.Add("LargeCarBrakeContact", 00126);
+            d1PLC1addresses.Add("LargeCarFrequencyConverterFault", 00128);
+            d1PLC1addresses.Add("LargeCarBrakeResistorOverheatSwitch", 00129);
+            d1PLC1addresses.Add("LargeCarForwardLimit", 00130);
+            d1PLC1addresses.Add("LargeCarReverseLimit", 00131);
+            d1PLC1addresses.Add("LargeCarForwardExtremeLimit", 00132);
+            d1PLC1addresses.Add("LargeCarReverseExtremeLimit", 00133);
+            d1PLC1addresses.Add("CableReelMainCircuitBreaker", 00140);
+            d1PLC1addresses.Add("CableReelMotorOverload", 00141);
+            d1PLC1addresses.Add("PowerReelContact", 00142);
+            d1PLC1addresses.Add("ReelOverTensionLimit1", 00200);
+            d1PLC1addresses.Add("ReelOverLooseLimit1", 00201);
+            d1PLC1addresses.Add("VibrationMotorMainCircuitBreaker", 00186);
+            d1PLC1addresses.Add("RotaryBrakeOverload", 00163);
+            d1PLC1addresses.Add("RotaryMainCircuitBreaker", 00162);
+            d1PLC1addresses.Add("ClampMotorOverload", 00149);
+            d1PLC1addresses.Add("LeftAnchorLiftLimit", 00150);
+            d1PLC1addresses.Add("RightAnchorLiftLimit", 00151);
+            d1PLC1addresses.Add("LeftClampRelaxLimit", 00152);
+            d1PLC1addresses.Add("RightClampRelaxLimit", 00153);
+            d1PLC1addresses.Add("BucketWheelMotorMainCircuitBreaker", 00171);
+            d1PLC1addresses.Add("RotaryFanContact", 00167);
+            d1PLC1addresses.Add("RotaryBrakeContact", 00166);
+            d1PLC1addresses.Add("RotaryFrequencyConverterContact", 00165);
+            d1PLC1addresses.Add("SystemInterlockSwitch", 00270);
+            d1PLC1addresses.Add("VariableAmplitudeMainCircuitBreaker", 00180);
+            d1PLC1addresses.Add("VariableAmplitudeMotorOverload", 00181);
+            d1PLC1addresses.Add("VariableAmplitudeMotorContact", 00182);
+            d1PLC1addresses.Add("VariableAmplitudeHeaterContact", 00183);
+            d1PLC1addresses.Add("VariableAmplitudeFanContact", 00184);
+            d1PLC1addresses.Add("SuspensionBeltMainCircuitBreaker", 00188);
+            d1PLC1addresses.Add("SuspensionBeltMotorOverload", 00189);
+            d1PLC1addresses.Add("SuspensionBeltMaterialLoadingRunningContact", 00190);
+            d1PLC1addresses.Add("SuspensionBeltMaterialUnloadingRunningContact", 00191);
+            d1PLC1addresses.Add("SuspensionBeltBrakeContact", 00192);
+            d1PLC1addresses.Add("CentralMaterialDustDetectionSwitch", 00175);
+            d1PLC1addresses.Add("DiversionBaffleMainCircuitBreaker", 00220);
+            d1PLC1addresses.Add("VibrationMotorOverload", 00187);
+            d1PLC1addresses.Add("ClampMainCircuitBreaker", 00148);
+            d1PLC1addresses.Add("BucketWheelMotorOverload", 00172);
+            d1PLC1addresses.Add("BucketWheelLubricationPumpContact", 00174);
+            d1PLC1addresses.Add("RotaryLeftTurnLimit", 00304);
+            d1PLC1addresses.Add("RotaryRightTurnLimit", 00305);
+            d1PLC1addresses.Add("RotaryLeftTurnExtremeLimit", 00306);
+            d1PLC1addresses.Add("RotaryRightTurnExtremeLimit", 00307);
+            d1PLC1addresses.Add("RotaryLeftTurnForbiddenZoneLimit", 00308);
+            d1PLC1addresses.Add("RotaryRightTurnForbiddenZoneLimit", 00309);
+            d1PLC1addresses.Add("RotaryZeroPositionLimit", 00312);
+            d1PLC1addresses.Add("BucketWheelOverTorqueSwitch", 00355);
+            d1PLC1addresses.Add("BucketWheelForcedLubricationFlowSwitch", 00354);
+            d1PLC1addresses.Add("VariableAmplitudeUpperLimit", 00360);
+            d1PLC1addresses.Add("VariableAmplitudeLowerLimit", 00361);
+            d1PLC1addresses.Add("VariableAmplitudeUpperExtremeLimit", 00362);
+            d1PLC1addresses.Add("VariableAmplitudeLowerExtremeLimit", 00363);
+            d1PLC1addresses.Add("VariableAmplitudeLowerForbiddenZoneLimit", 00364);
+            d1PLC1addresses.Add("CabinFrontBalanceLimit", 00365);
+            d1PLC1addresses.Add("VariableAmplitudeOilHeaterStartup", 00326);
+            d1PLC1addresses.Add("VariableAmplitudeOilHeaterStop", 00327);
+            d1PLC1addresses.Add("VariableAmplitudeFanStop", 00329);
+            d1PLC1addresses.Add("VariableAmplitudeFanStartup", 00328);
+            d1PLC1addresses.Add("VariableAmplitudeOilLevelLowSignal", 00332);
+            d1PLC1addresses.Add("VariableAmplitudePumpStationOverheatAlarm", 00330);
+            d1PLC1addresses.Add("VariableAmplitudeOilLevelVeryLowSignal", 00331);
+            d1PLC1addresses.Add("RotaryCentralizedLubricationLowOilLevelFault", 00349);
+            d1PLC1addresses.Add("LargeCarFrequencyConverterPowerOn", 00409);
+            d1PLC1addresses.Add("LargeCarBrakeOpen", 00410);
+            d1PLC1addresses.Add("LargeCarFrequencyConverterFaultReset", 00414);
+            d1PLC1addresses.Add("LargeCarReverseCommand", 00413);
+            d1PLC1addresses.Add("LargeCarHighLowSpeedSelection", 00415);
+            d1PLC1addresses.Add("BucketWheelMaterialLoadingRunning", 00403);
 
-            //101
-            d1PLC1addresses.Add("LeftClampPumpRunning", 10423);
-            d1PLC1addresses.Add("RightClampPumpRunning", 10424);
-            d1PLC1addresses.Add("LeftClampElectromagneticValveOpen", 10425);
-            d1PLC1addresses.Add("RightClampElectromagneticValveOpen", 10426);
-            d1PLC1addresses.Add("RotaryFrequencyConverterPowerOn", 10427);
-            d1PLC1addresses.Add("RotaryBrakeOpen", 10428);
-            d1PLC1addresses.Add("RotaryLeftTurnCommand", 10429);
-            d1PLC1addresses.Add("RotaryRightTurnCommand", 10430);
-            d1PLC1addresses.Add("RotaryFrequencyConverterFaultReset", 10431);
-            d1PLC1addresses.Add("RotarySpeedGivenSelection", 10432);
-            d1PLC1addresses.Add("RotaryFanRunning", 10433);
-            d1PLC1addresses.Add("VariableAmplitudeLowerElectromagneticValveOpen", 10445);
-            d1PLC1addresses.Add("RiseCount", 40500);
-            d1PLC1addresses.Add("SingleAction", 10053);
-            d1PLC1addresses.Add("LinkAction", 10054);
-            d1PLC1addresses.Add("Automatic", 10055);
-            d1PLC1addresses.Add("LargeCarFault", 11000);
-            d1PLC1addresses.Add("LargeCarForwardLimiting", 11001);
-            d1PLC1addresses.Add("LargeCarReverseLimiting", 11002);
-            d1PLC1addresses.Add("AnchorClamp", 11003);
-            d1PLC1addresses.Add("LargeCarForward", 11004);
-            d1PLC1addresses.Add("LargeCarReverse", 11005);
-            d1PLC1addresses.Add("RotaryFault", 11020);
-            d1PLC1addresses.Add("RotaryLeftTurnLimiting", 11021);
-            d1PLC1addresses.Add("RotaryRightTurnLimiting", 11022);
-            d1PLC1addresses.Add("RotaryLeftTurn", 11024);
-            d1PLC1addresses.Add("RotaryRightTurn", 11025);
-            d1PLC1addresses.Add("VariableAmplitudeFault", 11040);
-            d1PLC1addresses.Add("VariableAmplitudeUpperLimiting", 11041);
-            d1PLC1addresses.Add("VariableAmplitudeLowerLimiting", 11042);
-            d1PLC1addresses.Add("VariableAmplitudeUpper", 11044);
-            d1PLC1addresses.Add("VariableAmplitudeLower", 11045);
-            d1PLC1addresses.Add("SuspensionBeltFault", 11060);
-            d1PLC1addresses.Add("SuspensionBeltManualLoading", 11063);
-            d1PLC1addresses.Add("SuspensionBeltManualUnloading", 11064);
-            d1PLC1addresses.Add("SuspensionBeltLinkLoading", 11065);
-            d1PLC1addresses.Add("SuspensionBeltLinkUnloading", 11066);
-            d1PLC1addresses.Add("BucketWheelFaulting", 11080);
-            d1PLC1addresses.Add("BucketWheelSingleStartup", 11082);
-            d1PLC1addresses.Add("BucketWheelLinkStartup", 11083);
-            d1PLC1addresses.Add("ClampFault", 11100);
-            d1PLC1addresses.Add("ClampRelax", 11103);
-            d1PLC1addresses.Add("CentralBaffleFault", 11140);
-            d1PLC1addresses.Add("TailCarBeltFault", 11160);
-            d1PLC1addresses.Add("MaterialLevelMeter", 11503);
-            d1PLC1addresses.Add("ManualIntervention", 12020);
-            d1PLC1addresses.Add("InterventionRelease", 12021);
-            d1PLC1addresses.Add("SuspensionBeltLoadingButton", 12000);
-            d1PLC1addresses.Add("SuspensionBeltStopButton", 12001);
-            d1PLC1addresses.Add("SuspensionBeltUnloadingButton", 12002);
+            d1PLC1addresses.Add("BucketWheelFault", 00406);
 
-            //151
-            d1PLC1addresses.Add("BucketWheelStartupButton", 12003);
-            d1PLC1addresses.Add("BucketWheelStopButton", 12004);
-            d1PLC1addresses.Add("RotaryCount", 40504);
-            d1PLC1addresses.Add("LeftAnchorNotLifted", 11700);
-            d1PLC1addresses.Add("RightAnchorNotLifted", 11701);
-            d1PLC1addresses.Add("ClampNotRelaxed", 11702);
-            d1PLC1addresses.Add("LargeCarBrakeNotOpen", 11704);
-            d1PLC1addresses.Add("LargeCarFrequencyConverterNotPowered", 11706);
-            d1PLC1addresses.Add("LargeCarBrakeContactAuxiliaryFault", 11707);
-            d1PLC1addresses.Add("LargeCarFrequencyConverterContactAuxiliaryFault", 11708);
-            d1PLC1addresses.Add("RotaryFrequencyConverterNotPowered", 41720);
-            d1PLC1addresses.Add("RotaryFrequencyConverterContactAuxiliaryFault", 41722);
-            d1PLC1addresses.Add("RotaryBrakeContactAuxiliaryFault", 41723);
-            d1PLC1addresses.Add("VariableAmplitudeOilPumpMotorNotRunning", 11730);
-            d1PLC1addresses.Add("SuspensionBeltBrakeContactAuxiliaryFault", 11741);
-            d1PLC1addresses.Add("SuspensionBeltLoadingContactAuxiliaryFault", 11742);
-            d1PLC1addresses.Add("SuspensionBeltUnloadingContactAuxiliaryFault", 11743);
-            d1PLC1addresses.Add("SuspensionBeltFirstLevelDeviation", 11750);
-            d1PLC1addresses.Add("BucketWheelLubricationPumpContactAuxiliaryFault", 11751);
-            d1PLC1addresses.Add("WindproofSystemCableLimit1", 40145);
-            d1PLC1addresses.Add("RotaryFrequencyConverterFault", 40168);
-            d1PLC1addresses.Add("RotaryFanOverload", 40164);
-            d1PLC1addresses.Add("RotaryBrakeResistorOverheatSwitch", 40170);
-            d1PLC1addresses.Add("DiversionBaffleMotorOverload", 40221);
-            d1PLC1addresses.Add("TailCarFirstLevelDeviationSwitch", 40224);
-            d1PLC1addresses.Add("TailCarSecondLevelDeviationSwitch", 40225);
-            d1PLC1addresses.Add("TailCarEmergencyStopSwitch", 40226);
-            d1PLC1addresses.Add("RotaryLeftTurnForbiddenLimit", 40310);
-            d1PLC1addresses.Add("RotaryRightTurnForbiddenLimit", 40311);
-            d1PLC1addresses.Add("BucketWheelMaterialUnloadingRunning", 40404);
-            d1PLC1addresses.Add("VariableAmplitudeUpperElectromagneticValveOpen", 40446);
-            d1PLC1addresses.Add("SuspensionBeltLoadingRunning", 40449);
-            d1PLC1addresses.Add("SuspensionBeltUnloadingRunning", 40450);
-            d1PLC1addresses.Add("SuspensionBeltBrakeOpen", 40451);
-            d1PLC1addresses.Add("BucketWheelMotorRunning", 40465);
-            d1PLC1addresses.Add("BucketWheelLubricationPumpRunning", 40466);
-            d1PLC1addresses.Add("DiversionBaffleDownRunning", 40460);
-            d1PLC1addresses.Add("DiversionBaffleUpRunning", 40461);
-            d1PLC1addresses.Add("VibrationMotorRunning", 40454);
-            d1PLC1addresses.Add("VariableAmplitudeBoostValveOpen", 40446);
-            d1PLC1addresses.Add("BaffleDownLimit", 40322);
-            d1PLC1addresses.Add("BaffleUpLimit", 40323);
-            d1PLC1addresses.Add("RotaryOverTorque", 40380);
-            d1PLC1addresses.Add("VariableAmplitudeOilPumpMotorContactFault", 11732);
-            d1PLC1addresses.Add("BucketWheelMotorContactAuxiliaryFault", 11752);
-            d1PLC1addresses.Add("TailCarOilPumpMotorContactAuxiliaryFault", 11753);
-            d1PLC1addresses.Add("VibrationMotorFault", 11200);
-            d1PLC1addresses.Add("ReelEmptySwitch", 10202);
-            d1PLC1addresses.Add("WindproofSystemCableNotOpen", 11703);
-            d1PLC1addresses.Add("LargeCarLimitAction", 11754);
+            d1PLC1addresses.Add("SuspensionBeltFirstLevelDeviationSwitch", 00340);
+            d1PLC1addresses.Add("SuspensionBeltSecondLevelDeviationSwitch", 00341);
+            d1PLC1addresses.Add("SuspensionBeltEmergencyStopSwitch", 00342);
+            d1PLC1addresses.Add("SuspensionBeltSpeedDetectionSwitch", 00343);
+            d1PLC1addresses.Add("SuspensionBeltMaterialFlowDetectionSwitch", 00344);
+            d1PLC1addresses.Add("SuspensionBeltLongitudinalTearSwitch", 00345);
+            d1PLC1addresses.Add("RotaryCentralizedLubricationOilBlockageFault", 00350);
+            d1PLC1addresses.Add("LargeCarForwardCommand", 00412);
+            d1PLC1addresses.Add("VariableAmplitudeOilPumpMotorRunning", 00440);
+            d1PLC1addresses.Add("VariableAmplitudeOilHeaterRunning", 00441);
+            d1PLC1addresses.Add("VariableAmplitudeFanRunning", 00442);
+            d1PLC1addresses.Add("LeftClampPumpRunning", 00423);
+            d1PLC1addresses.Add("RightClampPumpRunning", 00424);
+            d1PLC1addresses.Add("LeftClampElectromagneticValveOpen", 00425);
+            d1PLC1addresses.Add("RightClampElectromagneticValveOpen", 00426);
+            d1PLC1addresses.Add("RotaryFrequencyConverterPowerOn", 00427);
+            d1PLC1addresses.Add("RotaryBrakeOpen", 00428);
+            d1PLC1addresses.Add("RotaryLeftTurnCommand", 00429);
+            d1PLC1addresses.Add("RotaryRightTurnCommand", 00430);
+            d1PLC1addresses.Add("RotaryFrequencyConverterFaultReset", 00431);
+            d1PLC1addresses.Add("RotarySpeedGivenSelection", 00432);
+            d1PLC1addresses.Add("RotaryFanRunning", 00433);
+            d1PLC1addresses.Add("VariableAmplitudeLowerElectromagneticValveOpen", 00445);
+
+
+
+            d1PLC1addresses.Add("SingleAction", 0053);
+            d1PLC1addresses.Add("LinkAction", 0054);
+            d1PLC1addresses.Add("Automatic", 0055);
+            d1PLC1addresses.Add("LargeCarFault", 001000);
+            d1PLC1addresses.Add("LargeCarForwardLimiting", 001001);
+            d1PLC1addresses.Add("LargeCarReverseLimiting", 001002);
+            d1PLC1addresses.Add("AnchorClamp", 001003);
+            d1PLC1addresses.Add("LargeCarForward", 001004);
+            d1PLC1addresses.Add("LargeCarReverse", 001005);
+            d1PLC1addresses.Add("RotaryFault", 001020);
+            d1PLC1addresses.Add("RotaryLeftTurnLimiting", 001021);
+            d1PLC1addresses.Add("RotaryRightTurnLimiting", 001022);
+            d1PLC1addresses.Add("RotaryLeftTurn", 001024);
+            d1PLC1addresses.Add("RotaryRightTurn", 001025);
+            d1PLC1addresses.Add("VariableAmplitudeFault", 001040);
+            d1PLC1addresses.Add("VariableAmplitudeUpperLimiting", 001041);
+            d1PLC1addresses.Add("VariableAmplitudeLowerLimiting", 001042);
+            d1PLC1addresses.Add("VariableAmplitudeUpper", 001044);
+            d1PLC1addresses.Add("VariableAmplitudeLower", 001045);
+            d1PLC1addresses.Add("SuspensionBeltFault", 001060);
+            d1PLC1addresses.Add("SuspensionBeltManualLoading", 001063);
+            d1PLC1addresses.Add("SuspensionBeltManualUnloading", 001064);
+            d1PLC1addresses.Add("SuspensionBeltLinkLoading", 001065);
+            d1PLC1addresses.Add("SuspensionBeltLinkUnloading", 001066);
+            d1PLC1addresses.Add("BucketWheelFaulting", 001080);
+            d1PLC1addresses.Add("BucketWheelSingleStartup", 001082);
+            d1PLC1addresses.Add("BucketWheelLinkStartup", 001083);
+            d1PLC1addresses.Add("ClampFault", 001100);
+            d1PLC1addresses.Add("ClampRelax", 001103);
+            d1PLC1addresses.Add("CentralBaffleFault", 001140);
+            d1PLC1addresses.Add("TailCarBeltFault", 001160);
+            d1PLC1addresses.Add("MaterialLevelMeter", 001503);
+            d1PLC1addresses.Add("ManualIntervention", 002020);
+            d1PLC1addresses.Add("InterventionRelease", 002021);
+            d1PLC1addresses.Add("SuspensionBeltLoadingButton", 002000);
+            d1PLC1addresses.Add("SuspensionBeltStopButton", 002001);
+            d1PLC1addresses.Add("SuspensionBeltUnloadingButton", 002002);
+            d1PLC1addresses.Add("BucketWheelStartupButton", 002003);
+            d1PLC1addresses.Add("BucketWheelStopButton", 002004);
+
+
+
+            d1PLC1addresses.Add("LeftAnchorNotLifted", 001700);
+            d1PLC1addresses.Add("RightAnchorNotLifted", 001701);
+            d1PLC1addresses.Add("ClampNotRelaxed", 001702);
+            d1PLC1addresses.Add("LargeCarBrakeNotOpen", 001704);
+            d1PLC1addresses.Add("LargeCarFrequencyConverterNotPowered", 001706);
+            d1PLC1addresses.Add("LargeCarBrakeContactAuxiliaryFault", 001707);
+            d1PLC1addresses.Add("LargeCarFrequencyConverterContactAuxiliaryFault", 001708);
+            d1PLC1addresses.Add("RotaryFrequencyConverterNotPowered", 001720);
+            d1PLC1addresses.Add("RotaryFrequencyConverterContactAuxiliaryFault", 001722);
+            d1PLC1addresses.Add("RotaryBrakeContactAuxiliaryFault", 001723);
+            d1PLC1addresses.Add("VariableAmplitudeOilPumpMotorNotRunning", 001730);
+            d1PLC1addresses.Add("SuspensionBeltBrakeContactAuxiliaryFault", 001741);
+            d1PLC1addresses.Add("SuspensionBeltLoadingContactAuxiliaryFault", 001742);
+            d1PLC1addresses.Add("SuspensionBeltUnloadingContactAuxiliaryFault", 001743);
+            d1PLC1addresses.Add("SuspensionBeltFirstLevelDeviation", 001750);
+            d1PLC1addresses.Add("BucketWheelLubricationPumpContactAuxiliaryFault", 001751);
+            d1PLC1addresses.Add("WindproofSystemCableLimit1", 00145);
+            d1PLC1addresses.Add("RotaryFrequencyConverterFault", 00168);
+            d1PLC1addresses.Add("RotaryFanOverload", 00164);
+            d1PLC1addresses.Add("RotaryBrakeResistorOverheatSwitch", 00170);
+            d1PLC1addresses.Add("DiversionBaffleMotorOverload", 00221);
+            d1PLC1addresses.Add("TailCarFirstLevelDeviationSwitch", 00224);
+            d1PLC1addresses.Add("TailCarSecondLevelDeviationSwitch", 00225);
+            d1PLC1addresses.Add("TailCarEmergencyStopSwitch", 00226);
+            d1PLC1addresses.Add("RotaryLeftTurnForbiddenLimit", 00310);
+            d1PLC1addresses.Add("RotaryRightTurnForbiddenLimit", 00311);
+            d1PLC1addresses.Add("BucketWheelMaterialUnloadingRunning", 00404);
+            d1PLC1addresses.Add("VariableAmplitudeUpperElectromagneticValveOpen", 00444);
+            d1PLC1addresses.Add("SuspensionBeltLoadingRunning", 00449);
+            d1PLC1addresses.Add("SuspensionBeltUnloadingRunning", 00450);
+            d1PLC1addresses.Add("SuspensionBeltBrakeOpen", 00451);
+            d1PLC1addresses.Add("BucketWheelMotorRunning", 00465);
+            d1PLC1addresses.Add("BucketWheelLubricationPumpRunning", 00466);
+            d1PLC1addresses.Add("DiversionBaffleDownRunning", 00460);
+            d1PLC1addresses.Add("DiversionBaffleUpRunning", 00461);
+            d1PLC1addresses.Add("VibrationMotorRunning", 00454);
+            d1PLC1addresses.Add("VariableAmplitudeBoostValveOpen", 00446);
+            d1PLC1addresses.Add("BaffleDownLimit", 00322);
+            d1PLC1addresses.Add("BaffleUpLimit", 00323);
+            d1PLC1addresses.Add("RotaryOverTorque", 00380);
+            d1PLC1addresses.Add("VariableAmplitudeOilPumpMotorContactFault", 001732);
+            d1PLC1addresses.Add("BucketWheelMotorContactAuxiliaryFault", 001752);
+            d1PLC1addresses.Add("TailCarOilPumpMotorContactAuxiliaryFault", 001753);
+            d1PLC1addresses.Add("VibrationMotorFault", 001200);
+            d1PLC1addresses.Add("ReelEmptySwitch", 00202);
+            d1PLC1addresses.Add("WindproofSystemCableNotOpen", 001703);
+            d1PLC1addresses.Add("LargeCarLimitAction", 001754);
 
             //201
-            d1PLC1addresses.Add("RotaryLimitAction", 11755);
-            d1PLC1addresses.Add("VariableAmplitudeLimitAction", 11756);
-            d1PLC1addresses.Add("ForbiddenZoneLimitAction", 11757);
-            d1PLC1addresses.Add("RotaryCrashSwitchAction", 11758);
-            d1PLC1addresses.Add("LargeCarCentralizedLubricationLowOilLevelAlarm", 11760);
-            d1PLC1addresses.Add("LargeCarCentralizedLubricationOilBlockageAlarm", 11761);
-            d1PLC1addresses.Add("RotaryCentralizedLubricationLowOilLevelAlarm", 11762);
-            d1PLC1addresses.Add("RotaryCentralizedLubricationOilBlockageAlarm", 11763);
-            d1PLC1addresses.Add("StrongWindPreAlarm", 11764);
-            d1PLC1addresses.Add("BucketWheelCentralizedLubricationLowOilLevelAlarm", 11765);
-            d1PLC1addresses.Add("BucketWheelCentralizedLubricationOilBlockageAlarm", 11767);
-            d1PLC1addresses.Add("ManualGuideSlotLiftButton", 12015);
-            d1PLC1addresses.Add("ManualBucketWheelSlotStopButton", 12016);
-            d1PLC1addresses.Add("ManualBucketWheelSlotDownButton", 12017);
-            d1PLC1addresses.Add("CentralBaffleManualLiftButton", 12005);
-            d1PLC1addresses.Add("CentralBaffleManualStopButton", 12006);
-            d1PLC1addresses.Add("CentralBaffleManualDownButton", 12007);
-            d1PLC1addresses.Add("VariableAmplitudeOilHeaterManualStartupButton", 12011);
-            d1PLC1addresses.Add("VariableAmplitudeOilHeaterManualStopButton", 12012);
-            d1PLC1addresses.Add("VariableAmplitudeFanManualStartupButton", 12013);
-            d1PLC1addresses.Add("VariableAmplitudeFanManualStopButton", 12014);
-            d1PLC1addresses.Add("ElectricRoomEmergencyStopButtonAction", 40052);
-            d1PLC1addresses.Add("CabinEmergencyStopButtonAction", 40052);     // %MW52X01
-            d1PLC1addresses.Add("EmergencyStopRelayNot", 40052);               // %MW52X02
-            d1PLC1addresses.Add("TransformerOverheatAlarm", 40052);            // %MW52X03
-            d1PLC1addresses.Add("ElectricRoomPLCModulePowerFault", 40052);     // %MW52X04
-            d1PLC1addresses.Add("CabinPLCModulePowerFault", 40052);            // %MW52X05
-            d1PLC1addresses.Add("ElectricRoomFireAlarm", 40052);
-            d1PLC1addresses.Add("CabinFireAlarm", 40052);
-            d1PLC1addresses.Add("SuspensionBeltEmergencyStop", 40052);
-            d1PLC1addresses.Add("TailCarBeltEmergencyStopSwitch", 40052);
-            d1PLC1addresses.Add("LargeCarMainCircuitBreakerFault", 40100);
-            d1PLC1addresses.Add("LargeCarMotorCircuitBreakerFault", 40100);
-            d1PLC1addresses.Add("LargeCarBrakeCircuitBreakerFault", 40100);
-            d1PLC1addresses.Add("Spare1", 40100);
-            d1PLC1addresses.Add("CarFrequencyConverterFault", 40100);
-            d1PLC1addresses.Add("LargeCarBrakeResistorOverheatJump", 40100);
-            d1PLC1addresses.Add("CableReelMainCircuitBreakerFault", 40100);
-            d1PLC1addresses.Add("CableReelMotorOverloading", 40100);
-            d1PLC1addresses.Add("PowerReelCableOverLooseAlarm", 40100);
-            d1PLC1addresses.Add("PowerReelCableOverTightAlarm", 40100);
-            d1PLC1addresses.Add("PowerReelFullDiskAlarm", 40100);
-            d1PLC1addresses.Add("PowerReelEmptyDiskAlarm", 40100);
-            d1PLC1addresses.Add("LargeCarOperationHandleFault", 40100);
-            d1PLC1addresses.Add("RotaryMainCircuitBreakerFault", 40100);
-            d1PLC1addresses.Add("RotaryBrakeOverloadAlarm", 40100);
-            d1PLC1addresses.Add("RotaryFanOverloadAlarm", 40100);
-            d1PLC1addresses.Add("RotaryFrequencyConverterFaulting", 40100);
-            d1PLC1addresses.Add("RotaryBrakeResistorOverheatSwitching", 40100);
-            d1PLC1addresses.Add("RotaryOverTorqueSwitch", 40100);
+            d1PLC1addresses.Add("RotaryLimitAction", 1755);
+            d1PLC1addresses.Add("VariableAmplitudeLimitAction", 1756);
+            d1PLC1addresses.Add("ForbiddenZoneLimitAction", 1757);
+            d1PLC1addresses.Add("RotaryCrashSwitchAction", 1758);
+            d1PLC1addresses.Add("LargeCarCentralizedLubricationLowOilLevelAlarm", 1760);
+            d1PLC1addresses.Add("LargeCarCentralizedLubricationOilBlockageAlarm", 1761);
+            d1PLC1addresses.Add("RotaryCentralizedLubricationLowOilLevelAlarm", 1762);
+            d1PLC1addresses.Add("RotaryCentralizedLubricationOilBlockageAlarm", 1763);
+            d1PLC1addresses.Add("StrongWindPreAlarm", 1764);
+            d1PLC1addresses.Add("BucketWheelCentralizedLubricationLowOilLevelAlarm", 1765);
+            d1PLC1addresses.Add("BucketWheelCentralizedLubricationOilBlockageAlarm", 1767);
+            d1PLC1addresses.Add("ManualGuideSlotLiftButton", 2015);
+            d1PLC1addresses.Add("ManualBucketWheelSlotStopButton", 2016);
+            d1PLC1addresses.Add("ManualBucketWheelSlotDownButton", 2017);
+            d1PLC1addresses.Add("CentralBaffleManualLiftButton", 2005);
+            d1PLC1addresses.Add("CentralBaffleManualStopButton", 2006);
+            d1PLC1addresses.Add("CentralBaffleManualDownButton", 2007);
+            d1PLC1addresses.Add("VariableAmplitudeOilHeaterManualStartupButton", 2011);
+            d1PLC1addresses.Add("VariableAmplitudeOilHeaterManualStopButton", 2012);
+            d1PLC1addresses.Add("VariableAmplitudeFanManualStartupButton", 2013);
+            d1PLC1addresses.Add("VariableAmplitudeFanManualStopButton", 2014);
 
-            //251
-            d1PLC1addresses.Add("ReversalHandleFault", 40120);
-            d1PLC1addresses.Add("LinkedBucketWheelNotRunning", 40120);
-            d1PLC1addresses.Add("VariableFrequencyMainCircuitBreakerFault", 40140);
-            d1PLC1addresses.Add("VariableFrequencyMotorOverload", 40140);
-            d1PLC1addresses.Add("VariableFrequencyPumpClogged", 40140);
-            d1PLC1addresses.Add("VariableFrequencyPumpStationHighTemperatureAlarm", 40140);
-            d1PLC1addresses.Add("VariableFrequencyOilTankLowLevelAlarm", 40140);
-            d1PLC1addresses.Add("Spare2", 40140);
-            d1PLC1addresses.Add("VariableFrequencyHandleFault", 40160);
-            d1PLC1addresses.Add("SuspendedBeltCircuitBreakerFault", 40160);
-            d1PLC1addresses.Add("SuspendedBeltMotorOverload", 40160);
-            d1PLC1addresses.Add("SuspendedBeltSecondLevelDeviationSwitch", 40160);
-            d1PLC1addresses.Add("SuspendedBeltEmergencyStop", 40160);
-            d1PLC1addresses.Add("SuspendedBeltSlip", 40160);
-            d1PLC1addresses.Add("SuspendedBeltLongitudinalTearSwitch", 40160);
-            d1PLC1addresses.Add("CentralHopperCloggedDetectionSwitch", 40160);
-            d1PLC1addresses.Add("StackingSwitchFault", 40160);
-            d1PLC1addresses.Add("CentralControlRoomNoStackingCommand", 40160);
-            d1PLC1addresses.Add("BucketWheelMotorMainCircuitBreakerFault", 40180);
-            d1PLC1addresses.Add("BucketWheelMotorOverloading", 40180);
-            d1PLC1addresses.Add("BucketWheelOverTorqueSwitching", 40180);
-            d1PLC1addresses.Add("BucketWheelTemperatureUpperLimitAlarm", 40180);
-            d1PLC1addresses.Add("ClampingDeviceMainCircuitBreakerFault", 40200);
-            d1PLC1addresses.Add("ClampingDeviceMotorOverload", 40200);
-            d1PLC1addresses.Add("LeftClampingDeviceTimeout", 40200);
-            d1PLC1addresses.Add("RightClampingDeviceTimeout", 40200);
-            d1PLC1addresses.Add("StrongWindAlarm", 40200);
-            d1PLC1addresses.Add("DryFogSystemLowAirPressure", 40220);
-            d1PLC1addresses.Add("DryFogSystemLowWaterPressure", 40220);
-            d1PLC1addresses.Add("DryFogSystemFilterClogged", 40220);
-            d1PLC1addresses.Add("DryFogSystemWaterTankLowLevel", 40220);
-            d1PLC1addresses.Add("DiversionPlateCircuitBreakerFault", 40240);
-            d1PLC1addresses.Add("DiversionPlateMotorOverload", 40240);
-            d1PLC1addresses.Add("DiversionPlateTimeout", 40240);
-            d1PLC1addresses.Add("CentralControlRoomNoStackingOrDiversionCommand", 40240);
-            d1PLC1addresses.Add("BucketWheelFeederCircuitBreakerFault", 40250);
-            d1PLC1addresses.Add("BucketWheelFeederMotorOverload", 40250);
-            d1PLC1addresses.Add("BucketWheelFeederTimeout", 40250);
-            d1PLC1addresses.Add("CentralControlRoomNoStackingUnloadingCommand", 40250);
-            d1PLC1addresses.Add("TailCarBeltFirstLevelDeviation", 40260);
-            d1PLC1addresses.Add("TailCarBeltSecondLevelDeviation", 40260);
-            d1PLC1addresses.Add("TailCarBeltLongitudinalTear", 40260);
-            d1PLC1addresses.Add("Spare3", 40260);
-            d1PLC1addresses.Add("VibrationMotorCircuitBreakerFault", 40280);
-            d1PLC1addresses.Add("VibrationMotorOverloading", 40280);
-            d1PLC1addresses.Add("DriverRoomEmergencyStopButton", 10260);
-            d1PLC1addresses.Add("ElectricalRoomEmergencyStopButton", 10109);
-            d1PLC1addresses.Add("EmergencyStopRelay", 10110);
-            d1PLC1addresses.Add("TwoMachineCollisionAlarm", 10144);
-            d1PLC1addresses.Add("RollerFullDiskSwitch", 10203);
+            //222  Boolean
+            d1PLC1addresses.Add("ElectricRoomEmergencyStopButtonAction", 4005200);// Word
+            d1PLC1addresses.Add("CabinEmergencyStopButtonAction", 4005201);// Word
+            d1PLC1addresses.Add("EmergencyStopRelayNot", 4005202);// Word
+            d1PLC1addresses.Add("TransformerOverheatAlarm", 4005203);// Word
+            d1PLC1addresses.Add("ElectricRoomPLCModulePowerFault", 4005204);// Word
+            d1PLC1addresses.Add("CabinPLCModulePowerFault", 4005205);// Word
+            d1PLC1addresses.Add("ElectricRoomFireAlarm", 4005206);// Word
+            d1PLC1addresses.Add("CabinFireAlarm", 4005207);// Word
+            d1PLC1addresses.Add("SuspensionBeltEmergencyStop", 4005208);// Word
+            d1PLC1addresses.Add("TailCarBeltEmergencyStopSwitch", 4005209);// Word
+            d1PLC1addresses.Add("LargeCarMainCircuitBreakerFault", 4010000);// Word
+            d1PLC1addresses.Add("LargeCarMotorCircuitBreakerFault", 4010001);// Word
+            d1PLC1addresses.Add("LargeCarBrakeCircuitBreakerFault", 4010002);// Word
+            d1PLC1addresses.Add("Spare1", 4010003);// Word
+            d1PLC1addresses.Add("CarFrequencyConverterFault", 4010004);// Word
+            d1PLC1addresses.Add("LargeCarBrakeResistorOverheatJump", 4010005);// Word
+            d1PLC1addresses.Add("CableReelMainCircuitBreakerFault", 4010006);// Word
+            d1PLC1addresses.Add("CableReelMotorOverloading", 4010007);// Word
+            d1PLC1addresses.Add("PowerReelCableOverLooseAlarm", 4010008);// Word
+            d1PLC1addresses.Add("PowerReelCableOverTightAlarm", 4010009);// Word
+            d1PLC1addresses.Add("PowerReelFullDiskAlarm", 4010010);// Word
+            d1PLC1addresses.Add("PowerReelEmptyDiskAlarm", 4010011);// Word
+            d1PLC1addresses.Add("LargeCarOperationHandleFault", 4010012);// Word
+            d1PLC1addresses.Add("RotaryMainCircuitBreakerFault", 4012000);// Word
+            d1PLC1addresses.Add("RotaryBrakeOverloadAlarm", 4012001);// Word
+            d1PLC1addresses.Add("RotaryFanOverloadAlarm", 4012002);// Word
+            d1PLC1addresses.Add("RotaryFrequencyConverterFaulting", 4012003);// Word
+            d1PLC1addresses.Add("RotaryBrakeResistorOverheatSwitching", 4012004);// Word
+            d1PLC1addresses.Add("RotaryOverTorqueSwitch", 4012005);// Word
+            d1PLC1addresses.Add("ReversalHandleFault", 4012006);// Word
+            d1PLC1addresses.Add("LinkedBucketWheelNotRunning", 4012007);// Word
+            d1PLC1addresses.Add("VariableFrequencyMainCircuitBreakerFault", 4014000);// Word
+            d1PLC1addresses.Add("VariableFrequencyMotorOverload", 4014001);// Word
+            d1PLC1addresses.Add("VariableFrequencyPumpClogged", 4014005);// Word
+            d1PLC1addresses.Add("VariableFrequencyPumpStationHighTemperatureAlarm", 4014006);// Word
+            d1PLC1addresses.Add("VariableFrequencyOilTankLowLevelAlarm", 4014007);// Word
+            d1PLC1addresses.Add("Spare2", 4014008);// Word
+            d1PLC1addresses.Add("VariableFrequencyHandleFault", 4014009);// Word
+            d1PLC1addresses.Add("SuspendedBeltCircuitBreakerFault", 4016000);// Word
+            d1PLC1addresses.Add("SuspendedBeltMotorOverload", 4016001);// Word
+            d1PLC1addresses.Add("SuspendedBeltSecondLevelDeviationSwitch", 4016002);// Word
+            d1PLC1addresses.Add("SuspendedBeltEmergencyStop", 4016003);// Word
+            d1PLC1addresses.Add("SuspendedBeltSlip", 4016004);// Word
+            d1PLC1addresses.Add("SuspendedBeltLongitudinalTearSwitch", 4016005);// Word
+            d1PLC1addresses.Add("CentralHopperCloggedDetectionSwitch", 4016006);// Word
+            d1PLC1addresses.Add("StackingSwitchFault", 4016007);// Word
+            d1PLC1addresses.Add("CentralControlRoomNoStackingCommand", 4016008);// Word
+            d1PLC1addresses.Add("BucketWheelMotorMainCircuitBreakerFault", 4018000);// Word
+            d1PLC1addresses.Add("BucketWheelMotorOverloading", 4018001);// Word
+            d1PLC1addresses.Add("BucketWheelOverTorqueSwitching", 4018002);// Word
+            d1PLC1addresses.Add("BucketWheelTemperatureUpperLimitAlarm", 4018003);// Word
+            d1PLC1addresses.Add("ClampingDeviceMainCircuitBreakerFault", 4020000);// Word
+            d1PLC1addresses.Add("ClampingDeviceMotorOverload", 4020001);// Word
+            d1PLC1addresses.Add("LeftClampingDeviceTimeout", 4020002);// Word
+            d1PLC1addresses.Add("RightClampingDeviceTimeout", 4020003);// Word
+            d1PLC1addresses.Add("StrongWindAlarm", 4020004);// Word
+            d1PLC1addresses.Add("DryFogSystemLowAirPressure", 4022000);// Word
+            d1PLC1addresses.Add("DryFogSystemLowWaterPressure", 4022001);// Word
+            d1PLC1addresses.Add("DryFogSystemFilterClogged", 4022002);// Word
+            d1PLC1addresses.Add("DryFogSystemWaterTankLowLevel", 4022003);// Word
+            d1PLC1addresses.Add("DiversionPlateCircuitBreakerFault", 4024000);// Word
+            d1PLC1addresses.Add("DiversionPlateMotorOverload", 4024001);// Word
+            d1PLC1addresses.Add("DiversionPlateTimeout", 4024002);// Word
+            d1PLC1addresses.Add("CentralControlRoomNoStackingOrDiversionCommand", 4024003);// Word
+            d1PLC1addresses.Add("BucketWheelFeederCircuitBreakerFault", 4025000);// Word
+            d1PLC1addresses.Add("BucketWheelFeederMotorOverload", 4025001);// Word
+            d1PLC1addresses.Add("BucketWheelFeederTimeout", 4025002);// Word
+            d1PLC1addresses.Add("CentralControlRoomNoStackingUnloadingCommand", 4025003);// Word
+            d1PLC1addresses.Add("TailCarBeltFirstLevelDeviation", 4026000);// Word
+            d1PLC1addresses.Add("TailCarBeltSecondLevelDeviation", 4026001);// Word
+            d1PLC1addresses.Add("TailCarBeltLongitudinalTear", 4026002);// Word
+            d1PLC1addresses.Add("Spare3", 4026003);// Word
+            d1PLC1addresses.Add("VibrationMotorCircuitBreakerFault", 4028000);// Word
+            d1PLC1addresses.Add("VibrationMotorOverloading", 4028001);// Word
 
-            //301
-            d1PLC1addresses.Add("RollerMiddleSwitch", 10204);
-            d1PLC1addresses.Add("BucketWheelMotorContactor", 10173);
-            d1PLC1addresses.Add("VariableFrequencyOilBlockageSignal", 10333);
-            d1PLC1addresses.Add("VariableFrequencyOverpressureStop", 10335);
-            d1PLC1addresses.Add("VariableFrequencyPumpStationOverpressureAlarm", 10334);
-            d1PLC1addresses.Add("PowerRollerRunning", 10420);
-            d1PLC1addresses.Add("DriverRoomLevelingContactor", 10185);
-            d1PLC1addresses.Add("DryFogSystemIsLowAirPressure", 10208);
-            d1PLC1addresses.Add("DryFogSystemIsLowWaterPressure", 10209);
-            d1PLC1addresses.Add("WaterTankLowLevelSwitch", 10211);
-            d1PLC1addresses.Add("DriverRoomRiseValve", 10447);
-            d1PLC1addresses.Add("DriverRoomDescentValve", 10448);
-            d1PLC1addresses.Add("PowerCableRollerNotRunning", 11705);
-            d1PLC1addresses.Add("TailCarDrivenRollerBearingTemperatureUpperLimitAlarm", 11768);
-            d1PLC1addresses.Add("TailCarDrivenRollerBearingTemperatureLowerLimitAlarm", 11769);
-            d1PLC1addresses.Add("AllowBucketWheelDiversion", 10114);
-            d1PLC1addresses.Add("WindproofSystemCableLimit2", 10146);
-            d1PLC1addresses.Add("WindproofSystemCableLimit3", 10147);
-            d1PLC1addresses.Add("RollerOverTightLimit2", 10206);
-            d1PLC1addresses.Add("RollerOverLooseLimit2", 10207);
-            d1PLC1addresses.Add("DryFogSystemFilterIsClogged", 10210);
-            d1PLC1addresses.Add("DryFogSystemAutoRun", 10212);
-            d1PLC1addresses.Add("DryFogSystemManualRun", 10213);
-            d1PLC1addresses.Add("DryFogSystemSprayStatus", 10214);
-            d1PLC1addresses.Add("DryFogSystemHeatRun", 10215);
-            d1PLC1addresses.Add("BucketWheelSlotMainCircuitBreaker", 10222);
-            d1PLC1addresses.Add("BucketWheelSlotMotorOverload", 10223);
-            d1PLC1addresses.Add("TailCarBeltLongitudinalTearing", 10227);
-            d1PLC1addresses.Add("ReversalBrakeRelease", 10313);
-            d1PLC1addresses.Add("BucketWheelSlotLiftLimit", 10320);
-            d1PLC1addresses.Add("BucketWheelSlotLowerLimit", 10321);
-            d1PLC1addresses.Add("DiversionPlateLimit", 10324);
-            d1PLC1addresses.Add("SuspendedBeltBrakeRelease", 10346);
-            d1PLC1addresses.Add("BrokenBeltCaptureAlarm", 10347);
-            d1PLC1addresses.Add("BucketWheelCentralizedLubricationLowOilLevel", 10351);
-            d1PLC1addresses.Add("BucketWheelCentralizedLubricationClogged", 10352);
-            d1PLC1addresses.Add("DriverRoomRearBalanceLimit", 10366);
-            d1PLC1addresses.Add("BucketWheelDiversionRunning", 10405);
-            d1PLC1addresses.Add("DriverRoomLevelingPumpRunning", 10443);
-            d1PLC1addresses.Add("BucketWheelSlotLift", 10452);
-            d1PLC1addresses.Add("BucketWheelSlotLower", 10453);
-            d1PLC1addresses.Add("RemoteEmergencyStop", 10107);
-            d1PLC1addresses.Add("DiversionPlateAngle", 44006);
-            d1PLC1addresses.Add("DryFogDustSuppressionStackingRunning", 10480);
-            d1PLC1addresses.Add("DryFogDustSuppressionReclaimingRunning", 10481);
-            d1PLC1addresses.Add("DryFogDustSuppressionDiversionRunning", 10482);
-            d1PLC1addresses.Add("DryFogDustSuppressionRemoteStartRunning", 10483);
-            d1PLC1addresses.Add("DryFogDustSuppressionRemoteStopRunning", 10484);
-            d1PLC1addresses.Add("TailCarDrivenRollerBearingUpperLimitAlarm", 10250);
-            d1PLC1addresses.Add("TailCarDrivenRollerBearingLowerLimitAlarm", 10251);
+            //296
+            d1PLC1addresses.Add("DriverRoomEmergencyStopButton", 260);
+            d1PLC1addresses.Add("ElectricalRoomEmergencyStopButton", 109);
+            d1PLC1addresses.Add("EmergencyStopRelay", 110);
+            d1PLC1addresses.Add("TwoMachineCollisionAlarm", 144);
+            d1PLC1addresses.Add("RollerFullDiskSwitch", 203);
+            d1PLC1addresses.Add("RollerMiddleSwitch", 204);
+            d1PLC1addresses.Add("BucketWheelMotorContactor", 173);
+            d1PLC1addresses.Add("VariableFrequencyOilBlockageSignal", 333);
+            d1PLC1addresses.Add("VariableFrequencyOverpressureStop", 335);
+            d1PLC1addresses.Add("VariableFrequencyPumpStationOverpressureAlarm", 334);
+            d1PLC1addresses.Add("PowerRollerRunning", 420);
+            d1PLC1addresses.Add("DriverRoomLevelingContactor", 185);
+            d1PLC1addresses.Add("DryFogSystemIsLowAirPressure", 208);
+            d1PLC1addresses.Add("DryFogSystemIsLowWaterPressure", 209);
+            d1PLC1addresses.Add("WaterTankLowLevelSwitch", 211);
+            d1PLC1addresses.Add("DriverRoomRiseValve", 447);
+            d1PLC1addresses.Add("DriverRoomDescentValve", 448);
+            d1PLC1addresses.Add("PowerCableRollerNotRunning", 1705);
+            d1PLC1addresses.Add("TailCarDrivenRollerBearingTemperatureUpperLimitAlarm", 1768);
+            d1PLC1addresses.Add("TailCarDrivenRollerBearingTemperatureLowerLimitAlarm", 1769);
+            d1PLC1addresses.Add("AllowBucketWheelDiversion", 114);
+            d1PLC1addresses.Add("WindproofSystemCableLimit2", 146);
+            d1PLC1addresses.Add("WindproofSystemCableLimit3", 147);
+            d1PLC1addresses.Add("RollerOverTightLimit2", 206);
+            d1PLC1addresses.Add("RollerOverLooseLimit2", 207);
+            d1PLC1addresses.Add("DryFogSystemFilterIsClogged", 210);
+            d1PLC1addresses.Add("DryFogSystemAutoRun", 212);
+            d1PLC1addresses.Add("DryFogSystemManualRun", 213);
+            d1PLC1addresses.Add("DryFogSystemSprayStatus", 214);
+            d1PLC1addresses.Add("DryFogSystemHeatRun", 215);
+            d1PLC1addresses.Add("BucketWheelSlotMainCircuitBreaker", 222);
+            d1PLC1addresses.Add("BucketWheelSlotMotorOverload", 223);
+            d1PLC1addresses.Add("TailCarBeltLongitudinalTearing", 227);
+            d1PLC1addresses.Add("ReversalBrakeRelease", 313);
+            d1PLC1addresses.Add("BucketWheelSlotLiftLimit", 320);
+            d1PLC1addresses.Add("BucketWheelSlotLowerLimit", 321);
+            d1PLC1addresses.Add("DiversionPlateLimit", 324);
+            d1PLC1addresses.Add("SuspendedBeltBrakeRelease", 346);
+            d1PLC1addresses.Add("BrokenBeltCaptureAlarm", 347);
+            d1PLC1addresses.Add("BucketWheelCentralizedLubricationLowOilLevel", 351);
+            d1PLC1addresses.Add("BucketWheelCentralizedLubricationClogged", 352);
+            d1PLC1addresses.Add("DriverRoomRearBalanceLimit", 366);
+            d1PLC1addresses.Add("BucketWheelDiversionRunning", 405);
+            d1PLC1addresses.Add("DriverRoomLevelingPumpRunning", 443);
+            d1PLC1addresses.Add("BucketWheelSlotLift", 452);
+            d1PLC1addresses.Add("BucketWheelSlotLower", 453);
+            d1PLC1addresses.Add("RemoteEmergencyStop", 107);
 
-            //351
-            d1PLC1addresses.Add("UnmannedEmergencyStop", 44052);
-            d1PLC1addresses.Add("RemoteEmergencyStoping", 44052);
-            d1PLC1addresses.Add("LargeVehicleMotor1OvertemperatureAlarm", 44102);
-            d1PLC1addresses.Add("LargeVehicleMotor2OvertemperatureAlarm", 44102);
-            d1PLC1addresses.Add("LargeVehicleMotor3OvertemperatureAlarm", 44102);
-            d1PLC1addresses.Add("LargeVehicleMotor4OvertemperatureAlarm", 44102);
-            d1PLC1addresses.Add("LargeVehicleMotor5OvertemperatureAlarm", 44102);
-            d1PLC1addresses.Add("LargeVehicleMotor6OvertemperatureAlarm", 44102);
-            d1PLC1addresses.Add("WalkingReducerBearingTemperatureUpperLimitAlarm", 44102);
-            d1PLC1addresses.Add("WalkingReducerBearingTemperatureLowerLimitAlarm", 44102);
-            d1PLC1addresses.Add("WalkingReducerOilTemperatureUpperLimitAlarm", 44102);
-            d1PLC1addresses.Add("WalkingReducerOilTemperatureLowerLimitAlarm", 44102);
-            d1PLC1addresses.Add("ReversalTemperatureUpperLimitAlarm", 44120);
-            d1PLC1addresses.Add("ReversalTemperatureLowerLimitAlarm", 44120);
-            d1PLC1addresses.Add("BrokenBeltCaptureAlarming", 44160);
-            d1PLC1addresses.Add("SuspendedBeltTemperatureUpperLimitAlarm", 44160);
-            d1PLC1addresses.Add("SuspendedBeltTemperatureLowerLimitAlarm", 44160);
-            d1PLC1addresses.Add("SuspendedBeltRollerBearingTemperatureUpperLimitAlarm", 44160);
-            d1PLC1addresses.Add("SuspendedBeltRollerBearingTemperatureLowerLimitAlarm", 44160);
-            d1PLC1addresses.Add("BucketWheelTemperatureLowerLimitAlarm", 44180);
-            d1PLC1addresses.Add("CableRollerContactorAuxiliaryContactFault", 11709);
-            d1PLC1addresses.Add("DriverRoomBalancePumpMotorNotRunning", 11731);
-            d1PLC1addresses.Add("DriverRoomBalancePumpMotorAuxiliaryContactFault", 11733);
-            d1PLC1addresses.Add("Remote", 10295);
-            d1PLC1addresses.Add("TwoMachineDistance", 40484);
-            d1PLC1addresses.Add("DriverRoomAngle", 40498);
-            d1PLC1addresses.Add("DriverRoomRiseButton", 12018);
-            d1PLC1addresses.Add("DriverRoomDescentButton", 12022);
+            d1PLC1addresses.Add("DryFogDustSuppressionStackingRunning", 480);
+            d1PLC1addresses.Add("DryFogDustSuppressionReclaimingRunning", 481);
+            d1PLC1addresses.Add("DryFogDustSuppressionDiversionRunning", 482);
+            d1PLC1addresses.Add("DryFogDustSuppressionRemoteStartRunning", 483);
+            d1PLC1addresses.Add("DryFogDustSuppressionRemoteStopRunning", 484);
+            d1PLC1addresses.Add("TailCarDrivenRollerBearingUpperLimitAlarm", 250);
+            d1PLC1addresses.Add("TailCarDrivenRollerBearingLowerLimitAlarm", 251);
+
+            //351  Boolean
+            d1PLC1addresses.Add("UnmannedEmergencyStop", 4005210);// Word
+            d1PLC1addresses.Add("RemoteEmergencyStoping", 4005211);// Word
+            d1PLC1addresses.Add("LargeVehicleMotor1OvertemperatureAlarm", 4010200);// Word
+            d1PLC1addresses.Add("LargeVehicleMotor2OvertemperatureAlarm", 4010201);// Word 
+            d1PLC1addresses.Add("LargeVehicleMotor3OvertemperatureAlarm", 4010202);// Word
+            d1PLC1addresses.Add("LargeVehicleMotor4OvertemperatureAlarm", 4010203);// Word
+            d1PLC1addresses.Add("LargeVehicleMotor5OvertemperatureAlarm", 4010204);// Word
+            d1PLC1addresses.Add("LargeVehicleMotor6OvertemperatureAlarm", 4010205);// Word
+            d1PLC1addresses.Add("WalkingReducerBearingTemperatureUpperLimitAlarm", 4010206);// Word
+            d1PLC1addresses.Add("WalkingReducerBearingTemperatureLowerLimitAlarm", 4010207);// Word
+            d1PLC1addresses.Add("WalkingReducerOilTemperatureUpperLimitAlarm", 4010208);// Word
+            d1PLC1addresses.Add("WalkingReducerOilTemperatureLowerLimitAlarm", 4010209);// Word
+            d1PLC1addresses.Add("ReversalTemperatureUpperLimitAlarm", 4012008);// Word
+            d1PLC1addresses.Add("ReversalTemperatureLowerLimitAlarm", 4012009);// Word
+            d1PLC1addresses.Add("BrokenBeltCaptureAlarming", 4016009);// Word
+            d1PLC1addresses.Add("SuspendedBeltTemperatureUpperLimitAlarm", 4016010);// Word
+            d1PLC1addresses.Add("SuspendedBeltTemperatureLowerLimitAlarm", 4016011);// Word
+            d1PLC1addresses.Add("SuspendedBeltRollerBearingTemperatureUpperLimitAlarm", 4016012);// Word
+            d1PLC1addresses.Add("SuspendedBeltRollerBearingTemperatureLowerLimitAlarm", 4016013);// Word
+            d1PLC1addresses.Add("BucketWheelTemperatureLowerLimitAlarm", 4018004);// Word
+
+            //371
+            d1PLC1addresses.Add("CableRollerContactorAuxiliaryContactFault", 1709);
+            d1PLC1addresses.Add("DriverRoomBalancePumpMotorNotRunning", 1731);
+            d1PLC1addresses.Add("DriverRoomBalancePumpMotorAuxiliaryContactFault", 1733);
+            d1PLC1addresses.Add("Remote", 295);
 
 
+            d1PLC1addresses.Add("DriverRoomRiseButton", 2018);
+            d1PLC1addresses.Add("DriverRoomDescentButton", 2022);
 
             #endregion
 
@@ -490,7 +502,41 @@ namespace ShenYangRemoteSystem
 
             #endregion
 
+
             #endregion
+
+
+            //Number(4000113);
+
+
+        }
+
+        public void Process6() 
+        {
+            while (true)
+            {
+                string barcode;
+
+                modbusHelper_D1PLC1.ReadBarcode(100, out barcode);
+
+                using (Form form = new Form())
+                {
+                    form.Width = 400;
+                    form.Height = 300;
+                    form.Text = "Object Properties";
+
+                    TextBox textBox = new TextBox();
+                    textBox.Multiline = true;
+                    textBox.ScrollBars = ScrollBars.Vertical;
+                    textBox.Dock = DockStyle.Fill;
+                    textBox.ReadOnly = true;
+                    textBox.Text = barcode;
+
+                    form.Controls.Add(textBox);
+
+                    form.ShowDialog();
+                }
+            }
         }
 
         #region 全局变量定义
@@ -801,8 +847,11 @@ namespace ShenYangRemoteSystem
         {
             while (true)
             {
-                ShareRes.WaitMutex();
+                Stopwatch stopwatch1 = new Stopwatch();
+                stopwatch1.Start();
 
+
+                ShareRes.WaitMutex();
                 //if (modbusHelper_D1PLC1.socket != null && modbusHelper_D1PLC1.isConnectPLC == true && modbusHelper_D1PLC2.socket != null && modbusHelper_D1PLC2.isConnectPLC == true)
                 //{
                 //    ReadD1PLC();
@@ -811,11 +860,39 @@ namespace ShenYangRemoteSystem
                 {
                     ReadD1PLC();
                 }
-
                 ShareRes.ReleaseMutex();
+
+                stopwatch1.Stop();
+
 
                 //复制变量
                 CopyPropertiesD1PLC1(d1PLC1Variables, systemVariables);
+
+                string responseMessage = JsonConvert.SerializeObject(systemVariables, settings);
+
+
+                string message = responseMessage;
+
+                using (Form form = new Form())
+                {
+                    form.Width = 400;
+                    form.Height = 300;
+                    form.Text = "Object Properties";
+
+                    TextBox textBox = new TextBox();
+                    textBox.Multiline = true;
+                    textBox.ScrollBars = ScrollBars.Vertical;
+                    textBox.Dock = DockStyle.Fill;
+                    textBox.ReadOnly = true;
+                    textBox.Text = message;
+
+                    form.Controls.Add(textBox);
+
+                    form.ShowDialog();
+                }
+
+
+                MessageBox.Show(stopwatch1.ElapsedMilliseconds.ToString());
 
 
                 Thread.Sleep(1000);
@@ -838,12 +915,11 @@ namespace ShenYangRemoteSystem
                 //复制变量
                 //CopyPropertiesD1PLC2(d1PLC2Variables, systemVariables);
 
-                #region 随机数
                 try
                 {
                     //检测PLC连接状态
                     if (modbusHelper_D2PLC1.socket == null || modbusHelper_D2PLC1.isConnectPLC == false && modbusHelper_D2PLC2.socket == null || modbusHelper_D2PLC2.isConnectPLC == false)
-                    {
+                    {   
                         //systemVariables.PLCSignal = false;
                     }
                     else if (modbusHelper_D2PLC1.socket != null && modbusHelper_D2PLC1.isConnectPLC == true && modbusHelper_D2PLC2.socket != null && modbusHelper_D2PLC2.isConnectPLC == true)
@@ -852,6 +928,9 @@ namespace ShenYangRemoteSystem
                     }
                 }
                 catch { }
+
+                #region 随机数
+
                 Random random = new Random();
 
                 // 遍历所有属性，给它们赋随机数值
@@ -871,11 +950,11 @@ namespace ShenYangRemoteSystem
                     }
                     else if (property.PropertyType == typeof(ushort))
                     {
-                        property.SetValue(systemVariables, (ushort)random.Next(500));
+                        property.SetValue(systemVariables, (ushort)random.Next(360));
                     }
                     else if (property.PropertyType == typeof(int))
                     {
-                        property.SetValue(systemVariables, (int)random.Next(500));
+                        property.SetValue(systemVariables, (int)random.Next(360));
                     }
                 }
                 #endregion
@@ -908,31 +987,205 @@ namespace ShenYangRemoteSystem
         //*******************************************************************************************************************************//
         //方法模块
 
+
+
+        #region PLC多个读取方法 （施耐德）
+        public void ReadLargeBoolBuffer(ModbusHelper modbusHelper, int startAddress, out bool[] value)
+        {
+            int totalLength = 3000;
+
+            value = new bool[totalLength];
+
+            int readLength = 1000; // 每次读取 1000 位
+            int offset = 0; // 当前写入位置的偏移量
+
+            // 循环读取，直到读取完所有数据
+            while (offset < totalLength)
+            {
+                bool[] readData;
+                bool success = modbusHelper.ReadManyCoilStatus(startAddress, readLength, out readData);
+
+                if (success)
+                {
+                    // 将读取到的数据拷贝到大缓冲区中的正确位置
+                    Array.Copy(readData, 0, value, offset, readData.Length);
+                    offset += readData.Length;
+                }
+                else
+                {
+                    throw new Exception();
+                }
+
+                startAddress += readLength; // 更新起始地址，准备下一次读取
+            }
+        }
+
+        public void ReadLargeBuffer(ModbusHelper modbusHelper, int startAddress, out byte[] value)
+        {
+            int totalLength = 800;// 目前最大支持800
+
+            value = new byte[totalLength];
+
+            int readLength = 200; // 每次读取 200 字节
+            int offset = 0; // 当前写入位置的偏移量
+
+            // 循环读取，直到读取完所有数据
+            while (offset < totalLength)
+            {
+                byte[] readData;
+                bool success = modbusHelper.ReadManyHoldingRegisterValue(startAddress, readLength, out readData);
+
+                if (success)
+                {
+                    // 将读取到的数据拷贝到大缓冲区中的正确位置
+                    Array.Copy(readData, 0, value, offset, readData.Length);
+                    offset += readData.Length;
+                }
+                else
+                {
+                    throw new Exception();
+                }
+
+                startAddress += readLength; // 更新起始地址，准备下一次读取
+            }
+        }
+        #endregion
+
         #region D1PLC数据映射方法
         public void ReadD1PLC()
         {
             object result2 = null;
 
+
+
+            
+
+
+
+
+
+            //线圈
+            bool[] plc1DdataBuffer1 = new bool[3000];
+            //保持寄存器 目前最大支持800
+            byte[] plc1DdataBuffer2 = new byte[800];
+
+            //在这里把M区和MW区变量全部读进数组
+            ReadLargeBoolBuffer(modbusHelper_D1PLC1, 0, out plc1DdataBuffer1);
+            ReadLargeBuffer(modbusHelper_D1PLC1, 0, out plc1DdataBuffer2);
+
             //遍历键值对d1PLC1
             foreach (int address in d1PLC1addresses.Values)
             {
-                try
+                if (address < 40000)// 线圈
                 {
-                    string key = d1PLC1addresses.FirstOrDefault(x => x.Value == address).Key;
-                    PropertyInfo property = typeof(PLC1Variables).GetProperty(key);
+                    try
+                    {
+                        string key = d1PLC1addresses.FirstOrDefault(x => x.Value == address).Key;
+                        PropertyInfo property = typeof(PLC1Variables).GetProperty(key);
 
-                    // 读取地址并处理返回的数据
-                    object result = PLCRead(modbusHelper_D1PLC1, address, property.PropertyType);
 
-                    result2 = result;
-                    property.SetValue(d1PLC1Variables, result);
+                        object result = plc1DdataBuffer1[address];
+
+
+                        result2 = result;
+                        property.SetValue(d1PLC1Variables, result);
+                    }
+                    catch (OverflowException e)
+                    {
+                        MessageBox.Show(result2.ToString());
+                        MessageBox.Show(e.ToString());
+                    }
                 }
-                catch (OverflowException e)
+                else if (address >=  40000 && address <= 4000000 )// %MWX
                 {
-                    MessageBox.Show(result2.ToString());
-                    MessageBox.Show(e.ToString());
+                    try
+                    {
+                        string key = d1PLC1addresses.FirstOrDefault(x => x.Value == address).Key;
+                        PropertyInfo property = typeof(PLC1Variables).GetProperty(key);
+
+
+                        object result = plc1DdataBuffer2[address];// 402
+
+
+                        result2 = result;
+                        property.SetValue(d1PLC1Variables, result);
+                    }
+                    catch (OverflowException e)
+                    {
+                        MessageBox.Show(result2.ToString());
+                        MessageBox.Show(e.ToString());
+                    }
+                }
+
+                // 4016013
+                else if (address >= 4000000)// %MWX.X
+                {
+                    try
+                    {
+                        string key = d1PLC1addresses.FirstOrDefault(x => x.Value == address).Key;
+                        PropertyInfo property = typeof(PLC1Variables).GetProperty(key);
+
+                        int startAddress = address - 4000000;// 16013
+
+                        // 取剩下的位数（作为整数）
+                        int remainingDigits = startAddress / 100;  // 160
+
+                        // 取个位和十位
+                        int tensUnits = startAddress % 100;  //  13
+
+                        //组合成16位二进制数
+                        ushort us = BitConverter.ToUInt16(new byte[] { plc1DdataBuffer2[remainingDigits*2+1], plc1DdataBuffer2[remainingDigits * 2] }, 0);
+
+                        int index = tensUnits; // 要读取的位
+                        bool isBitSet = (us & (1 << index)) != 0;
+
+                        object result = isBitSet;
+
+
+                        result2 = result;
+                        property.SetValue(d1PLC1Variables, result);
+                    }
+                    catch (OverflowException e)
+                    {
+                        MessageBox.Show(result2.ToString());
+                        MessageBox.Show(e.ToString());
+                    }
                 }
             }
+
+
+
+
+
+
+
+
+
+
+            ////遍历键值对d1PLC1
+            //foreach (int address in d1PLC1addresses.Values)
+            //{
+            //    try
+            //    {
+            //        string key = d1PLC1addresses.FirstOrDefault(x => x.Value == address).Key;
+            //        PropertyInfo property = typeof(PLC1Variables).GetProperty(key);
+
+            //        // 读取地址并处理返回的数据
+            //        object result = PLCRead(modbusHelper_D1PLC1, address, property.PropertyType);
+
+            //        result2 = result;
+            //        property.SetValue(d1PLC1Variables, result);
+            //    }
+            //    catch (OverflowException e)
+            //    {
+            //        MessageBox.Show(result2.ToString());
+            //        MessageBox.Show(e.ToString());
+            //    }
+            //}
+
+
+
+
             //遍历键值对d1PLC2
             foreach (int address in d1PLC2addresses.Values)
             {
@@ -1072,86 +1325,193 @@ namespace ShenYangRemoteSystem
 
             try
             {
-                switch (datatype.ToString())
+                if (startAddress < 40000)
                 {
-                    case "System.Boolean": //Boolean
-                        bool bo;
-                        modbusHelper.ReadSingleCoilStatus(startAddress, out bo);
+                    switch (datatype.ToString())
+                    {
+                        case "System.Boolean": //Boolean
+                            bool bo;
+                            modbusHelper.ReadSingleCoilStatus(startAddress, out bo);
 
-                        data = bo;
-                        break;
+                            data = bo;
+                            break;
 
-                    case "System.Byte": //Byte(Byte)
-                        byte b;
-                        modbusHelper.ReadSingleHoldingRegisterValue<byte>(startAddress, out b);
+                        case "System.Byte": //Byte(Byte)
+                            byte b;
+                            modbusHelper.ReadSingleHoldingRegisterValue<byte>(startAddress, out b);
 
-                        data = b;
-                        break;
+                            data = b;
+                            break;
 
-                    case "System.Int16": //"Int16(Int)"
-                        short s;
-                        modbusHelper.ReadSingleHoldingRegisterValue<short>(startAddress, out s);
+                        case "System.Int16": //"Int16(Int)"
+                            short s;
+                            modbusHelper.ReadSingleHoldingRegisterValue<short>(startAddress, out s);
 
-                        data = s;
-                        break;
+                            data = s;
+                            break;
 
-                    case "System.UInt16": //"UInt16(Word)"
-                        ushort us;
-                        modbusHelper.ReadSingleHoldingRegisterValue<ushort>(startAddress, out us);
+                        case "System.UInt16": //"UInt16(Word)"
+                            ushort us;
+                            modbusHelper.ReadSingleHoldingRegisterValue<ushort>(startAddress, out us);
 
-                        data = us;
-                        break;
+                            data = us;
+                            break;
 
-                    case "System.Int32": //"Int32(DInt)"
-                        int i;
-                        modbusHelper.ReadSingleHoldingRegisterValue<int>(startAddress, out i);
+                        case "System.Int32": //"Int32(DInt)"
+                            int i;
+                            modbusHelper.ReadSingleHoldingRegisterValue<int>(startAddress, out i);
 
-                        data = i;
-                        break;
+                            data = i;
+                            break;
 
-                    case "System.UInt32": //"UInt32(DWord)"
-                        uint ui;
-                        modbusHelper.ReadSingleHoldingRegisterValue<uint>(startAddress, out ui);
+                        case "System.UInt32": //"UInt32(DWord)"
+                            uint ui;
+                            modbusHelper.ReadSingleHoldingRegisterValue<uint>(startAddress, out ui);
 
-                        data = ui;
-                        break;
+                            data = ui;
+                            break;
 
-                    case "System.Single": //"Float(Real)"
-                        float f;
-                        modbusHelper.ReadSingleHoldingRegisterValue<float>(startAddress, out f);
+                        case "System.Single": //"Float(Real)"
+                            float f;
+                            modbusHelper.ReadSingleHoldingRegisterValue<float>(startAddress, out f);
 
-                        data = f;
-                        break;
+                            data = f;
+                            break;
 
-                    case "System.Int64": //"Int64"
-                        long l;
-                        modbusHelper.ReadSingleHoldingRegisterValue<long>(startAddress, out l);
+                        case "System.Int64": //"Int64"
+                            long l;
+                            modbusHelper.ReadSingleHoldingRegisterValue<long>(startAddress, out l);
 
-                        data = l;
-                        break;
+                            data = l;
+                            break;
 
-                    case "System.UInt64": //"UInt64"
-                        ulong ul;
-                        modbusHelper.ReadSingleHoldingRegisterValue<ulong>(startAddress, out ul);
+                        case "System.UInt64": //"UInt64"
+                            ulong ul;
+                            modbusHelper.ReadSingleHoldingRegisterValue<ulong>(startAddress, out ul);
 
-                        data = ul;
-                        break;
+                            data = ul;
+                            break;
 
-                    case "System.Double": //"Double"
-                        double d;
-                        modbusHelper.ReadSingleHoldingRegisterValue<double>(startAddress, out d);
+                        case "System.Double": //"Double"
+                            double d;
+                            modbusHelper.ReadSingleHoldingRegisterValue<double>(startAddress, out d);
 
-                        data = d;
-                        break;
+                            data = d;
+                            break;
 
-                    default:
-                        DisplayRichTextboxContentAndScroll("不支持的数据类型\n");
-                        break;
+                        default:
+                            DisplayRichTextboxContentAndScroll("不支持的数据类型\n");
+                            break;
+                    }
+                }
+                else if(startAddress >= 40000 && startAddress <= 4000000)
+                {
+                    startAddress = startAddress - 40000;
+
+
+                    switch (datatype.ToString())
+                    {
+                        case "System.Boolean": //Boolean
+                            bool bo;
+                            modbusHelper.ReadSingleCoilStatus(startAddress, out bo);
+
+                            data = bo;
+                            break;
+
+                        case "System.Byte": //Byte(Byte)
+                            byte b;
+                            modbusHelper.ReadSingleHoldingRegisterValue<byte>(startAddress, out b);
+
+                            data = b;
+                            break;
+
+                        case "System.Int16": //"Int16(Int)"
+                            short s;
+                            modbusHelper.ReadSingleHoldingRegisterValue<short>(startAddress, out s);
+
+                            data = s;
+                            break;
+
+                        case "System.UInt16": //"UInt16(Word)"
+                            ushort us;
+                            modbusHelper.ReadSingleHoldingRegisterValue<ushort>(startAddress, out us);
+
+                            data = us;
+                            break;
+
+                        case "System.Int32": //"Int32(DInt)"
+                            int i;
+                            modbusHelper.ReadSingleHoldingRegisterValue<int>(startAddress, out i);
+
+                            data = i;
+                            break;
+
+                        case "System.UInt32": //"UInt32(DWord)"
+                            uint ui;
+                            modbusHelper.ReadSingleHoldingRegisterValue<uint>(startAddress, out ui);
+
+                            data = ui;
+                            break;
+
+                        case "System.Single": //"Float(Real)"
+                            float f;
+                            modbusHelper.ReadSingleHoldingRegisterValue<float>(startAddress, out f);
+
+                            data = f;
+                            break;
+
+                        case "System.Int64": //"Int64"
+                            long l;
+                            modbusHelper.ReadSingleHoldingRegisterValue<long>(startAddress, out l);
+
+                            data = l;
+                            break;
+
+                        case "System.UInt64": //"UInt64"
+                            ulong ul;
+                            modbusHelper.ReadSingleHoldingRegisterValue<ulong>(startAddress, out ul);
+
+                            data = ul;
+                            break;
+
+                        case "System.Double": //"Double"
+                            double d;
+                            modbusHelper.ReadSingleHoldingRegisterValue<double>(startAddress, out d);
+
+                            data = d;
+                            break;
+
+                        default:
+                            DisplayRichTextboxContentAndScroll("不支持的数据类型\n");
+                            break;
+                    }
+                }
+                // 4016013
+                else if (startAddress >= 4000000)
+                {
+                    startAddress = startAddress - 4000000;// 16013
+
+                    // 取剩下的位数（作为整数）
+                    int remainingDigits = startAddress / 100;  // 160
+
+                    // 取个位和十位
+                    int tensUnits = startAddress % 100;  //  13
+
+
+
+                    modbusHelper.ReadSingleHoldingRegisterBoolValue(remainingDigits, tensUnits, out bool bo);
+
+                    data = bo;
+
+
+
+                    //MessageBox.Show("一个Word中的第几位：" + tensUnits);
+                    //MessageBox.Show("剩下的位数：" + remainingDigits);
                 }
             }
             catch (Exception ex)
             {
-                DisplayRichTextboxContentAndScroll("写寄存器出现错误，请检查：\n" + ex.Message);
+                DisplayRichTextboxContentAndScroll("读寄存器出现错误，请检查：\n" + ex.Message);
             }
 
 
@@ -1243,6 +1603,21 @@ namespace ShenYangRemoteSystem
         }
         #endregion
 
+        #region 取位数方法
+        public void Number(int startAddress)
+        {
+            startAddress = startAddress - 4000000;// 16013
+
+            // 取剩下的位数（作为整数）
+            int remainingDigits = startAddress / 100;  // 160
+
+            // 取个位和十位
+            int tensUnits = startAddress % 100;  //  13
+
+            MessageBox.Show("一个Word中的第几位：" + tensUnits);
+            MessageBox.Show("剩下的位数：" + remainingDigits);
+        }
+        #endregion
 
         //*******************************************************************************************************************************//
         //*******************************************************************************************************************************//
