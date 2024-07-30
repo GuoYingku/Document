@@ -14,6 +14,10 @@ using Newtonsoft.Json;
 using WebSocketSharp;
 using static System.Net.Mime.MediaTypeNames;
 using ShenYangRemoteSystem.用户控件;
+using System.Timers;
+using System.Diagnostics;
+using MySqlX.XDevAPI.Common;
+using System.Reflection;
 
 
 namespace ShenYangRemoteSystem.Subclass
@@ -44,6 +48,61 @@ namespace ShenYangRemoteSystem.Subclass
         {
             form1 = form;
             this.systemVariables = systemVariables;
+
+
+
+
+
+
+
+            #region 随机数
+
+            Random random = new Random();
+
+            // 遍历所有属性，给它们赋随机数值
+            foreach (var property in Form1.systemVariables.GetType().GetProperties())
+            {
+                if (property.PropertyType == typeof(bool))
+                {
+                    property.SetValue(Form1.systemVariables, random.Next(2) == 0);
+                }
+                else if (property.PropertyType == typeof(float))
+                {
+                    property.SetValue(Form1.systemVariables, (float)random.NextDouble());
+                }
+                else if (property.PropertyType == typeof(long))
+                {
+                    property.SetValue(Form1.systemVariables, random.Next());
+                }
+                //else if (property.PropertyType == typeof(ushort))
+                //{
+                //    property.SetValue(Form1.systemVariables, (ushort)random.Next(-110,110));
+                //}
+                else if (property.PropertyType == typeof(int))
+                {
+                    property.SetValue(Form1.systemVariables, (int)random.Next(360));
+                }
+            }
+
+            Form1.d1PLC1Variables.RotaryAngle = (ushort)random.Next(250, 470);
+            Form1.d1PLC1Variables.VariableAmplitudeAngle = (ushort)random.Next(347, 373);
+            Form1.d1PLC1Variables.LargeCarTravelDistance = (ushort)random.Next(360, 460);
+
+            Form1.d2PLC1Variables.RotaryAngle_2 = (ushort)random.Next(250, 470);
+            Form1.d2PLC1Variables.VariableAmplitudeAngle_2 = (ushort)random.Next(347, 373);
+            Form1.d2PLC1Variables.LargeCarTravelDistance_2 = (ushort)random.Next(510, 610);
+
+
+
+
+            #endregion
+
+
+            Thread thread = new Thread(new ThreadStart(Process1));
+            thread.Start();
+
+
+
         }
 
         Form1 form1;
@@ -60,9 +119,10 @@ namespace ShenYangRemoteSystem.Subclass
         public SystemVariables systemVariables;
 
         /// <summary>
-        /// 在服务器端维护一个列表，用于存储已连接的套接字
+        /// 在服务器端维护一个字典，用于存储已连接的套接字和其对应的子系统名称
         /// </summary>
-        private List<IWebSocketConnection> connectClients = new List<IWebSocketConnection>();
+        private Dictionary<IWebSocketConnection, string> connectClients = new Dictionary<IWebSocketConnection, string>();
+
 
         /// <summary>
         /// 存储 WebSocket 服务器对象的引用，用来管理 WebSocket 服务器实例，用于监听指定端口上的 WebSocket 连接。
@@ -74,6 +134,120 @@ namespace ShenYangRemoteSystem.Subclass
         {
             Formatting = Formatting.Indented // 设置缩进格式
         };
+
+
+        
+        bool ROTATE_L_1;
+        bool ROTATE_R_1;
+        bool ELEVATE_L_1;
+        bool ELEVATE_R_1;
+        bool MOVE_L_1;
+        bool MOVE_R_1;
+        bool ROTATE_L_2;
+        bool ROTATE_R_2;
+        bool ELEVATE_L_2;
+        bool ELEVATE_R_2;
+        bool MOVE_L_2;
+        bool MOVE_R_2;
+        private void Process1()
+        {
+            int count = 0;
+
+            while (true)
+            {
+
+                // 仿真手动操作逻辑
+                if(ROTATE_L_1 == true)
+                {
+                    Form1.d1PLC1Variables.RotaryAngle++;
+                }
+                if (ROTATE_R_1 == true)
+                {
+                    Form1.d1PLC1Variables.RotaryAngle--;
+                }
+
+                if (ELEVATE_L_1 == true)
+                {
+                    Form1.d1PLC1Variables.VariableAmplitudeAngle++;
+                }
+                if (ELEVATE_R_1 == true)
+                {
+                    Form1.d1PLC1Variables.VariableAmplitudeAngle--;
+                }
+
+                if (MOVE_L_1 == true)
+                {
+                    Form1.d1PLC1Variables.LargeCarTravelDistance++;
+                }
+                if (MOVE_R_1 == true)
+                {
+                    Form1.d1PLC1Variables.LargeCarTravelDistance--;
+                }
+
+                if (ROTATE_L_2 == true)
+                {
+                    Form1.d2PLC1Variables.RotaryAngle_2++;
+                }
+                if (ROTATE_R_2 == true)
+                {
+                    Form1.d2PLC1Variables.RotaryAngle_2--;
+                }
+
+                if (ELEVATE_L_2 == true)
+                {
+                    Form1.d2PLC1Variables.VariableAmplitudeAngle_2++;
+                }
+                if (ELEVATE_R_2 == true)
+                {
+                    Form1.d2PLC1Variables.VariableAmplitudeAngle_2--;
+                }
+
+                if (MOVE_L_2 == true)
+                {
+                    Form1.d2PLC1Variables.LargeCarTravelDistance_2++;
+                }
+                if (MOVE_R_2 == true)
+                {
+                    Form1.d2PLC1Variables.LargeCarTravelDistance_2--;
+                }
+
+
+
+                //检查子系统连接状态
+                //综合监控
+                foreach (KeyValuePair<IWebSocketConnection, string> pair in connectClients)
+                {
+                    if (pair.Value == "MC")
+                    {
+                        Form1.systemVariables.MCCommunicationState = true;
+                    }
+                }
+                //三维扫描
+                foreach (KeyValuePair<IWebSocketConnection, string> pair in connectClients)
+                {
+                    if (pair.Value == "SCAN")
+                    {
+                        Form1.systemVariables.SCANCommunicationState = true;
+                    }
+                }
+                //任务规划
+                foreach (KeyValuePair<IWebSocketConnection, string> pair in connectClients)
+                {
+                    if (pair.Value == "PC")
+                    {
+                        Form1.systemVariables.PCCommunicationState = true;
+                    }
+                }
+
+
+                count++;
+                //MessageBox.Show(count.ToString());
+                Thread.Sleep(2000);
+            }
+        }
+
+
+
 
         /// <summary>
         /// 监听给定的WebSocket端口，创建服务
@@ -89,13 +263,38 @@ namespace ShenYangRemoteSystem.Subclass
                 {
                     socket.OnOpen = () =>
                     {
-                        connectClients.Add(socket);
+                        connectClients.Add(socket , "UnKnown Client");
                         DisplayRichTextboxContentAndScroll("有客户端连接");
                     };
 
                     socket.OnClose = () =>
                     {
                         connectClients.Remove(socket);
+
+                        string clientName = null;
+                        // 在字典中更新客户端名称
+                        if (connectClients.ContainsKey(socket))
+                        {
+                            clientName = connectClients[socket];
+                        }
+
+
+
+                        if(clientName == "MC")
+                        {
+                            Form1.systemVariables.MCCommunicationState = false;
+                        }
+                        else if(clientName == "SCAN")
+                        {
+                            Form1.systemVariables.SCANCommunicationState = false;
+                        }
+                        else if (clientName == "PC")
+                        {
+                            Form1.systemVariables.PCCommunicationState = false;
+                        }
+
+
+
                         DisplayRichTextboxContentAndScroll("有客户端断开");
                     };
 
@@ -110,31 +309,175 @@ namespace ShenYangRemoteSystem.Subclass
                         systemVariables.TimeStamp = DateTime.Now;
 
                         //远程驱动的处理逻辑
-                        if (systemCommand.QUERY_TYPE == 1)
-                        {
-                            string responseMessage = JsonConvert.SerializeObject(systemVariables, settings);
 
-                            socket.Send(Compress(responseMessage));
-                        }
-                        else if (systemCommand.QUERY_TYPE == 2)
+                        //检查远程驱动标识位
+                        if (systemCommand.DATA_TYPE == 6) 
                         {
-                            float number = systemCommand.COMMAND_DATA;
+                            // 从消息中获取实际的客户端名称
+                            string clientName = systemCommand.QUERY_SYSTEM;// "MC"
 
-                            //选择器
-                            switch (systemCommand.COMMAND_NAME)
+                            // 在字典中更新客户端名称
+                            if (connectClients.ContainsKey(socket))
                             {
-                                case "SUPPLYPOWER_ON": // 命令名为 "SUPPLYPOWER_ON"
-
-                                    form1.PLCWrite(Form1.modbusHelper_D1PLC1, 0001, 0, "1");
-                                    Thread.Sleep(700);
-                                    form1.PLCWrite(Form1.modbusHelper_D1PLC1, 0001, 0, "0");
-
-                                    break;
+                                connectClients[socket] = clientName;
+                                //当需要访问指定系统名的套接字时：IWebSocketConnection socket = connectClients[clientName];
+                            }
 
 
-                                default:
-                                    // 处理其他值或未赋值的情况
-                                    break;
+
+                            //检查一帧数据标识位
+                            if (systemCommand.QUERY_TYPE == 1)
+                            {
+                                string responseMessage = JsonConvert.SerializeObject(systemVariables, settings);
+
+                                socket.Send(Compress(responseMessage));
+                            }
+                            //检查命令模式标识位
+                            else if (systemCommand.QUERY_TYPE == 2)
+                            {
+                                float number = systemCommand.DATA_FLOAT;
+
+                                //选择器
+                                switch (systemCommand.COMMAND_NAME)
+                                {
+                                    case "SUPPLYPOWER_ON": // 命令名为 "SUPPLYPOWER_ON"
+
+                                        form1.PLCWrite(Form1.modbusHelper_D1PLC1, 0001, 0, "1");
+                                        Thread.Sleep(700);
+                                        form1.PLCWrite(Form1.modbusHelper_D1PLC1, 0001, 0, "0");
+
+                                        break;
+
+                                    case "ROTATE_LEFT_1": // 命令名为 "ROTATE_LEFT_1"
+
+                                        ROTATE_L_1 = true;
+                                        ROTATE_R_1 = false;
+
+                                        break;
+
+                                    case "ROTATE_RIGHT_1":
+
+                                        ROTATE_L_1 = false;
+                                        ROTATE_R_1 = true;
+
+                                        break;
+
+                                    case "ROTATE_STOP_1":
+
+                                        ROTATE_L_1 = false;
+                                        ROTATE_R_1 = false;
+
+                                        break;
+
+                                    case "ELEVATE_UP_1":
+
+                                        ELEVATE_L_1 = true;
+                                        ELEVATE_R_1 = false;
+
+                                        break;
+
+                                    case "ELEVATE_DOWN_1":
+
+                                        ELEVATE_L_1 = false;
+                                        ELEVATE_R_1 = true;
+
+                                        break;
+
+                                    case "ELEVATE_STOP_1":
+
+                                        ELEVATE_L_1 = false;
+                                        ELEVATE_R_1 = false;
+
+                                        break;
+
+                                    case "MOVE_FORWARD_1":
+
+                                        MOVE_L_1 = true;
+                                        MOVE_R_1 = false;
+
+                                        break;
+
+                                    case "MOVE_BACKWARD_1":
+
+                                        MOVE_L_1 = false;
+                                        MOVE_R_1 = true;
+
+                                        break;
+
+                                    case "MOVE_STOP_1":
+
+                                        MOVE_L_1 = false;
+                                        MOVE_R_1 = false;
+
+                                        break;
+
+                                    case "ROTATE_LEFT_2": // 命令名为 "ROTATE_LEFT_2"
+
+                                        ROTATE_L_2 = true;
+                                        ROTATE_R_2 = false;
+
+                                        break;
+
+                                    case "ROTATE_RIGHT_2":
+
+                                        ROTATE_L_2 = false;
+                                        ROTATE_R_2 = true;
+
+                                        break;
+
+                                    case "ROTATE_STOP_2":
+
+                                        ROTATE_L_2 = false;
+                                        ROTATE_R_2 = false;
+
+                                        break;
+
+                                    case "ELEVATE_UP_2":
+
+                                        ELEVATE_L_2 = true;
+                                        ELEVATE_R_2 = false;
+
+                                        break;
+
+                                    case "ELEVATE_DOWN_2":
+
+                                        ELEVATE_L_2 = false;
+                                        ELEVATE_R_2 = true;
+
+                                        break;
+
+                                    case "ELEVATE_STOP_2":
+
+                                        ELEVATE_L_2 = false;
+                                        ELEVATE_R_2 = false;
+
+                                        break;
+
+                                    case "MOVE_FORWARD_2":
+
+                                        MOVE_L_2 = true;
+                                        MOVE_R_2 = false;
+
+                                        break;
+
+                                    case "MOVE_BACKWARD_2":
+
+                                        MOVE_L_2 = false;
+                                        MOVE_R_2 = true;
+
+                                        break;
+
+                                    case "MOVE_STOP_2":
+
+                                        MOVE_L_2 = false;
+                                        MOVE_R_2 = false;
+
+                                        break;
+
+                                    default:
+                                        // 处理其他值或未赋值的情况
+                                        break;
+                                }
                             }
                         }
                     };
@@ -173,6 +516,7 @@ namespace ShenYangRemoteSystem.Subclass
         #endregion
 
         #region 压缩方法
+        //解压字符串
         public static string Decompress(string compressedText)
         {
             byte[] compressedBuffer = Convert.FromBase64String(compressedText); using (MemoryStream compressedStream = new MemoryStream(compressedBuffer))

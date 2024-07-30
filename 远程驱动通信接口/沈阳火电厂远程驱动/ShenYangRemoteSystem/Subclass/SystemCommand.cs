@@ -25,10 +25,13 @@ namespace ShenYangRemoteSystem.Subclass
         public string COMMAND_NAME { get; set; }
         //命令名：该名字即为“基本指令表.xlsx”中的“英文指令名”
         //[DataMember]
-        public int COMMAND_TYPE { get; set; }
-        //命令整形：0-False，1-True
+        public string DATA_STRING { get; set; }
+        //数据字符串：用于存放向其他系统转发的内容（暂无实现）
         //[DataMember]
-        public float COMMAND_DATA { get; set; }
-        //命令浮点型：度数，深度
+        public int DATA_INT { get; set; }
+        //数据整型：0-False，1-True
+        //[DataMember]
+        public float DATA_FLOAT { get; set; }
+        //数据浮点型：度数，深度
     }
 }

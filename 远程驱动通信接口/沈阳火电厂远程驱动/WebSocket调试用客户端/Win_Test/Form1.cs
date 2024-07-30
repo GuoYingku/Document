@@ -28,10 +28,10 @@ namespace Win_Test
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            this.textBox1.Text = "192.168.1.40";
-            this.textBox4.Text = "15000";
-            this.textBox3.Text = "3";
-            this.textBox5.Text = "4";
+            this.textBox1.Text = "127.0.0.1";
+            this.textBox4.Text = "11000";
+            this.textBox3.Text = "6";
+            this.textBox5.Text = "1";
             this.comboBox2.Text = "1";
 
             systemCommand.QUERY_SYSTEM = "TEST";//子系统ID
@@ -74,7 +74,7 @@ namespace Win_Test
                 systemCommand.DATA_TYPE = int.Parse(textBox3.Text.Trim());//数据类型
                 systemCommand.QUERY_TYPE = int.Parse(textBox5.Text.Trim());//命令类型
                 systemCommand.COMMAND_NAME = comboBox1.Text;//命令名
-                systemCommand.COMMAND_TYPE = int.Parse(comboBox2.Text.Trim());//命令内容
+                systemCommand.DATA_INT = int.Parse(comboBox2.Text.Trim());//命令内容
 
                 string json = JsonConvert.SerializeObject(systemCommand, settings);
 

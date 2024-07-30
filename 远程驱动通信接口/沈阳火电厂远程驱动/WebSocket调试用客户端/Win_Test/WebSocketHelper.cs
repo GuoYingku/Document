@@ -112,7 +112,7 @@ namespace Win_Test
             mainSocket.Connect();
 
             //发送json字符串
-            mainSocket.Send(Compress(text));
+            mainSocket.Send(text);
 
             mainSocket.OnMessage += (sender, e) =>
             {
@@ -122,7 +122,7 @@ namespace Win_Test
                 // 开始计时
                 stopwatch.Start();
 
-                string receiveMsg = e.Data;
+                string receiveMsg = Decompress(e.Data);
 
                 Thread thread = new Thread(() => ShowMsg(receiveMsg)); // Lambda表达式，匿名方法
                 thread.Start();

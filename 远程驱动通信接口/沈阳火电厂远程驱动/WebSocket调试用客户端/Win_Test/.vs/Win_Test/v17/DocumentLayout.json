@@ -1,13 +1,21 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "F:\\\u5DE5\u4F5C\\24Q1\\\u897F\u5B89\u65B9\u5F62\u7164\u573A\u6599\u673A\u65E0\u4EBA\u503C\u5B88\u7CFB\u7EDF\u9879\u76EE\\\u8FDC\u7A0B\u9A71\u52A8\u7CFB\u7EDF\\\u94DC\u5DDD\u65B9\u5F62\u7164\u573A\u8FDC\u7A0B\u9A71\u52A8\\WebSocket\u6D4B\u8BD5\\Win_Test\\",
+  "WorkspaceRootPath": "C:\\Users\\David Tao\\Desktop\\\u5DE5\u4F5C\\24Q1\\\u534E\u6DA6\u6C88\u9633\u65B9\u5F62\u7164\u573A\u6599\u673A\u65E0\u4EBA\u503C\u5B88\u7CFB\u7EDF\u9879\u76EE\\\u8FDC\u7A0B\u9A71\u52A8\u7CFB\u7EDF\\\u6C88\u9633\u706B\u7535\u5382\u8FDC\u7A0B\u9A71\u52A8\\WebSocket\u8C03\u8BD5\u7528\u5BA2\u6237\u7AEF\\Win_Test\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4DC5FA96-2C5D-408B-98F1-A42D894555A2}|Win_Test.csproj|f:\\\u5DE5\u4F5C\\24q1\\\u897F\u5B89\u65B9\u5F62\u7164\u573A\u6599\u673A\u65E0\u4EBA\u503C\u5B88\u7CFB\u7EDF\u9879\u76EE\\\u8FDC\u7A0B\u9A71\u52A8\u7CFB\u7EDF\\\u94DC\u5DDD\u65B9\u5F62\u7164\u573A\u8FDC\u7A0B\u9A71\u52A8\\websocket\u6D4B\u8BD5\\win_test\\websockethelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4DC5FA96-2C5D-408B-98F1-A42D894555A2}|Win_Test.csproj|c:\\users\\david tao\\desktop\\\u5DE5\u4F5C\\24q1\\\u534E\u6DA6\u6C88\u9633\u65B9\u5F62\u7164\u573A\u6599\u673A\u65E0\u4EBA\u503C\u5B88\u7CFB\u7EDF\u9879\u76EE\\\u8FDC\u7A0B\u9A71\u52A8\u7CFB\u7EDF\\\u6C88\u9633\u706B\u7535\u5382\u8FDC\u7A0B\u9A71\u52A8\\websocket\u8C03\u8BD5\u7528\u5BA2\u6237\u7AEF\\win_test\\subclass\\servercommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4DC5FA96-2C5D-408B-98F1-A42D894555A2}|Win_Test.csproj|solutionrelative:subclass\\servercommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DC5FA96-2C5D-408B-98F1-A42D894555A2}|Win_Test.csproj|c:\\users\\david tao\\desktop\\\u5DE5\u4F5C\\24q1\\\u534E\u6DA6\u6C88\u9633\u65B9\u5F62\u7164\u573A\u6599\u673A\u65E0\u4EBA\u503C\u5B88\u7CFB\u7EDF\u9879\u76EE\\\u8FDC\u7A0B\u9A71\u52A8\u7CFB\u7EDF\\\u6C88\u9633\u706B\u7535\u5382\u8FDC\u7A0B\u9A71\u52A8\\websocket\u8C03\u8BD5\u7528\u5BA2\u6237\u7AEF\\win_test\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{4DC5FA96-2C5D-408B-98F1-A42D894555A2}|Win_Test.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DC5FA96-2C5D-408B-98F1-A42D894555A2}|Win_Test.csproj|c:\\users\\david tao\\desktop\\\u5DE5\u4F5C\\24q1\\\u534E\u6DA6\u6C88\u9633\u65B9\u5F62\u7164\u573A\u6599\u673A\u65E0\u4EBA\u503C\u5B88\u7CFB\u7EDF\u9879\u76EE\\\u8FDC\u7A0B\u9A71\u52A8\u7CFB\u7EDF\\\u6C88\u9633\u706B\u7535\u5382\u8FDC\u7A0B\u9A71\u52A8\\websocket\u8C03\u8BD5\u7528\u5BA2\u6237\u7AEF\\win_test\\websockethelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4DC5FA96-2C5D-408B-98F1-A42D894555A2}|Win_Test.csproj|solutionrelative:websockethelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4DC5FA96-2C5D-408B-98F1-A42D894555A2}|Win_Test.csproj|F:\\\u5DE5\u4F5C\\24Q1\\\u897F\u5B89\u65B9\u5F62\u7164\u573A\u6599\u673A\u65E0\u4EBA\u503C\u5B88\u7CFB\u7EDF\u9879\u76EE\\\u8FDC\u7A0B\u9A71\u52A8\u7CFB\u7EDF\\\u94DC\u5DDD\u65B9\u5F62\u7164\u573A\u8FDC\u7A0B\u9A71\u52A8\\WebSocket\u6D4B\u8BD5\\Win_Test\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4DC5FA96-2C5D-408B-98F1-A42D894555A2}|Win_Test.csproj|C:\\Users\\David Tao\\Desktop\\\u5DE5\u4F5C\\24Q1\\\u534E\u6DA6\u6C88\u9633\u65B9\u5F62\u7164\u573A\u6599\u673A\u65E0\u4EBA\u503C\u5B88\u7CFB\u7EDF\u9879\u76EE\\\u8FDC\u7A0B\u9A71\u52A8\u7CFB\u7EDF\\\u6C88\u9633\u706B\u7535\u5382\u8FDC\u7A0B\u9A71\u52A8\\WebSocket\u8C03\u8BD5\u7528\u5BA2\u6237\u7AEF\\Win_Test\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4DC5FA96-2C5D-408B-98F1-A42D894555A2}|Win_Test.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -18,30 +26,79 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 7,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1ce3aef-c78d-49ee-b72b-ec1fbc908313}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Form1.cs [\u8BBE\u8BA1]",
+              "DocumentMoniker": "C:\\Users\\David Tao\\Desktop\\\u5DE5\u4F5C\\24Q1\\\u534E\u6DA6\u6C88\u9633\u65B9\u5F62\u7164\u573A\u6599\u673A\u65E0\u4EBA\u503C\u5B88\u7CFB\u7EDF\u9879\u76EE\\\u8FDC\u7A0B\u9A71\u52A8\u7CFB\u7EDF\\\u6C88\u9633\u706B\u7535\u5382\u8FDC\u7A0B\u9A71\u52A8\\WebSocket\u8C03\u8BD5\u7528\u5BA2\u6237\u7AEF\\Win_Test\\Form1.cs",
+              "RelativeDocumentMoniker": "Form1.cs",
+              "ToolTip": "C:\\Users\\David Tao\\Desktop\\\u5DE5\u4F5C\\24Q1\\\u534E\u6DA6\u6C88\u9633\u65B9\u5F62\u7164\u573A\u6599\u673A\u65E0\u4EBA\u503C\u5B88\u7CFB\u7EDF\u9879\u76EE\\\u8FDC\u7A0B\u9A71\u52A8\u7CFB\u7EDF\\\u6C88\u9633\u706B\u7535\u5382\u8FDC\u7A0B\u9A71\u52A8\\WebSocket\u8C03\u8BD5\u7528\u5BA2\u6237\u7AEF\\Win_Test\\Form1.cs [\u8BBE\u8BA1]",
+              "RelativeToolTip": "Form1.cs [\u8BBE\u8BA1]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-30T08:54:15.776Z",
+              "EditorCaption": " [\u8BBE\u8BA1]"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "ServerCommand.cs",
+              "DocumentMoniker": "C:\\Users\\David Tao\\Desktop\\\u5DE5\u4F5C\\24Q1\\\u534E\u6DA6\u6C88\u9633\u65B9\u5F62\u7164\u573A\u6599\u673A\u65E0\u4EBA\u503C\u5B88\u7CFB\u7EDF\u9879\u76EE\\\u8FDC\u7A0B\u9A71\u52A8\u7CFB\u7EDF\\\u6C88\u9633\u706B\u7535\u5382\u8FDC\u7A0B\u9A71\u52A8\\WebSocket\u8C03\u8BD5\u7528\u5BA2\u6237\u7AEF\\Win_Test\\Subclass\\ServerCommand.cs",
+              "RelativeDocumentMoniker": "Subclass\\ServerCommand.cs",
+              "ToolTip": "C:\\Users\\David Tao\\Desktop\\\u5DE5\u4F5C\\24Q1\\\u534E\u6DA6\u6C88\u9633\u65B9\u5F62\u7164\u573A\u6599\u673A\u65E0\u4EBA\u503C\u5B88\u7CFB\u7EDF\u9879\u76EE\\\u8FDC\u7A0B\u9A71\u52A8\u7CFB\u7EDF\\\u6C88\u9633\u706B\u7535\u5382\u8FDC\u7A0B\u9A71\u52A8\\WebSocket\u8C03\u8BD5\u7528\u5BA2\u6237\u7AEF\\Win_Test\\Subclass\\ServerCommand.cs",
+              "RelativeToolTip": "Subclass\\ServerCommand.cs",
+              "ViewState": "AQIAAAsAAAAAAAAAAAA1wB4AAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-30T08:53:01.879Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "WebSocketHelper.cs",
-              "DocumentMoniker": "F:\\\u5DE5\u4F5C\\24Q1\\\u897F\u5B89\u65B9\u5F62\u7164\u573A\u6599\u673A\u65E0\u4EBA\u503C\u5B88\u7CFB\u7EDF\u9879\u76EE\\\u8FDC\u7A0B\u9A71\u52A8\u7CFB\u7EDF\\\u94DC\u5DDD\u65B9\u5F62\u7164\u573A\u8FDC\u7A0B\u9A71\u52A8\\WebSocket\u6D4B\u8BD5\\Win_Test\\WebSocketHelper.cs",
+              "DocumentMoniker": "C:\\Users\\David Tao\\Desktop\\\u5DE5\u4F5C\\24Q1\\\u534E\u6DA6\u6C88\u9633\u65B9\u5F62\u7164\u573A\u6599\u673A\u65E0\u4EBA\u503C\u5B88\u7CFB\u7EDF\u9879\u76EE\\\u8FDC\u7A0B\u9A71\u52A8\u7CFB\u7EDF\\\u6C88\u9633\u706B\u7535\u5382\u8FDC\u7A0B\u9A71\u52A8\\WebSocket\u8C03\u8BD5\u7528\u5BA2\u6237\u7AEF\\Win_Test\\WebSocketHelper.cs",
               "RelativeDocumentMoniker": "WebSocketHelper.cs",
-              "ToolTip": "F:\\\u5DE5\u4F5C\\24Q1\\\u897F\u5B89\u65B9\u5F62\u7164\u573A\u6599\u673A\u65E0\u4EBA\u503C\u5B88\u7CFB\u7EDF\u9879\u76EE\\\u8FDC\u7A0B\u9A71\u52A8\u7CFB\u7EDF\\\u94DC\u5DDD\u65B9\u5F62\u7164\u573A\u8FDC\u7A0B\u9A71\u52A8\\WebSocket\u6D4B\u8BD5\\Win_Test\\WebSocketHelper.cs",
+              "ToolTip": "C:\\Users\\David Tao\\Desktop\\\u5DE5\u4F5C\\24Q1\\\u534E\u6DA6\u6C88\u9633\u65B9\u5F62\u7164\u573A\u6599\u673A\u65E0\u4EBA\u503C\u5B88\u7CFB\u7EDF\u9879\u76EE\\\u8FDC\u7A0B\u9A71\u52A8\u7CFB\u7EDF\\\u6C88\u9633\u706B\u7535\u5382\u8FDC\u7A0B\u9A71\u52A8\\WebSocket\u8C03\u8BD5\u7528\u5BA2\u6237\u7AEF\\Win_Test\\WebSocketHelper.cs",
               "RelativeToolTip": "WebSocketHelper.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAPAAAA",
+              "ViewState": "AQIAAHEAAAAAAAAAAAAywHkAAAAXAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-22T08:55:39.463Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Form1.cs",
-              "DocumentMoniker": "F:\\\u5DE5\u4F5C\\24Q1\\\u897F\u5B89\u65B9\u5F62\u7164\u573A\u6599\u673A\u65E0\u4EBA\u503C\u5B88\u7CFB\u7EDF\u9879\u76EE\\\u8FDC\u7A0B\u9A71\u52A8\u7CFB\u7EDF\\\u94DC\u5DDD\u65B9\u5F62\u7164\u573A\u8FDC\u7A0B\u9A71\u52A8\\WebSocket\u6D4B\u8BD5\\Win_Test\\Form1.cs",
+              "DocumentMoniker": "C:\\Users\\David Tao\\Desktop\\\u5DE5\u4F5C\\24Q1\\\u534E\u6DA6\u6C88\u9633\u65B9\u5F62\u7164\u573A\u6599\u673A\u65E0\u4EBA\u503C\u5B88\u7CFB\u7EDF\u9879\u76EE\\\u8FDC\u7A0B\u9A71\u52A8\u7CFB\u7EDF\\\u6C88\u9633\u706B\u7535\u5382\u8FDC\u7A0B\u9A71\u52A8\\WebSocket\u8C03\u8BD5\u7528\u5BA2\u6237\u7AEF\\Win_Test\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
-              "ToolTip": "F:\\\u5DE5\u4F5C\\24Q1\\\u897F\u5B89\u65B9\u5F62\u7164\u573A\u6599\u673A\u65E0\u4EBA\u503C\u5B88\u7CFB\u7EDF\u9879\u76EE\\\u8FDC\u7A0B\u9A71\u52A8\u7CFB\u7EDF\\\u94DC\u5DDD\u65B9\u5F62\u7164\u573A\u8FDC\u7A0B\u9A71\u52A8\\WebSocket\u6D4B\u8BD5\\Win_Test\\Form1.cs",
+              "ToolTip": "C:\\Users\\David Tao\\Desktop\\\u5DE5\u4F5C\\24Q1\\\u534E\u6DA6\u6C88\u9633\u65B9\u5F62\u7164\u573A\u6599\u673A\u65E0\u4EBA\u503C\u5B88\u7CFB\u7EDF\u9879\u76EE\\\u8FDC\u7A0B\u9A71\u52A8\u7CFB\u7EDF\\\u6C88\u9633\u706B\u7535\u5382\u8FDC\u7A0B\u9A71\u52A8\\WebSocket\u8C03\u8BD5\u7528\u5BA2\u6237\u7AEF\\Win_Test\\Form1.cs",
               "RelativeToolTip": "Form1.cs",
-              "ViewState": "AQIAADYAAAAAAAAAAAAqwFYAAAAAAAAA",
+              "ViewState": "AQIAAAIAAAAAAAAAAAAAwBoAAAAzAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-22T01:49:05.922Z",
               "EditorCaption": ""

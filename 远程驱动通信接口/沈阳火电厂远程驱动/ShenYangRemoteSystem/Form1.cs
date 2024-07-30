@@ -21,6 +21,7 @@ using S7.Net;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
 using System.Diagnostics;
 using System.Collections.Concurrent;
+using Org.BouncyCastle.Ocsp;
 //using Google.Protobuf.WellKnownTypes;
 
 namespace ShenYangRemoteSystem
@@ -46,15 +47,13 @@ namespace ShenYangRemoteSystem
             Thread thread3 = new Thread(new ThreadStart(Process_D1PLC_DataGet));
             Thread thread4 = new Thread(new ThreadStart(Process_D2PLC_DataGet));
             Thread thread5 = new Thread(new ThreadStart(Process_SocketListening));
-            Thread thread6 = new Thread(new ThreadStart(Process6));
 
 
             //thread1.Start();
-            //thread2.Start();
-            //thread3.Start();
+            thread2.Start();
+            thread3.Start();
             thread4.Start();
             thread5.Start();
-            //thread6.Start();
 
 
             UpdateClock(null, null); //初始化时间
@@ -511,34 +510,6 @@ namespace ShenYangRemoteSystem
 
         }
 
-        public void Process6() 
-        {
-            while (true)
-            {
-                string barcode;
-
-                modbusHelper_D1PLC1.ReadBarcode(100, out barcode);
-
-                using (Form form = new Form())
-                {
-                    form.Width = 400;
-                    form.Height = 300;
-                    form.Text = "Object Properties";
-
-                    TextBox textBox = new TextBox();
-                    textBox.Multiline = true;
-                    textBox.ScrollBars = ScrollBars.Vertical;
-                    textBox.Dock = DockStyle.Fill;
-                    textBox.ReadOnly = true;
-                    textBox.Text = barcode;
-
-                    form.Controls.Add(textBox);
-
-                    form.ShowDialog();
-                }
-            }
-        }
-
         #region 全局变量定义
         //对象实例化
 
@@ -558,21 +529,20 @@ namespace ShenYangRemoteSystem
 
         public static UserControl_Page5 uc5 = new UserControl_Page5();
         
+
         
         public static ModbusHelper modbusHelper_D1PLC1 = new ModbusHelper(uc5);//施耐德D1PLC1对象
         public static ModbusHelper modbusHelper_D1PLC2 = new ModbusHelper(uc5);//施耐德D1PLC2对象
         public static ModbusHelper modbusHelper_D2PLC1 = new ModbusHelper(uc5);//施耐德D2PLC1对象
         public static ModbusHelper modbusHelper_D2PLC2 = new ModbusHelper(uc5);//施耐德D2PLC2对象
 
-        public static PLC1Variables d1PLC1Variables = new PLC1Variables(); //D1PLC1变量对象
-        public static PLC2Variables d1PLC2Variables = new PLC2Variables(); //D1PLC2变量对象
-        public static PLC1Variables d2PLC1Variables = new PLC1Variables(); //D2PLC1变量对象
-        public static PLC2Variables d2PLC2Variables = new PLC2Variables(); //D2PLC2变量对象
+        public static D1PLC1Variables d1PLC1Variables = new D1PLC1Variables(); //D1PLC1变量对象
+        public static D1PLC2Variables d1PLC2Variables = new D1PLC2Variables(); //D1PLC2变量对象
+        public static D2PLC1Variables d2PLC1Variables = new D2PLC1Variables(); //D2PLC1变量对象
+        public static D2PLC2Variables d2PLC2Variables = new D2PLC2Variables(); //D2PLC2变量对象
         public static SystemVariables systemVariables = new SystemVariables(); //PLC全体变量对象
 
 
-        public static SiemensHelper siemensHelper;//西门子PLC1对象
-        public static SiemensHelper siemensHelper2;//西门子PLC2对象
 
         public static SystemCommand systemCommand = new SystemCommand(); //系统命令对象
         public static MySqlConnection mySqlConnection;//数据库对象
@@ -847,8 +817,8 @@ namespace ShenYangRemoteSystem
         {
             while (true)
             {
-                Stopwatch stopwatch1 = new Stopwatch();
-                stopwatch1.Start();
+                //Stopwatch stopwatch1 = new Stopwatch();
+                //stopwatch1.Start();
 
 
                 ShareRes.WaitMutex();
@@ -862,16 +832,13 @@ namespace ShenYangRemoteSystem
                 }
                 ShareRes.ReleaseMutex();
 
-                stopwatch1.Stop();
+                ////stopwatch1.Stop();
 
 
                 //复制变量
                 CopyPropertiesD1PLC1(d1PLC1Variables, systemVariables);
 
                 string responseMessage = JsonConvert.SerializeObject(systemVariables, settings);
-
-
-                string message = responseMessage;
 
                 using (Form form = new Form())
                 {
@@ -884,15 +851,15 @@ namespace ShenYangRemoteSystem
                     textBox.ScrollBars = ScrollBars.Vertical;
                     textBox.Dock = DockStyle.Fill;
                     textBox.ReadOnly = true;
-                    textBox.Text = message;
+                    textBox.Text = responseMessage;
 
                     form.Controls.Add(textBox);
 
-                    form.ShowDialog();
+                    //form.ShowDialog();
                 }
 
 
-                MessageBox.Show(stopwatch1.ElapsedMilliseconds.ToString());
+                //MessageBox.Show(stopwatch1.ElapsedMilliseconds.ToString());
 
 
                 Thread.Sleep(1000);
@@ -913,7 +880,7 @@ namespace ShenYangRemoteSystem
                 ShareRes.ReleaseMutex();
 
                 //复制变量
-                //CopyPropertiesD1PLC2(d1PLC2Variables, systemVariables);
+                CopyPropertiesD2PLC1(d2PLC1Variables, systemVariables);
 
                 try
                 {
@@ -931,32 +898,34 @@ namespace ShenYangRemoteSystem
 
                 #region 随机数
 
-                Random random = new Random();
+                //Random random = new Random();
 
-                // 遍历所有属性，给它们赋随机数值
-                foreach (var property in systemVariables.GetType().GetProperties())
-                {
-                    if (property.PropertyType == typeof(bool))
-                    {
-                        property.SetValue(systemVariables, random.Next(2) == 0);
-                    }
-                    else if (property.PropertyType == typeof(float))
-                    {
-                        property.SetValue(systemVariables, (float)random.NextDouble());
-                    }
-                    else if (property.PropertyType == typeof(long))
-                    {
-                        property.SetValue(systemVariables, random.Next());
-                    }
-                    else if (property.PropertyType == typeof(ushort))
-                    {
-                        property.SetValue(systemVariables, (ushort)random.Next(360));
-                    }
-                    else if (property.PropertyType == typeof(int))
-                    {
-                        property.SetValue(systemVariables, (int)random.Next(360));
-                    }
-                }
+                //// 遍历所有属性，给它们赋随机数值
+                //foreach (var property in systemVariables.GetType().GetProperties())
+                //{
+                //    if (property.PropertyType == typeof(bool))
+                //    {
+                //        property.SetValue(systemVariables, random.Next(2) == 0);
+                //    }
+                //    else if (property.PropertyType == typeof(float))
+                //    {
+                //        property.SetValue(systemVariables, (float)random.NextDouble());
+                //    }
+                //    else if (property.PropertyType == typeof(long))
+                //    {
+                //        property.SetValue(systemVariables, random.Next());
+                //    }
+                //    else if (property.PropertyType == typeof(ushort))
+                //    {
+                //        property.SetValue(systemVariables, (ushort)random.Next(500));
+                //    }
+                //    else if (property.PropertyType == typeof(int))
+                //    {
+                //        property.SetValue(systemVariables, (int)random.Next(500));
+                //    }
+                //}
+
+
                 #endregion
 
                 Thread.Sleep(1000);
@@ -970,7 +939,7 @@ namespace ShenYangRemoteSystem
         /// </summary>
         public void Process_SocketListening()
         {
-            Thread.Sleep(2000);
+            Thread.Sleep(1000);
 
 
             WebSocketHelper websocket = new WebSocketHelper(this, systemVariables);
@@ -992,11 +961,11 @@ namespace ShenYangRemoteSystem
         #region PLC多个读取方法 （施耐德）
         public void ReadLargeBoolBuffer(ModbusHelper modbusHelper, int startAddress, out bool[] value)
         {
-            int totalLength = 3000;
+            int totalLength = 2400;
 
             value = new bool[totalLength];
 
-            int readLength = 1000; // 每次读取 1000 位
+            int readLength = 800; // 每次读取 1000 位
             int offset = 0; // 当前写入位置的偏移量
 
             // 循环读取，直到读取完所有数据
@@ -1022,11 +991,11 @@ namespace ShenYangRemoteSystem
 
         public void ReadLargeBuffer(ModbusHelper modbusHelper, int startAddress, out byte[] value)
         {
-            int totalLength = 800;// 目前最大支持800
+            int totalLength = 1020;// 目前最大支持1020
 
             value = new byte[totalLength];
 
-            int readLength = 200; // 每次读取 200 字节
+            int readLength = 204; // 每次读取 200 字节
             int offset = 0; // 当前写入位置的偏移量
 
             // 循环读取，直到读取完所有数据
@@ -1046,7 +1015,7 @@ namespace ShenYangRemoteSystem
                     throw new Exception();
                 }
 
-                startAddress += readLength; // 更新起始地址，准备下一次读取
+                startAddress += 102; // 更新起始地址，准备下一次读取
             }
         }
         #endregion
@@ -1059,19 +1028,16 @@ namespace ShenYangRemoteSystem
 
 
             
-
-
-
-
-
             //线圈
-            bool[] plc1DdataBuffer1 = new bool[3000];
-            //保持寄存器 目前最大支持800
-            byte[] plc1DdataBuffer2 = new byte[800];
+            bool[] plc1DdataBuffer1 = new bool[2100];
+            //保持寄存器 目前最大支持1020
+            byte[] plc1DdataBuffer2 = new byte[1020];
 
             //在这里把M区和MW区变量全部读进数组
-            ReadLargeBoolBuffer(modbusHelper_D1PLC1, 0, out plc1DdataBuffer1);
+            ReadLargeBoolBuffer(modbusHelper_D1PLC1, 1, out plc1DdataBuffer1);
             ReadLargeBuffer(modbusHelper_D1PLC1, 0, out plc1DdataBuffer2);
+
+
 
             //遍历键值对d1PLC1
             foreach (int address in d1PLC1addresses.Values)
@@ -1081,7 +1047,7 @@ namespace ShenYangRemoteSystem
                     try
                     {
                         string key = d1PLC1addresses.FirstOrDefault(x => x.Value == address).Key;
-                        PropertyInfo property = typeof(PLC1Variables).GetProperty(key);
+                        PropertyInfo property = typeof(D1PLC1Variables).GetProperty(key);
 
 
                         object result = plc1DdataBuffer1[address];
@@ -1101,10 +1067,14 @@ namespace ShenYangRemoteSystem
                     try
                     {
                         string key = d1PLC1addresses.FirstOrDefault(x => x.Value == address).Key;
-                        PropertyInfo property = typeof(PLC1Variables).GetProperty(key);
+                        PropertyInfo property = typeof(D1PLC1Variables).GetProperty(key);
 
 
-                        object result = plc1DdataBuffer2[address];// 402
+
+                        int startAddress = address - 40000;
+
+
+                        object result = BitConverter.ToUInt16(new byte[] { plc1DdataBuffer2[startAddress * 2 + 1], plc1DdataBuffer2[startAddress * 2 ] }, 0);
 
 
                         result2 = result;
@@ -1116,14 +1086,13 @@ namespace ShenYangRemoteSystem
                         MessageBox.Show(e.ToString());
                     }
                 }
-
                 // 4016013
                 else if (address >= 4000000)// %MWX.X
                 {
                     try
                     {
                         string key = d1PLC1addresses.FirstOrDefault(x => x.Value == address).Key;
-                        PropertyInfo property = typeof(PLC1Variables).GetProperty(key);
+                        PropertyInfo property = typeof(D1PLC1Variables).GetProperty(key);
 
                         int startAddress = address - 4000000;// 16013
 
@@ -1134,7 +1103,7 @@ namespace ShenYangRemoteSystem
                         int tensUnits = startAddress % 100;  //  13
 
                         //组合成16位二进制数
-                        ushort us = BitConverter.ToUInt16(new byte[] { plc1DdataBuffer2[remainingDigits*2+1], plc1DdataBuffer2[remainingDigits * 2] }, 0);
+                        ushort us = BitConverter.ToUInt16(new byte[] { plc1DdataBuffer2[remainingDigits* 2 + 1], plc1DdataBuffer2[remainingDigits * 2 ] }, 0);
 
                         int index = tensUnits; // 要读取的位
                         bool isBitSet = (us & (1 << index)) != 0;
@@ -1168,7 +1137,7 @@ namespace ShenYangRemoteSystem
             //    try
             //    {
             //        string key = d1PLC1addresses.FirstOrDefault(x => x.Value == address).Key;
-            //        PropertyInfo property = typeof(PLC1Variables).GetProperty(key);
+            //        PropertyInfo property = typeof(D1PLC1Variables).GetProperty(key);
 
             //        // 读取地址并处理返回的数据
             //        object result = PLCRead(modbusHelper_D1PLC1, address, property.PropertyType);
@@ -1192,7 +1161,7 @@ namespace ShenYangRemoteSystem
                 try
                 {
                     string key = d1PLC2addresses.FirstOrDefault(x => x.Value == address).Key;
-                    PropertyInfo property = typeof(PLC2Variables).GetProperty(key);
+                    PropertyInfo property = typeof(D1PLC2Variables).GetProperty(key);
 
                     // 读取地址并处理返回的数据
                     object result = PLCRead(modbusHelper_D1PLC2, address, property.PropertyType);
@@ -1220,7 +1189,7 @@ namespace ShenYangRemoteSystem
                 try
                 {
                     string key = d2PLC1addresses.FirstOrDefault(x => x.Value == address).Key;
-                    PropertyInfo property = typeof(PLC1Variables).GetProperty(key);
+                    PropertyInfo property = typeof(D2PLC1Variables).GetProperty(key);
 
                     // 读取地址并处理返回的数据
                     object result = PLCRead(modbusHelper_D2PLC1, address, property.PropertyType);
@@ -1240,7 +1209,7 @@ namespace ShenYangRemoteSystem
                 try
                 {
                     string key = d2PLC2addresses.FirstOrDefault(x => x.Value == address).Key;
-                    PropertyInfo property = typeof(PLC2Variables).GetProperty(key);
+                    PropertyInfo property = typeof(D2PLC2Variables).GetProperty(key);
 
                     // 读取地址并处理返回的数据
                     object result = PLCRead(modbusHelper_D2PLC2, address, property.PropertyType);
@@ -1522,9 +1491,9 @@ namespace ShenYangRemoteSystem
         #endregion
 
         #region 对象属性映射方法
-        public static void CopyPropertiesD1PLC1(PLC1Variables a, SystemVariables c)
+        public static void CopyPropertiesD1PLC1(D1PLC1Variables a, SystemVariables c)
         {
-            Type aType = typeof(PLC1Variables);
+            Type aType = typeof(D1PLC1Variables);
             Type cType = typeof(SystemVariables);
 
             PropertyInfo[] aProperties = aType.GetProperties();
@@ -1539,9 +1508,43 @@ namespace ShenYangRemoteSystem
                 }
             }
         }
-        public static void CopyPropertiesD1PLC2(PLC2Variables b, SystemVariables c)
+        public static void CopyPropertiesD1PLC2(D1PLC2Variables b, SystemVariables c)
         {
-            Type bType = typeof(PLC2Variables);
+            Type bType = typeof(D1PLC2Variables);
+            Type cType = typeof(SystemVariables);
+
+            PropertyInfo[] bProperties = bType.GetProperties();
+            PropertyInfo[] cProperties = cType.GetProperties();
+
+            foreach (PropertyInfo bProp in bProperties)
+            {
+                PropertyInfo cProp = cProperties.FirstOrDefault(p => p.Name == bProp.Name && p.PropertyType == bProp.PropertyType);
+                if (cProp != null)
+                {
+                    cProp.SetValue(c, bProp.GetValue(b));
+                }
+            }
+        }
+        public static void CopyPropertiesD2PLC1(D2PLC1Variables b, SystemVariables c)
+        {
+            Type bType = typeof(D2PLC1Variables);
+            Type cType = typeof(SystemVariables);
+
+            PropertyInfo[] bProperties = bType.GetProperties();
+            PropertyInfo[] cProperties = cType.GetProperties();
+
+            foreach (PropertyInfo bProp in bProperties)
+            {
+                PropertyInfo cProp = cProperties.FirstOrDefault(p => p.Name == bProp.Name && p.PropertyType == bProp.PropertyType);
+                if (cProp != null)
+                {
+                    cProp.SetValue(c, bProp.GetValue(b));
+                }
+            }
+        }
+        public static void CopyPropertiesD2PLC2(D2PLC2Variables b, SystemVariables c)
+        {
+            Type bType = typeof(D2PLC2Variables);
             Type cType = typeof(SystemVariables);
 
             PropertyInfo[] bProperties = bType.GetProperties();
@@ -1817,155 +1820,5 @@ namespace ShenYangRemoteSystem
 
             MessageBox.Show(cfa.AppSettings.Settings["Port"].Value.ToString());
         }
-
-        #region 与PLC连接线程 （西门子）
-        private void Process_SiemensPLC_Main()
-        {
-            try
-            {
-                siemensHelper.plc = new Plc(CpuType.S71500, "192.168.1.66", 0, 1);
-                siemensHelper2.plc = new Plc(CpuType.S71500, "192.168.1.150", 0, 1);
-
-                siemensHelper.plc.Open();
-                siemensHelper2.plc.Open();
-            }
-            catch { }
-
-            while (true)
-            {
-                //PLC1
-                try
-                {
-                    //检查plc是否连接上
-                    if (siemensHelper.plc.IsConnected == true)
-                    {
-                        if (uc5.PlcConnectionLabel != null)
-                        {
-                            UpdateText(uc5.PlcConnectionLabel, "PLC1已连接！");
-                        }
-                    }
-                    else
-                    {
-                        UpdateText(uc5.PlcConnectionLabel, "PLC1连接失败！");
-                        DisplayRichTextboxContentAndScroll("PLC1连接失败！");
-
-                        siemensHelper.plc.Open();//再次尝试
-                    }
-                }
-                catch (Exception ex)
-                {
-                    DisplayRichTextboxContentAndScroll("错误： " + ex.Message);
-                }
-
-                //PLC2
-                try
-                {
-                    //检查plc是否连接上
-                    if (siemensHelper2.plc.IsConnected)
-                    {
-                        if (uc5.PlcConnectionLabel != null)
-                        {
-                            UpdateText(uc5.PlcConnectionLabel, "PLC2已连接！");
-                        }
-                    }
-                    else
-                    {
-                        UpdateText(uc5.PlcConnectionLabel, "PLC2连接失败！");
-                        DisplayRichTextboxContentAndScroll("PLC2连接失败！");
-
-                        siemensHelper2.plc.Open();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    DisplayRichTextboxContentAndScroll("错误： " + ex.Message);
-                }
-
-                Thread.Sleep(5000);
-            }
-        }
-        #endregion
-
-        #region PLC数据获取线程 （西门子）
-        private void Process_SiemensPLC_DataGet1()
-        {
-            while (true)
-            {
-                if (siemensHelper.plc != null && siemensHelper.plc.IsConnected)
-                {
-                    d1PLC1Variables.TimeStamp = DateTime.Now; // 记录程序启动时间
-
-                    //ReadPLC1();
-                }
-
-                //复制变量
-                //CopyProperties1(plc1Variables, systemVariables);
-
-                Thread.Sleep(1000);
-            }
-        }
-        private void Process_SiemensPLC_DataGet2()
-        {
-            while (true)
-            {
-                ShareRes.WaitMutex();//YCQ, 20231223
-
-                if (siemensHelper2.plc != null && siemensHelper2.plc.IsConnected)
-                {
-                    //ReadPLC2();
-
-                    //GlobalVariables2.globalVariables2 = plc2Variables;
-                }
-                ShareRes.ReleaseMutex();//YCQ, 20231223
-
-                #region 随机数
-
-                systemVariables.TimeStamp = DateTime.Now;
-
-                Random random = new Random();
-
-                // 遍历所有属性，给它们赋随机数值
-                foreach (var property in systemVariables.GetType().GetProperties())
-                {
-                    if (property.PropertyType == typeof(bool))
-                    {
-                        property.SetValue(systemVariables, random.Next(2) == 0);
-                    }
-                    else if (property.PropertyType == typeof(float))
-                    {
-                        property.SetValue(systemVariables, (float)random.NextDouble());
-                    }
-                    else if (property.PropertyType == typeof(long))
-                    {
-                        property.SetValue(systemVariables, random.Next());
-                    }
-                    else if (property.PropertyType == typeof(ushort))
-                    {
-                        property.SetValue(systemVariables, (ushort)random.Next(500));
-                    }
-                    else if (property.PropertyType == typeof(int))
-                    {
-                        property.SetValue(systemVariables, (int)random.Next(500));
-                    }
-                }
-
-
-                //OperationLogs(systemVariables.MaterialFeederRotationSpeed.ToString());
-
-
-                #endregion
-
-                Thread.Sleep(500);
-
-                //复制变量
-                //CopyProperties2(plc2Variables, systemVariables);
-
-
-
-                //string test = JsonConvert.SerializeObject(systemVariables, settings);
-                //MessageBox.Show(test);
-            }
-        }
-        #endregion
     }
 }

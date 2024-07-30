@@ -73,7 +73,7 @@ namespace ShenYangRemoteSystem.用户控件
 
         #region PLC1变量用
         //控件图片更新方法（Ture == 红色）
-        public void UpdateRedByVariableForPLC1(string name, string variableName, PLC1Variables variables)
+        public void UpdateRedByVariableForPLC1(string name, string variableName, D1PLC1Variables variables)
         {
             Control[] controls = this.Controls.Find(name, true);
 
@@ -95,7 +95,7 @@ namespace ShenYangRemoteSystem.用户控件
         }
         
         //控件图片更新方法（Ture == 绿色）
-        public void UpdateGreenByVariableForPLC1(string name, string variableName, PLC1Variables variables)
+        public void UpdateGreenByVariableForPLC1(string name, string variableName, D1PLC1Variables variables)
         {
             Control[] controls = this.Controls.Find(name, true);
 
@@ -117,7 +117,7 @@ namespace ShenYangRemoteSystem.用户控件
         }
 
         //变量长整型更新方法
-        public void UpdateLongByVariableForPLC1(string name, string variableName, PLC1Variables variables)
+        public void UpdateLongByVariableForPLC1(string name, string variableName, D1PLC1Variables variables)
         {
             if (this.InvokeRequired)
             {
@@ -155,7 +155,7 @@ namespace ShenYangRemoteSystem.用户控件
 
         #region PLC2变量用
         //控件图片更新方法（Ture == 红色）
-        public void UpdateRedByVariableForPLC2(string name, string variableName, PLC2Variables variables)
+        public void UpdateRedByVariableForPLC2(string name, string variableName, D1PLC2Variables variables)
         {
             Control[] controls = this.Controls.Find(name, true);
 
@@ -177,7 +177,7 @@ namespace ShenYangRemoteSystem.用户控件
         }
 
         //变量浮点型更新方法
-        public void UpdateFloatByVariableForPLC2(string name, string variableName, PLC2Variables variables)
+        public void UpdateFloatByVariableForPLC2(string name, string variableName, D1PLC2Variables variables)
         {
             if (this.InvokeRequired)
             {
@@ -217,7 +217,7 @@ namespace ShenYangRemoteSystem.用户控件
 
         #region 通用类型检测方法（PLC1）
         //类型检测方法
-        private object GetVariableObject(string variableName, PLC1Variables variables)
+        private object GetVariableObject(string variableName, D1PLC1Variables variables)
         {
             if (string.IsNullOrEmpty(variableName) || variables == null)
             {
@@ -276,7 +276,7 @@ namespace ShenYangRemoteSystem.用户控件
 
         #region 布尔类型检测方法（PLC1）
         //布尔类型检测方法
-        private bool? GetVariableBool(string variableName, PLC1Variables variables)
+        private bool? GetVariableBool(string variableName, D1PLC1Variables variables)
         {
             if (string.IsNullOrEmpty(variableName) || variables == null)
             {
@@ -298,7 +298,7 @@ namespace ShenYangRemoteSystem.用户控件
         #endregion
 
         #region 通用类型检测方法（PLC2）
-        private object GetVariableObject2(string variableName, PLC2Variables variables)
+        private object GetVariableObject2(string variableName, D1PLC2Variables variables)
         {
             if (string.IsNullOrEmpty(variableName) || variables == null)
             {
@@ -357,7 +357,7 @@ namespace ShenYangRemoteSystem.用户控件
 
         #region 布尔类型检测方法（PLC2）
         //布尔类型检测方法
-        private bool? GetVariableBool2(string variableName, PLC2Variables variables)
+        private bool? GetVariableBool2(string variableName, D1PLC2Variables variables)
         {
             if (string.IsNullOrEmpty(variableName) || variables == null)
             {

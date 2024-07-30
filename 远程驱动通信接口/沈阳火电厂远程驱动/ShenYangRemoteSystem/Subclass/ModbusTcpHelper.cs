@@ -160,7 +160,7 @@ namespace ShenYangRemoteSystem
             socket.Send(sendBuffer);
 
             DisplayBuffer(sendBuffer, sendBuffer.Length, true);
-            Thread.Sleep(50);//等待50ms
+            Thread.Sleep(20);//等待50ms
 
             byte[] receiveBuffer = new byte[1024];
             try
@@ -191,10 +191,14 @@ namespace ShenYangRemoteSystem
                 string strTemp = byteArrToBinaryString(byteNew);
                 if (strTemp != "")
                 {
-                    for (int i = 0; i < length; i++)
+                    for (int i = 0; i < strTemp.Length; i++)
                     {
                         value[i] = strTemp.Substring(i, 1) == "1";
                     }
+                    //for (int i = 0; i < length; i++)
+                    //{
+                    //    value[i] = strTemp.Substring(i, 1) == "1";
+                    //}
                 }
             }
             return true;
