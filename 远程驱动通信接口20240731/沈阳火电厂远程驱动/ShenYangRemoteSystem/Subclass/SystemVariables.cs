@@ -10,7 +10,7 @@ namespace ShenYangRemoteSystem.Subclass
     {
         public DateTime TimeStamp { get; set; }
 
-
+        
         public bool PLCCommunicationState { get; set; }//可编程逻辑控制器通信状态
         public bool RCCommunicationState { get; set; }//远程驱动子系统通信状态
         public bool MCCommunicationState { get; set; }//综合运控子系统通信状态
@@ -18,7 +18,7 @@ namespace ShenYangRemoteSystem.Subclass
         public bool LOCCommunicationState { get; set; }//运动定位子系统通信状态
         public bool CACommunicationState { get; set; }//安全防护子系统通信状态
         public bool SCANCommunicationState { get; set; }//三维扫描子系统通信状态
-        public bool FDommunicationState { get; set; }//流量检测子系统通信状态
+        public bool FDCommunicationState { get; set; }//流量检测子系统通信状态
         public bool SMCommunicationState { get; set; }//系统管理子系统通信状态
         public bool VMCommunicationState { get; set; }//视频监测子系统通信状态
 
