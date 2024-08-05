@@ -3,11 +3,7 @@
   "WorkspaceRootPath": "C:\\Users\\David Tao\\Desktop\\\u5DE5\u4F5C\\24Q1\\\u534E\u6DA6\u6C88\u9633\u65B9\u5F62\u7164\u573A\u6599\u673A\u65E0\u4EBA\u503C\u5B88\u7CFB\u7EDF\u9879\u76EE\\\u8FDC\u7A0B\u9A71\u52A8\u7CFB\u7EDF\\\u6C88\u9633\u706B\u7535\u5382\u8FDC\u7A0B\u9A71\u52A8\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A9AFC66F-F69C-4D0F-956F-98E544048AA8}|ShenYangRemoteSystem\\ShenYangRemoteSystem.csproj|c:\\users\\david tao\\desktop\\\u5DE5\u4F5C\\24q1\\\u534E\u6DA6\u6C88\u9633\u65B9\u5F62\u7164\u573A\u6599\u673A\u65E0\u4EBA\u503C\u5B88\u7CFB\u7EDF\u9879\u76EE\\\u8FDC\u7A0B\u9A71\u52A8\u7CFB\u7EDF\\\u6C88\u9633\u706B\u7535\u5382\u8FDC\u7A0B\u9A71\u52A8\\shenyangremotesystem\\subclass\\systemvariables.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A9AFC66F-F69C-4D0F-956F-98E544048AA8}|ShenYangRemoteSystem\\ShenYangRemoteSystem.csproj|solutionrelative:shenyangremotesystem\\subclass\\systemvariables.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A9AFC66F-F69C-4D0F-956F-98E544048AA8}|ShenYangRemoteSystem\\ShenYangRemoteSystem.csproj|C:\\Users\\David Tao\\Desktop\\\u5DE5\u4F5C\\24Q1\\\u534E\u6DA6\u6C88\u9633\u65B9\u5F62\u7164\u573A\u6599\u673A\u65E0\u4EBA\u503C\u5B88\u7CFB\u7EDF\u9879\u76EE\\\u8FDC\u7A0B\u9A71\u52A8\u7CFB\u7EDF\\\u6C88\u9633\u706B\u7535\u5382\u8FDC\u7A0B\u9A71\u52A8\\shenyangremotesystem\\subclass\\websockethelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A9AFC66F-F69C-4D0F-956F-98E544048AA8}|ShenYangRemoteSystem\\ShenYangRemoteSystem.csproj|c:\\users\\david tao\\desktop\\\u5DE5\u4F5C\\24q1\\\u534E\u6DA6\u6C88\u9633\u65B9\u5F62\u7164\u573A\u6599\u673A\u65E0\u4EBA\u503C\u5B88\u7CFB\u7EDF\u9879\u76EE\\\u8FDC\u7A0B\u9A71\u52A8\u7CFB\u7EDF\\\u6C88\u9633\u706B\u7535\u5382\u8FDC\u7A0B\u9A71\u52A8\\shenyangremotesystem\\subclass\\websockethelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A9AFC66F-F69C-4D0F-956F-98E544048AA8}|ShenYangRemoteSystem\\ShenYangRemoteSystem.csproj|solutionrelative:shenyangremotesystem\\subclass\\websockethelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -15,12 +11,20 @@
       "RelativeMoniker": "D:0:0:{A9AFC66F-F69C-4D0F-956F-98E544048AA8}|ShenYangRemoteSystem\\ShenYangRemoteSystem.csproj|solutionrelative:shenyangremotesystem\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A9AFC66F-F69C-4D0F-956F-98E544048AA8}|ShenYangRemoteSystem\\ShenYangRemoteSystem.csproj|C:\\Users\\David Tao\\Desktop\\\u5DE5\u4F5C\\24Q1\\\u534E\u6DA6\u6C88\u9633\u65B9\u5F62\u7164\u573A\u6599\u673A\u65E0\u4EBA\u503C\u5B88\u7CFB\u7EDF\u9879\u76EE\\\u8FDC\u7A0B\u9A71\u52A8\u7CFB\u7EDF\\\u6C88\u9633\u706B\u7535\u5382\u8FDC\u7A0B\u9A71\u52A8\\shenyangremotesystem\\subclass\\systemcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A9AFC66F-F69C-4D0F-956F-98E544048AA8}|ShenYangRemoteSystem\\ShenYangRemoteSystem.csproj|solutionrelative:shenyangremotesystem\\subclass\\systemcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A9AFC66F-F69C-4D0F-956F-98E544048AA8}|ShenYangRemoteSystem\\ShenYangRemoteSystem.csproj|C:\\Users\\David Tao\\Desktop\\\u5DE5\u4F5C\\24Q1\\\u534E\u6DA6\u6C88\u9633\u65B9\u5F62\u7164\u573A\u6599\u673A\u65E0\u4EBA\u503C\u5B88\u7CFB\u7EDF\u9879\u76EE\\\u8FDC\u7A0B\u9A71\u52A8\u7CFB\u7EDF\\\u6C88\u9633\u706B\u7535\u5382\u8FDC\u7A0B\u9A71\u52A8\\shenyangremotesystem\\subclass\\modbustcphelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A9AFC66F-F69C-4D0F-956F-98E544048AA8}|ShenYangRemoteSystem\\ShenYangRemoteSystem.csproj|solutionrelative:shenyangremotesystem\\subclass\\modbustcphelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9AFC66F-F69C-4D0F-956F-98E544048AA8}|ShenYangRemoteSystem\\ShenYangRemoteSystem.csproj|C:\\Users\\David Tao\\Desktop\\\u5DE5\u4F5C\\24Q1\\\u534E\u6DA6\u6C88\u9633\u65B9\u5F62\u7164\u573A\u6599\u673A\u65E0\u4EBA\u503C\u5B88\u7CFB\u7EDF\u9879\u76EE\\\u8FDC\u7A0B\u9A71\u52A8\u7CFB\u7EDF\\\u6C88\u9633\u706B\u7535\u5382\u8FDC\u7A0B\u9A71\u52A8\\shenyangremotesystem\\subclass\\systemvariables.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A9AFC66F-F69C-4D0F-956F-98E544048AA8}|ShenYangRemoteSystem\\ShenYangRemoteSystem.csproj|solutionrelative:shenyangremotesystem\\subclass\\systemvariables.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A9AFC66F-F69C-4D0F-956F-98E544048AA8}|ShenYangRemoteSystem\\ShenYangRemoteSystem.csproj|C:\\Users\\David Tao\\Desktop\\\u5DE5\u4F5C\\24Q1\\\u534E\u6DA6\u6C88\u9633\u65B9\u5F62\u7164\u573A\u6599\u673A\u65E0\u4EBA\u503C\u5B88\u7CFB\u7EDF\u9879\u76EE\\\u8FDC\u7A0B\u9A71\u52A8\u7CFB\u7EDF\\\u6C88\u9633\u706B\u7535\u5382\u8FDC\u7A0B\u9A71\u52A8\\shenyangremotesystem\\subclass\\d1plc1variables.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A9AFC66F-F69C-4D0F-956F-98E544048AA8}|ShenYangRemoteSystem\\ShenYangRemoteSystem.csproj|solutionrelative:shenyangremotesystem\\subclass\\d1plc1variables.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9AFC66F-F69C-4D0F-956F-98E544048AA8}|ShenYangRemoteSystem\\ShenYangRemoteSystem.csproj|C:\\Users\\David Tao\\Desktop\\\u5DE5\u4F5C\\24Q1\\\u534E\u6DA6\u6C88\u9633\u65B9\u5F62\u7164\u573A\u6599\u673A\u65E0\u4EBA\u503C\u5B88\u7CFB\u7EDF\u9879\u76EE\\\u8FDC\u7A0B\u9A71\u52A8\u7CFB\u7EDF\\\u6C88\u9633\u706B\u7535\u5382\u8FDC\u7A0B\u9A71\u52A8\\shenyangremotesystem\\subclass\\systemcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A9AFC66F-F69C-4D0F-956F-98E544048AA8}|ShenYangRemoteSystem\\ShenYangRemoteSystem.csproj|solutionrelative:shenyangremotesystem\\subclass\\systemcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A9AFC66F-F69C-4D0F-956F-98E544048AA8}|ShenYangRemoteSystem\\ShenYangRemoteSystem.csproj|C:\\Users\\David Tao\\Desktop\\\u5DE5\u4F5C\\24Q1\\\u534E\u6DA6\u6C88\u9633\u65B9\u5F62\u7164\u573A\u6599\u673A\u65E0\u4EBA\u503C\u5B88\u7CFB\u7EDF\u9879\u76EE\\\u8FDC\u7A0B\u9A71\u52A8\u7CFB\u7EDF\\\u6C88\u9633\u706B\u7535\u5382\u8FDC\u7A0B\u9A71\u52A8\\shenyangremotesystem\\subclass\\d2plc1variables.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -38,13 +42,13 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "Form1.cs",
               "DocumentMoniker": "C:\\Users\\David Tao\\Desktop\\\u5DE5\u4F5C\\24Q1\\\u534E\u6DA6\u6C88\u9633\u65B9\u5F62\u7164\u573A\u6599\u673A\u65E0\u4EBA\u503C\u5B88\u7CFB\u7EDF\u9879\u76EE\\\u8FDC\u7A0B\u9A71\u52A8\u7CFB\u7EDF\\\u6C88\u9633\u706B\u7535\u5382\u8FDC\u7A0B\u9A71\u52A8\\ShenYangRemoteSystem\\Form1.cs",
               "RelativeDocumentMoniker": "ShenYangRemoteSystem\\Form1.cs",
               "ToolTip": "C:\\Users\\David Tao\\Desktop\\\u5DE5\u4F5C\\24Q1\\\u534E\u6DA6\u6C88\u9633\u65B9\u5F62\u7164\u573A\u6599\u673A\u65E0\u4EBA\u503C\u5B88\u7CFB\u7EDF\u9879\u76EE\\\u8FDC\u7A0B\u9A71\u52A8\u7CFB\u7EDF\\\u6C88\u9633\u706B\u7535\u5382\u8FDC\u7A0B\u9A71\u52A8\\ShenYangRemoteSystem\\Form1.cs",
               "RelativeToolTip": "ShenYangRemoteSystem\\Form1.cs",
-              "ViewState": "AQIAAM0CAAAAAAAAAAAAAHgGAAANAAAA",
+              "ViewState": "AQIAAKUDAAAAAAAAAAAAALkDAAAqAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-30T08:12:02.349Z",
               "IsPinned": true
@@ -75,40 +79,53 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
+              "Title": "ModbusTcpHelper.cs",
+              "DocumentMoniker": "C:\\Users\\David Tao\\Desktop\\\u5DE5\u4F5C\\24Q1\\\u534E\u6DA6\u6C88\u9633\u65B9\u5F62\u7164\u573A\u6599\u673A\u65E0\u4EBA\u503C\u5B88\u7CFB\u7EDF\u9879\u76EE\\\u8FDC\u7A0B\u9A71\u52A8\u7CFB\u7EDF\\\u6C88\u9633\u706B\u7535\u5382\u8FDC\u7A0B\u9A71\u52A8\\ShenYangRemoteSystem\\Subclass\\ModbusTcpHelper.cs",
+              "RelativeDocumentMoniker": "ShenYangRemoteSystem\\Subclass\\ModbusTcpHelper.cs",
+              "ToolTip": "C:\\Users\\David Tao\\Desktop\\\u5DE5\u4F5C\\24Q1\\\u534E\u6DA6\u6C88\u9633\u65B9\u5F62\u7164\u573A\u6599\u673A\u65E0\u4EBA\u503C\u5B88\u7CFB\u7EDF\u9879\u76EE\\\u8FDC\u7A0B\u9A71\u52A8\u7CFB\u7EDF\\\u6C88\u9633\u706B\u7535\u5382\u8FDC\u7A0B\u9A71\u52A8\\ShenYangRemoteSystem\\Subclass\\ModbusTcpHelper.cs",
+              "RelativeToolTip": "ShenYangRemoteSystem\\Subclass\\ModbusTcpHelper.cs",
+              "ViewState": "AQIAAAsCAAAAAAAAAAA0wDMCAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-01T11:20:40.248Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "SystemCommand.cs",
               "DocumentMoniker": "C:\\Users\\David Tao\\Desktop\\\u5DE5\u4F5C\\24Q1\\\u534E\u6DA6\u6C88\u9633\u65B9\u5F62\u7164\u573A\u6599\u673A\u65E0\u4EBA\u503C\u5B88\u7CFB\u7EDF\u9879\u76EE\\\u8FDC\u7A0B\u9A71\u52A8\u7CFB\u7EDF\\\u6C88\u9633\u706B\u7535\u5382\u8FDC\u7A0B\u9A71\u52A8\\ShenYangRemoteSystem\\Subclass\\SystemCommand.cs",
               "RelativeDocumentMoniker": "ShenYangRemoteSystem\\Subclass\\SystemCommand.cs",
               "ToolTip": "C:\\Users\\David Tao\\Desktop\\\u5DE5\u4F5C\\24Q1\\\u534E\u6DA6\u6C88\u9633\u65B9\u5F62\u7164\u573A\u6599\u673A\u65E0\u4EBA\u503C\u5B88\u7CFB\u7EDF\u9879\u76EE\\\u8FDC\u7A0B\u9A71\u52A8\u7CFB\u7EDF\\\u6C88\u9633\u706B\u7535\u5382\u8FDC\u7A0B\u9A71\u52A8\\ShenYangRemoteSystem\\Subclass\\SystemCommand.cs",
               "RelativeToolTip": "ShenYangRemoteSystem\\Subclass\\SystemCommand.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAwAAAA",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAACQAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-30T08:53:08.875Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "WebSocketHelper.cs",
               "DocumentMoniker": "C:\\Users\\David Tao\\Desktop\\\u5DE5\u4F5C\\24Q1\\\u534E\u6DA6\u6C88\u9633\u65B9\u5F62\u7164\u573A\u6599\u673A\u65E0\u4EBA\u503C\u5B88\u7CFB\u7EDF\u9879\u76EE\\\u8FDC\u7A0B\u9A71\u52A8\u7CFB\u7EDF\\\u6C88\u9633\u706B\u7535\u5382\u8FDC\u7A0B\u9A71\u52A8\\ShenYangRemoteSystem\\Subclass\\WebSocketHelper.cs",
               "RelativeDocumentMoniker": "ShenYangRemoteSystem\\Subclass\\WebSocketHelper.cs",
               "ToolTip": "C:\\Users\\David Tao\\Desktop\\\u5DE5\u4F5C\\24Q1\\\u534E\u6DA6\u6C88\u9633\u65B9\u5F62\u7164\u573A\u6599\u673A\u65E0\u4EBA\u503C\u5B88\u7CFB\u7EDF\u9879\u76EE\\\u8FDC\u7A0B\u9A71\u52A8\u7CFB\u7EDF\\\u6C88\u9633\u706B\u7535\u5382\u8FDC\u7A0B\u9A71\u52A8\\ShenYangRemoteSystem\\Subclass\\WebSocketHelper.cs",
               "RelativeToolTip": "ShenYangRemoteSystem\\Subclass\\WebSocketHelper.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAkAAAAbAAAA",
+              "ViewState": "AQIAAAABAAAAAAAAAAAuwAkBAABGAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-30T03:36:55.017Z"
+              "WhenOpened": "2024-07-30T03:36:55.017Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "SystemVariables.cs",
               "DocumentMoniker": "C:\\Users\\David Tao\\Desktop\\\u5DE5\u4F5C\\24Q1\\\u534E\u6DA6\u6C88\u9633\u65B9\u5F62\u7164\u573A\u6599\u673A\u65E0\u4EBA\u503C\u5B88\u7CFB\u7EDF\u9879\u76EE\\\u8FDC\u7A0B\u9A71\u52A8\u7CFB\u7EDF\\\u6C88\u9633\u706B\u7535\u5382\u8FDC\u7A0B\u9A71\u52A8\\ShenYangRemoteSystem\\Subclass\\SystemVariables.cs",
               "RelativeDocumentMoniker": "ShenYangRemoteSystem\\Subclass\\SystemVariables.cs",
               "ToolTip": "C:\\Users\\David Tao\\Desktop\\\u5DE5\u4F5C\\24Q1\\\u534E\u6DA6\u6C88\u9633\u65B9\u5F62\u7164\u573A\u6599\u673A\u65E0\u4EBA\u503C\u5B88\u7CFB\u7EDF\u9879\u76EE\\\u8FDC\u7A0B\u9A71\u52A8\u7CFB\u7EDF\\\u6C88\u9633\u706B\u7535\u5382\u8FDC\u7A0B\u9A71\u52A8\\ShenYangRemoteSystem\\Subclass\\SystemVariables.cs",
               "RelativeToolTip": "ShenYangRemoteSystem\\Subclass\\SystemVariables.cs",
-              "ViewState": "AQIAAAcAAAAAAAAAAAAAABAAAABDAAAA",
+              "ViewState": "AQIAAAgAAAAAAAAAAAA1wAoAAAAvAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-17T09:42:30.156Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-17T09:42:30.156Z"
             },
             {
               "$type": "Document",
@@ -118,13 +135,13 @@
               "RelativeDocumentMoniker": "ShenYangRemoteSystem\\Subclass\\D1PLC1Variables.cs",
               "ToolTip": "C:\\Users\\David Tao\\Desktop\\\u5DE5\u4F5C\\24Q1\\\u534E\u6DA6\u6C88\u9633\u65B9\u5F62\u7164\u573A\u6599\u673A\u65E0\u4EBA\u503C\u5B88\u7CFB\u7EDF\u9879\u76EE\\\u8FDC\u7A0B\u9A71\u52A8\u7CFB\u7EDF\\\u6C88\u9633\u706B\u7535\u5382\u8FDC\u7A0B\u9A71\u52A8\\ShenYangRemoteSystem\\Subclass\\D1PLC1Variables.cs",
               "RelativeToolTip": "ShenYangRemoteSystem\\Subclass\\D1PLC1Variables.cs",
-              "ViewState": "AQIAAIABAAAAAAAAAAAAAJoAAAA4AAAA",
+              "ViewState": "AQIAAIABAAAAAAAAAAAuwJoAAAA4AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-30T03:36:22.937Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "D2PLC1Variables.cs",
               "DocumentMoniker": "C:\\Users\\David Tao\\Desktop\\\u5DE5\u4F5C\\24Q1\\\u534E\u6DA6\u6C88\u9633\u65B9\u5F62\u7164\u573A\u6599\u673A\u65E0\u4EBA\u503C\u5B88\u7CFB\u7EDF\u9879\u76EE\\\u8FDC\u7A0B\u9A71\u52A8\u7CFB\u7EDF\\\u6C88\u9633\u706B\u7535\u5382\u8FDC\u7A0B\u9A71\u52A8\\ShenYangRemoteSystem\\Subclass\\D2PLC1Variables.cs",
               "RelativeDocumentMoniker": "ShenYangRemoteSystem\\Subclass\\D2PLC1Variables.cs",

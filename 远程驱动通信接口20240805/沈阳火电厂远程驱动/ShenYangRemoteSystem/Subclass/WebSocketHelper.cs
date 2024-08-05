@@ -64,7 +64,7 @@ namespace ShenYangRemoteSystem.Subclass
             {
                 if (property.PropertyType == typeof(bool))
                 {
-                    property.SetValue(Form1.systemVariables, random.Next(2) == 0);
+                    //property.SetValue(Form1.systemVariables, random.Next(2) == 0);
                 }
                 else if (property.PropertyType == typeof(float))
                 {
@@ -257,7 +257,7 @@ namespace ShenYangRemoteSystem.Subclass
         public void Listen(string point)
         {
             try
-            {
+            {   
                 socketWatcher = new WebSocketServer($"ws://{point}");
                 socketWatcher.Start(socket =>
                 {
@@ -267,12 +267,43 @@ namespace ShenYangRemoteSystem.Subclass
                         DisplayRichTextboxContentAndScroll("有客户端连接");
                     };
 
-                    socket.OnClose = () =>
+                    socket.OnError = (Exception ex) =>
                     {
-                        connectClients.Remove(socket);
 
                         string clientName = null;
-                        // 在字典中更新客户端名称
+                        // 从字典中拿到对应客户端名称
+                        if (connectClients.ContainsKey(socket))
+                        {
+                            clientName = connectClients[socket];
+                        }
+
+
+
+                        if (clientName == "MC")
+                        {
+                            Form1.systemVariables.MCCommunicationState = false;
+                        }
+                        else if (clientName == "SCAN")
+                        {
+                            Form1.systemVariables.SCANCommunicationState = false;
+                        }
+                        else if (clientName == "PC")
+                        {
+                            Form1.systemVariables.PCCommunicationState = false;
+                        }
+
+
+                        connectClients.Remove(socket);
+
+
+                        DisplayRichTextboxContentAndScroll("有客户端意外断开");
+                    };
+
+                    socket.OnClose = () =>
+                    {
+
+                        string clientName = null;
+                        // 从字典中拿到对应客户端名称
                         if (connectClients.ContainsKey(socket))
                         {
                             clientName = connectClients[socket];
@@ -293,6 +324,8 @@ namespace ShenYangRemoteSystem.Subclass
                             Form1.systemVariables.PCCommunicationState = false;
                         }
 
+
+                        connectClients.Remove(socket);
 
 
                         DisplayRichTextboxContentAndScroll("有客户端断开");
@@ -331,6 +364,24 @@ namespace ShenYangRemoteSystem.Subclass
                                 string responseMessage = JsonConvert.SerializeObject(systemVariables, settings);
 
                                 socket.Send(Compress(responseMessage));
+                            }
+                            //检查转发模式标识位
+                            else if (systemCommand.QUERY_TYPE == 3)
+                            {
+                                string systemString = systemCommand.COMMAND_NAME;
+
+                                if (connectClients.ContainsValue(systemString))
+                                {
+                                    IWebSocketConnection socket2 = connectClients.FirstOrDefault(x => x.Value == systemString).Key;
+
+                                    string jsonString = systemCommand.DATA_STRING;
+
+                                    socket2.Send(Compress(jsonString));
+
+
+                                }
+
+
                             }
                             //检查命令模式标识位
                             else if (systemCommand.QUERY_TYPE == 2)

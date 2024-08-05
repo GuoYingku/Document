@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -38,9 +39,15 @@ namespace ShenYangRemoteSystem
 
             systemCommand.QUERY_SYSTEM = "RC"; //本系统ID
             this.FormClosed += Form1_FormClosed; //主窗体退出事件
-            //this.WindowState = FormWindowState.Minimized; //初始化窗体显示状态---最小化
-            //this.ShowInTaskbar = false; //禁用（隐藏）任务栏图标
-            
+                                                 //this.WindowState = FormWindowState.Minimized; //初始化窗体显示状态---最小化
+                                                 //this.ShowInTaskbar = false; //禁用（隐藏）任务栏图标
+
+            try
+            {
+                websocketIp = File.ReadAllText("ipconfig.txt");
+            }
+            catch{ }
+
 
             Thread thread1 = new Thread(new ThreadStart(ConnectToDatabase));
             Thread thread2 = new Thread(new ThreadStart(Process_PLC_Main));
@@ -555,7 +562,7 @@ namespace ShenYangRemoteSystem
 
         private List<Button> buttons;
 
-
+        string websocketIp = "127.0.0.1:11000";
 
         private DateTime startTime;
         IPAddress hostIP;
@@ -944,7 +951,7 @@ namespace ShenYangRemoteSystem
 
             WebSocketHelper websocket = new WebSocketHelper(this, systemVariables);
             
-            websocket.Listen("127.0.0.1:11000");
+            websocket.Listen(websocketIp);
 
 
         }
